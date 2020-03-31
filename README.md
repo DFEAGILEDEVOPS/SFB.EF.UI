@@ -1,8 +1,9 @@
 # SFB Starter Kit
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+it also contains out-of-the-box the latest version of the [Gov.uk Design System](https://design-system.service.gov.uk/).
 
-# Instructions
+## Instructions
 
 Run `npm install` to update all packages required locally.
 
