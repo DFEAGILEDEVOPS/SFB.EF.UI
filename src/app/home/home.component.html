@@ -4,7 +4,7 @@
       <a class="govuk-breadcrumbs__link" href="/">Home</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="/school/detail?urn={{urn}}">{{schoolName}}</a>
+      <a class="govuk-breadcrumbs__link" href="/school/detail?urn={{model.urn}}">{{model.name}}</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
       <a class="govuk-breadcrumbs__link" href="/efficiency-metric/how-it-works">How the efficiency metric works</a></li>
@@ -14,8 +14,41 @@
 <p class="govuk-body-s">
   Results for
   <span class="highlight">
-    <span class="govuk-!-font-weight-bold">{{schoolName}}</span>
+    <span class="govuk-!-font-weight-bold">{{model.name}}</span>
   </span>
 </p>
 
-<p class="govuk-body govuk-!-font-weight-bold">This school's Efficiency Metric Ranking is {{emRank}}</p>
+<p class="govuk-body govuk-!-font-weight-bold">This school's Efficiency Metric Ranking is {{model.rank}}</p>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Rank</th>
+      <th scope="col" class="govuk-table__header">School</th>
+      <th scope="col" class="govuk-table__header">Local authority</th>
+      <th scope="col" class="govuk-table__header">Pupils</th>
+      <th scope="col" class="govuk-table__header">Ever6 FSM</th>
+      <th scope="col" class="govuk-table__header">SEN/EHCP</th>
+      <th scope="col" class="govuk-table__header">Income per pupil</th>
+      <th scope="col" class="govuk-table__header" *ngIf='model.phase === "Primary"'>Reading</th>
+      <th scope="col" class="govuk-table__header" *ngIf='model.phase === "Primary"'>Writing</th>
+      <th scope="col" class="govuk-table__header" *ngIf='model.phase === "Primary"'>Maths</th>
+      <th scope="col" class="govuk-table__header" *ngIf='model.phase === "Secondary"'>Progress 8 score</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row" *ngFor='let neighbour of this.model.neighbourDataModels'>
+      <td class="govuk-table__cell">{{neighbour.rank}}</td>
+      <td class="govuk-table__cell">{{neighbour.name}}</td>
+      <td class="govuk-table__cell">{{neighbour.localAuthority}}</td>
+      <td class="govuk-table__cell">{{neighbour.pupils}}</td>
+      <td class="govuk-table__cell">{{neighbour.ever6}}</td>
+      <td class="govuk-table__cell">{{neighbour.sen}}</td>
+      <td class="govuk-table__cell">{{neighbour.incomePP}}</td>
+      <td class="govuk-table__cell" *ngIf='model.phase === "Primary"'>{{neighbour.progressReading}}</td>
+      <td class="govuk-table__cell" *ngIf='model.phase === "Primary"'>{{neighbour.progressWriting}}</td>
+      <td class="govuk-table__cell" *ngIf='model.phase === "Primary"'>{{neighbour.progressMaths}}</td>
+      <td class="govuk-table__cell" *ngIf='model.phase === "Secondary"'>{{neighbour.progress8}}</td>
+    </tr>
+  </tbody>
+</table>

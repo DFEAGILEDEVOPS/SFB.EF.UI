@@ -1,12 +1,11 @@
+import { EfficiencyMetricNeighbourModel } from './EfficiencyMetricNeighbourModel';
+
 export class EMModel {
-  contextData: ContextData;
-  efficiencyMetricData: EfficiencyMetricData;
+  urn: number;
+  name: string;
+  rank: number;
+  phase: string;
+  neighbourDataModels: EfficiencyMetricNeighbourModel[];
 }
 
-export class ContextData {
-  establishmentName: string;
-}
 
-export class EfficiencyMetricData {
-  efficiencydecileingroup: number;
-}
