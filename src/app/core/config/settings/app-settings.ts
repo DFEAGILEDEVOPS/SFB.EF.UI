@@ -2,6 +2,7 @@ import { InjectionToken } from '@angular/core';
 import { MetaTag } from '../../seo/models';
 
 export class AppSettings {
+  sfbDomain: string;
   apiDomain: string;
   domain: string;
   name: string;

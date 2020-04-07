@@ -3,12 +3,16 @@
 .em-table{
   font-size: 16px;
 }
-
+.em-table__ks2-header, .em-table__p8-header
+{
+  background-color: govuk-colour("light-grey");
+}
 .em-table-rank-cell{
   padding: 0;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: top;
   text-align: -webkit-center;
+  padding-top: 1%;
 }
 .em-table-rank-cell--1{
   background-color: rgb(230,241,236)
@@ -133,4 +137,8 @@
 }
 }
 
+
+.toggle-decile-table-link{
+  float: right;
+}
 
