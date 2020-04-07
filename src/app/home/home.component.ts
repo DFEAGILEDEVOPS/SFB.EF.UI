@@ -2,9 +2,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EMModel } from 'app/Models/EMModel';
-import { strict } from 'assert';
-import { stringify } from 'querystring';
-import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 
 @Component({

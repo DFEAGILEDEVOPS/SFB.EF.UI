@@ -27,6 +27,34 @@
   }
 }
 
+span.table-cell-highlight {
+
+    background-color: #d53880;
+    display: inline;
+    padding: 6px 8px 6px 8px;
+    color: white;
+      line-height: 1.8em;
+      font-weight: bold;
+
+}
+  a.table-cell-highlight {
+      background-color: #d53880;
+      display: inline;
+      padding: 6px 8px 6px 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      &:hover {
+          text-decoration: underline;
+      }
+
+
+  @media(mobile) {
+      margin-bottom: 5px;
+  }
+}
+
 .govuk-main-wrapper
 {
   padding-top: 0;
