@@ -2,6 +2,24 @@
 
 // govuk-frontend
 @import "govuk-frontend/govuk/all";
+@import "bootstrap/scss/bootstrap";
+
+.modal-dialog {
+    @media (min-width: 576px){
+    max-width: 660px;
+  }
+}
+
+.ul-two-cols{
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+.sfb-modal-dialog .close{
+  font-size: 16px;
+  text-decoration: underline;
+}
 
 .highlight {
   background-color: #d53880;
