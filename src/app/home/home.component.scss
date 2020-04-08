@@ -1,10 +1,15 @@
 @import "govuk-frontend/govuk/core/_typography.scss";
 
+.em-rank-content-wrapper{
+  padding-top: 30px;
+  padding-bottom: 50px;
+  border-bottom: solid 1px $govuk-border-colour;;
+}
+
 .em-table{
   font-size: 16px;
 }
-.em-table__ks2-header, .em-table__p8-header
-{
+.em-table__ks2-header, .em-table__p8-header{
   background-color: govuk-colour("light-grey");
 }
 .em-table-rank-cell{
@@ -46,6 +51,26 @@
 }
 
 .em-table-rank-cell__text{
+  height: 2em;
+  width: 2em;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.em-table-rank-icon{
+  display: inline-block;
+  @include govuk-font($size: 36, $weight: bold);
+}
+.em-table-rank-content{
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.em-table-rank-icon__text{
   height: 2em;
   width: 2em;
   display: table-cell;
