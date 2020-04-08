@@ -44,6 +44,14 @@ export class HomeComponent implements OnInit {
     this.columnState = this.columnState === 'school-data' ? 'contact-details' : 'school-data';
   }
 
+  onColumnDetailsShow() {
+    this.columnState = 'contact-details';    
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {animated: false, class: 'sfb-modal-dialog'});
   }

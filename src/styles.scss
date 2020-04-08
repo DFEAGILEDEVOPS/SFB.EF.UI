@@ -4,6 +4,11 @@
 @import "govuk-frontend/govuk/all";
 @import "bootstrap/scss/bootstrap";
 
+.small-icon{
+  width: 20px;
+  margin-right: 5px;
+}
+
 .modal-dialog {
     @media (min-width: 576px){
     max-width: 660px;

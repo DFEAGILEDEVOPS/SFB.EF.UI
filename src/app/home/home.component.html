@@ -35,6 +35,39 @@
 
 <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
+<div class="govuk-grid-row govuk-body-s">
+  <div class="govuk-grid-column-full">
+    <h3 class="govuk-heading-m">Ways to improve your school's Efficiency Metric Ranking</h3>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <img alt="Tools to improve efficiency" src="assets/images/a_clipboard.png" class="clipboard-image clipboard-image--blue">
+    <h4 class="govuk-heading-s">Tools to improve efficiency</h4>
+    <p>There are several tools from the DfE and third-party providers we recommend as useful to help schools see how they can help improve their school's efficiency.</p>
+    <ul class="govuk-list govuk-list--bullet govuk-body-s">
+      <li><a rel="external noopener noreferrer" target="_blank" title="Page will open in a new page" class="govuk-link" href="https://www.gov.uk/guidance/school-resource-management-checklist">DfE's financial planning checklist</a></li>
+      <li><a rel="external noopener noreferrer" target="_blank" title="Page will open in a new page" class="govuk-link" href="https://www.gov.uk/guidance/school-resource-management-top-10-planning-checks-for-governors">Top 10 checks for financial planning</a></li>
+      <li><a rel="external noopener noreferrer" target="_blank" title="Page will open in a new page" class="govuk-link" href="https://educationendowmentfoundation.org.uk/evidence-summaries/teaching-learning-toolkit/">Evaluate different strategies for improving learning</a></li>
+    </ul>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <img alt="Tools to improve efficiency" src="assets/images/b_chat.png" class="clipboard-image clipboard-image--navy">
+    <h4 class="govuk-heading-s">Talk to other schools</h4>
+    <p>Contact some of the schools to see what knowledge you could share and if you could collaborate. We've listed the school's address, telephone number and headteacher for you.</p>
+    <ul class="govuk-list govuk-list--bullet govuk-body-s">
+      <li><a [routerLink]="" (click)='onColumnDetailsShow(); scroll(emTable)' class="govuk-link">Show the contact details of schools in the Efficiency Metric Rank</a></li>
+    </ul>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <img alt="Tools to improve efficiency" src="assets/images/c_chart.png" class="clipboard-image clipboard-image--turquise">
+    <h4 class="govuk-heading-s">Start a benchmark comparison</h4>
+    <p>You can benchmark either the top 30% of similar schools in the Efficiency Metric Ranking or choose them manually.</p>
+    <ul class="govuk-list govuk-list--bullet govuk-body-s">
+      <li><a href="" class="govuk-link">Compare with other schools</a></li>
+    </ul>
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h3 class="govuk-heading-m">Efficiency Metric Ranking table
@@ -54,14 +87,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <a [routerLink]="" (click)='onColumnDetailsToggle()' class="govuk-link">
+      <img src="assets/images/data_icon.png" class="small-icon" />
       <span *ngIf='this.columnState === "contact-details"'>View school data</span>
       <span *ngIf='this.columnState === "school-data"'>View school contact details</span>
     </a>
   </div>
 </div>
 
-
-<table class="govuk-table em-table">
+<table class="govuk-table em-table" #emTable>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Rank</th>
