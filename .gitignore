@@ -48,4 +48,3 @@ Thumbs.db
 # script files
 *.sh
 
-/src/assets/configuration/config.dev.json
