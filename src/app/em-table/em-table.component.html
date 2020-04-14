@@ -1,0 +1,109 @@
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h3 class="govuk-heading-m">Efficiency Metric Ranking table
+      <span *ngIf='this.tableState === "full"' class="govuk-!-font-weight-regular">(Full table)</span>
+      <span *ngIf='this.tableState === "decileOnly"' class="govuk-!-font-weight-regular">(Your school's decile)</span>
+    </h3>
+  </div>
+
+  <div class="govuk-grid-column-one-third govuk-body-s">
+    <a [routerLink]="" (click)='onTableDecileToggle()' class="govuk-link toggle-decile-table-link">
+      <span *ngIf='this.tableState === "full"'>Show your school's decile</span>
+      <span *ngIf='this.tableState === "decileOnly"'>Show full table</span>
+    </a>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <a [routerLink]="" (click)='onColumnDetailsToggle()' class="govuk-link">
+      <img src="assets/images/data_icon.png" class="small-icon" />
+      <span *ngIf='this.columnState === "contact-details"'>View school data</span>
+      <span *ngIf='this.columnState === "school-data"'>View school contact details</span>
+    </a>
+  </div>
+</div>
+
+<table class="govuk-table em-table" #emTable>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Rank</th>
+      <th scope="col" class="govuk-table__header">School</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header">Local authority</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header govuk-table__header--numeric">Pupils</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header govuk-table__header--numeric">Ever6 FSM</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header govuk-table__header--numeric">SEN/EHCP</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header govuk-table__header--numeric">Income per pupil</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Reading</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Writing</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Maths</th>
+      <th [hidden] = 'this.columnState === "contact-details"' scope="col" class="govuk-table__header em-table__p8-header" *ngIf='model.phase === "Secondary"'>Progress 8 score</th>
+      <th [hidden] = 'this.columnState === "school-data"' scope="col" class="govuk-table__header govuk-table__header--numeric">URN</th>
+      <th [hidden] = 'this.columnState === "school-data"' scope="col" class="govuk-table__header">Address</th>
+      <th [hidden] = 'this.columnState === "school-data"' scope="col" class="govuk-table__header govuk-table__header--numeric">Telephone</th>
+      <th [hidden] = 'this.columnState === "school-data"' scope="col" class="govuk-table__header">Headteacher</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row" *ngFor='let neighbour of model.neighbourDataModels; let i = index' [hidden] = 'this.tableState === "decileOnly" && this.model.rank !== neighbour.rank'>
+      <td *ngIf='i % 5 === 0' class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" rowspan="5">
+        <span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span></td>
+      <td class="govuk-table__cell em-table-name-cell"><a [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{appsettings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell"><span [class.table-cell-highlight]='neighbour.localAuthority === model.localAuthority'>{{neighbour.localAuthority}}</span></td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.pupils}}</td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 | percent:'1.1'}} </td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.sen | percent:'1.1'}}</td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.incomePP | currency :'GBP':'symbol':'0.0-0'}}</td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell em-table-ks2-reading-cell" *ngIf='model.phase === "Primary"'>
+        <span class="em-table-ks2-reading-cell__text"
+        [ngClass]="{
+          'em-table-ks2-reading-cell__text--well-below': neighbour.progressReading <= -5 ,
+          'em-table-ks2-reading-cell__text--below': neighbour.progressReading > -5 && neighbour.progressReading < -0.25,
+          'em-table-ks2-reading-cell__text--average': neighbour.progressReading >= -0.25 && neighbour.progressReading <= 0.25,
+          'em-table-ks2-reading-cell__text--above': neighbour.progressReading < 5 && neighbour.progressReading > 0.25,
+          'em-table-ks2-reading-cell__text--well-above': neighbour.progressReading >= 5}">
+          {{neighbour.progressReading | number: '1.2-2' }}
+        </span>
+      </td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell em-table-ks2-writing-cell" *ngIf='model.phase === "Primary"'>
+        <span class="em-table-ks2-writing-cell__text"
+        [ngClass]="{
+          'em-table-ks2-reading-cell__text--well-below': neighbour.progressWriting <= -5 ,
+          'em-table-ks2-reading-cell__text--below': neighbour.progressWriting > -5 && neighbour.progressWriting < -0.25,
+          'em-table-ks2-reading-cell__text--average': neighbour.progressWriting >= -0.25 && neighbour.progressWriting <= 0.25,
+          'em-table-ks2-reading-cell__text--above': neighbour.progressWriting < 5 && neighbour.progressWriting > 0.25,
+          'em-table-ks2-reading-cell__text--well-above': neighbour.progressWriting >= 5}">
+          {{neighbour.progressWriting | number: '1.2-2'}}
+        </span>
+      </td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell em-table-ks2-maths-cell" *ngIf='model.phase === "Primary"'>
+        <span class="em-table-ks2-maths-cell__text"
+        [ngClass]="{
+          'em-table-ks2-reading-cell__text--well-below': neighbour.progressMaths <= -5 ,
+          'em-table-ks2-reading-cell__text--below': neighbour.progressMaths > -5 && neighbour.progressMaths < -0.25,
+          'em-table-ks2-reading-cell__text--average': neighbour.progressMaths >= -0.25 && neighbour.progressMaths <= 0.25,
+          'em-table-ks2-reading-cell__text--above': neighbour.progressMaths < 5 && neighbour.progressMaths > 0.25,
+          'em-table-ks2-reading-cell__text--well-above': neighbour.progressMaths >= 5}">
+          {{neighbour.progressMaths | number: '1.2-2'}}
+        </span>
+      </td>
+      <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell em-table-p8-cell" *ngIf='model.phase === "Secondary"'>
+        <span class="em-table-p8-cell__text"
+        [ngClass]="{
+        'em-table-p8-cell__text--well-below': neighbour.progress8 <= -5 ,
+        'em-table-p8-cell__text--below': neighbour.progress8 > -5 && neighbour.progress8 < -0.25,
+        'em-table-p8-cell__text--average': neighbour.progress8 >= -0.25 && neighbour.progress8 <= 0.25,
+        'em-table-p8-cell__text--above': neighbour.progress8 < 5 && neighbour.progress8 > 0.25,
+        'em-table-p8-cell__text--well-above': neighbour.progress8 >= 5}">
+          {{neighbour.progress8 | number: '1.2-2'}}
+        </span>
+      </td>
+      <td [hidden] = 'this.columnState === "school-data"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.urn}}</td>
+      <td [hidden] = 'this.columnState === "school-data"' class="govuk-table__cell">{{neighbour.address}}</td>
+      <td [hidden] = 'this.columnState === "school-data"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.telephone}}</td>
+      <td [hidden] = 'this.columnState === "school-data"' class="govuk-table__cell">{{neighbour.headTeacher}}</td>
+    </tr>
+  </tbody>
+</table>

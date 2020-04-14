@@ -1,0 +1,22 @@
+@import "govuk-frontend/govuk/core/_typography.scss";
+
+.clipboard-image{
+  width: 100%;
+  max-height: 150px;
+  margin-bottom: 10px;
+}
+
+.clipboard-image--blue{
+  background-color: govuk-colour("blue");
+  padding: 20px 110px;
+}
+
+.clipboard-image--navy{
+  background-color: govuk-colour("dark-blue");
+  padding: 20px 80px;
+}
+
+.clipboard-image--turquise{
+  background-color: govuk-colour("turquoise");
+  padding: 20px 90px;
+}
