@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { environment } from '@env/environment';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-bread-crumb',
@@ -7,9 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BreadCrumbComponent implements OnInit {
 
+  public environment: any;
   @Input() urn: number;
   @Input() name: string;
-  constructor() { }
+  constructor() {
+    this.environment = environment;
+  }
 
   ngOnInit() {
   }

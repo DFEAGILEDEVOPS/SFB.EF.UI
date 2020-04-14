@@ -1,7 +1,5 @@
 {
   "appSettings": {
-    "sfbDomain": "http://localhost",
-    "apiDomain": "http://localhost:5000",
     "name": "Angular App (Dev)",
     "version": "1.0.0",
     "demo": false,

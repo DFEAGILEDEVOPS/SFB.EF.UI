@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   name: 'dev',
-  assetsPath: './assets'
+  assetsPath: './assets',
+  sfbDomain: 'http://localhost',
+  apiDomain: 'https://localhost:5001'
 };
 
 /*

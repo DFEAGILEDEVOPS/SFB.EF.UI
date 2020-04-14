@@ -1,6 +1,5 @@
 {
   "appSettings": {
-    "apiDomain": "http://localhost:5000",
     "name": "Angular App (Prod)",
     "version": "1.0.0",
     "demo": false,
