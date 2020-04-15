@@ -23,9 +23,9 @@
   </div>
 </div>
 
-<app-ways-to-improve (showDetails)='onShowDetails()'></app-ways-to-improve>
+<app-ways-to-improve (showDetails)='emTable.onColumnDetailsShow()'></app-ways-to-improve>
 
-<app-em-table [model]='model'></app-em-table>
+<app-em-table [model]='model' #emTable></app-em-table>
 
 <ng-template #template>
   <div class="modal-header">

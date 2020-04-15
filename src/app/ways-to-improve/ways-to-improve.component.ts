@@ -12,4 +12,8 @@ export class WaysToImproveComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  emitShowDetails() {
+    this.showDetails.emit();
+  }
 }

@@ -33,6 +33,11 @@ export class EmTableComponent implements OnInit {
 
   onColumnDetailsShow() {
     this.columnState = 'contact-details';
+    this.scroll(document.querySelector('#emTable') );
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
   }
 
 }

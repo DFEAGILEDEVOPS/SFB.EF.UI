@@ -1,7 +1,6 @@
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Inject, TemplateRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -28,20 +27,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.emDataService.getEmData(this.urn).
     subscribe(result => {
-      this.model = result as EMModel;
+      this.model = result;
     });
   }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {animated: false, class: 'sfb-modal-dialog'});
-  }
-
-  onShowDetails() {
-    //onColumnDetailsShow();
-    //this.scroll(emTable)
-  }
-
-  scroll(el: HTMLElement) {
-    el.scrollIntoView();
   }
 }
