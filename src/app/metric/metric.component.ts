@@ -1,15 +1,15 @@
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Inject, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './metric.component.html',
+  styleUrls: ['./metric.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class MetricComponent implements OnInit {
   urn: number;
   model: EMModel;
   modalRef: BsModalRef;
