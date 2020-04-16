@@ -1,0 +1,71 @@
+<app-hiw-bread-crumb [urn]='urn' [name]='name'></app-hiw-bread-crumb>
+
+<h1 class="govuk-heading-xl">How the Efficiency Metric Ranking works</h1>
+
+<p class="govuk-body-l">
+  The efficiency metric is an overview of how well your school uses its funding to improve pupil progress, compared to
+  similar schools.
+</p>
+<hr class="govuk-section-break govuk-section-break--xl">
+
+<div class="govuk-grid-row govuk-body">
+  <div class="govuk-grid-column-one-quarter">
+    <img src="assets/images/1_numbers.png" alt="What you will see">
+  </div>
+  <div class="govuk-grid-column-three-quarters">
+    <h2 class="govuk-heading-m">What you will see</h2>
+    <p>You will see 50 schools including your school which are ranked by their Efficiency Metric Rank and divided into
+      deciles, 10 groups of 5. If a school is in the first decile it is among the five most efficient schools and if a
+      school is in the tenth decile it is among the five least efficient schools.</p>
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--l">
+
+<div class="govuk-grid-row govuk-body">
+  <div class="govuk-grid-column-one-quarter">
+    <img src="assets/images/2_methodology.png" alt="Methodology">
+  </div>
+  <div class="govuk-grid-column-three-quarters">
+    <h2 class="govuk-heading-m">Methodology</h2>
+    <p>The efficiency metric algorithm looks for 50 schools across the country which are similar to your school based
+      on:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Number of pupils</li>
+      <li>Pupils eligible for FSM in the last 6 years</li>
+      <li>Pupils with a SEN statement or EHCP</li>
+      <li>School phase</li>
+      <li>School type</li>
+    </ul>
+    <p>
+      We divide these school's progress score by their expenditure per pupil (we will standardise the score) allowing us
+      to rank the 50 schools.
+    </p>
+    <p class="govuk-!-font-weight-bold">
+      Standardised progress score / Expenditure per pupil = Efficiency Metric Ranking
+    </p>
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--l">
+
+<div class="govuk-grid-row govuk-body">
+  <div class="govuk-grid-column-one-quarter">
+    <img src="assets/images/3_search.png" alt="What to do with this information">
+  </div>
+  <div class="govuk-grid-column-three-quarters">
+    <h2 class="govuk-heading-m">What to do with this information</h2>
+    <p>We understand that lots of different issues can affect pupil progress. To investigate this properly, you may need
+      to use other tools and talk to your management team. On the efficiency metric page we have listed some tools we
+      think would be of use.</p>
+    <p>We have also included the contact details of all the listed schools to allow you to see what knowledge you could
+      share and if you could collaborate.</p>
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--l">
+
+<div class="govuk-grid-row govuk-body">
+  <div class="govuk-grid-column-full">
+    <button class="govuk-button" data-module="govuk-button" routerLink="/efficiency-metric/metric/{{urn}}">
+      Continue to efficiency metric results
+    </button>
+    <a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}" class="govuk-link govuk-link--no-visited-state back-button">Back</a>
+</div>

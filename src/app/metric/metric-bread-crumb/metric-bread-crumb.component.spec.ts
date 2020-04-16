@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { BreadCrumbComponent } from './bread-crumb.component';
+import { MetricBreadcrumbComponent } from './metric-bread-crumb.component';
 
-describe('BreadCrumbComponent', () => {
-  let component: BreadCrumbComponent;
-  let fixture: ComponentFixture<BreadCrumbComponent>;
+describe('MetricBreadCrumbComponent', () => {
+  let component: MetricBreadcrumbComponent;
+  let fixture: ComponentFixture<MetricBreadcrumbComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreadCrumbComponent ]
+      declarations: [ MetricBreadcrumbComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BreadCrumbComponent);
+    fixture = TestBed.createComponent(MetricBreadcrumbComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

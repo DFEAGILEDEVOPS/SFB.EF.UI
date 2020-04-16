@@ -1,19 +1,19 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@env/environment';
 import { Observable, of } from 'rxjs';
 import { EMModel } from 'app/Models/EMModel';
 import { tap, catchError } from 'rxjs/operators';
+import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmdataService {
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient, @Inject(appSettings) private settings: AppSettings) { }
 
 getEmData(urn: number): Observable<EMModel> {
-  return this.http.get<EMModel>(`${environment.apiDomain}/api/efficiencymetric/${urn}`)
+  return this.http.get<EMModel>(`${this.settings.apiDomain}/api/efficiencymetric/${urn}`)
     .pipe(
       tap(_ => this.log('fetched emData')),
       catchError(this.handleError<EMModel>('getEmData', new EMModel()))

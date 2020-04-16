@@ -5,10 +5,7 @@
 export const environment = {
   production: false,
   name: 'dev',
-  assetsPath: './assets',
-  sfbDomain: 'http://localhost',
-  //apiDomain: 'https://localhost:5001'
-  apiDomain: 'https://aa-t1dv-sfb.azurewebsites.net/'
+  assetsPath: './assets'
 };
 
 /*

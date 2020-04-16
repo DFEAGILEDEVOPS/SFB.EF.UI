@@ -1,6 +1,6 @@
-import { environment } from '@env/environment';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { EMModel } from 'app/Models/EMModel';
+import { AppSettings, appSettings } from '@core/config/settings/app-settings';
 
 @Component({
   selector: 'app-em-table',
@@ -11,13 +11,11 @@ export class EmTableComponent implements OnInit {
 
   @Input() model: EMModel;
 
-  public environment: any;
   tableState: string;
   columnState: string;
-  constructor() {
+  constructor(@Inject(appSettings) public settings: AppSettings) {
     this.tableState = 'full';
     this.columnState = 'school-data';
-    this.environment = environment;
   }
 
   ngOnInit() {

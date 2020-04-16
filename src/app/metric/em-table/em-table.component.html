@@ -9,7 +9,7 @@
   </div>
 
   <div class="govuk-grid-column-one-third govuk-body-s">
-    <a [routerLink]="" (click)='onTableDecileToggle()' class="govuk-link toggle-decile-table-link">
+    <a [routerLink]="" (click)='onTableDecileToggle()' class="govuk-link toggle-decile-table-link a-button">
       <span *ngIf='this.tableState === "full"'>Show your school's decile</span>
       <span *ngIf='this.tableState === "decileOnly"'>Show full table</span>
     </a>
@@ -18,7 +18,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <a [routerLink]="" (click)='onColumnDetailsToggle()' class="govuk-link">
+    <a [routerLink]="" (click)='onColumnDetailsToggle()' class="govuk-link a-button">
       <img src="assets/images/data_icon.png" class="small-icon" />
       <span *ngIf='this.columnState === "contact-details"'>View school data</span>
       <span *ngIf='this.columnState === "school-data"'>View school contact details</span>
@@ -50,7 +50,7 @@
     <tr class="govuk-table__row" *ngFor='let neighbour of model.neighbourDataModels; let i = index' [hidden] = 'this.tableState === "decileOnly" && this.model.rank !== neighbour.rank'>
       <td *ngIf='i % 5 === 0' class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" rowspan="5">
         <span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span></td>
-      <td class="govuk-table__cell em-table-name-cell"><a [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{environment.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
+      <td class="govuk-table__cell em-table-name-cell"><a [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
       <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell"><span [class.table-cell-highlight]='neighbour.localAuthority === model.localAuthority'>{{neighbour.localAuthority}}</span></td>
       <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.pupils}}</td>
       <td [hidden] = 'this.columnState === "contact-details"' class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 | percent:'1.1'}} </td>

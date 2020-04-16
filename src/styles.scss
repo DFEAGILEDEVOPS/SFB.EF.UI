@@ -4,6 +4,22 @@
 @import "govuk-frontend/govuk/all";
 @import "bootstrap/scss/bootstrap";
 
+a{
+  text-decoration: underline;
+}
+
+.a-button{
+  text-decoration: none;
+}
+
+.back-button{
+  @include govuk-media-query($from: tablet) {
+    margin-left: 40px;
+    top: 7px;
+    position: relative;
+}
+}
+
 .small-icon{
   width: 20px;
   margin-right: 5px;
