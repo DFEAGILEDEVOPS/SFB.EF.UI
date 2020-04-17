@@ -1,0 +1,51 @@
+<app-ct-bread-crumb [urn]='urn' [name]='name'></app-ct-bread-crumb>
+
+<h1 class="govuk-heading-xl">Select comparison type</h1>
+<p class="govuk-body-s">
+  Comparing to
+  <span class="highlight">
+    <span class="govuk-!-font-weight-bold">{{name}}</span>
+  </span>
+</p>
+<hr class="govuk-section-break govuk-section-break--m">
+
+<form action="{{settings.sfbDomain}}/emcomparison" action="post">
+  <input type="hidden" name="urn" [value]='urn' />
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <h1 class="govuk-fieldset__heading">
+          How would you like to compare?
+        </h1>
+      </legend>
+      <div class="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="top-schools" name="comparison" type="radio" value="top" checked>
+          <label class="govuk-label govuk-radios__label" for="top-schools">
+            Compare against the top 30% in the efficiency metric
+          </label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="manual" name="comparison" type="radio" value="manual">
+          <label class="govuk-label govuk-radios__label" for="manual">
+            Manually select schools from the efficiency metric
+          </label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <hr class="govuk-section-break govuk-section-break--l">
+
+  <div class="govuk-grid-row govuk-body">
+    <div class="govuk-grid-column-full">
+      <button class="govuk-button" data-module="govuk-button" type="submit">
+        Continue
+      </button>
+      <a routerLink="/efficiency-metric/metric/{{urn}}"
+        class="govuk-link govuk-link--no-visited-state back-button">Back</a>
+    </div>
+  </div>
+
+</form>
+

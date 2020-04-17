@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ways-to-improve',
@@ -7,6 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class WaysToImproveComponent implements OnInit {
 
+  @Input() urn: number;
+  @Input() name: string;
   @Output() showDetails = new EventEmitter();
   constructor() { }
 

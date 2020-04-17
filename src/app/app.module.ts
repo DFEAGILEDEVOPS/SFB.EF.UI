@@ -1,3 +1,5 @@
+import { CtBreadCrumbComponent } from './comparison-type/ct-bread-crumb/ct-bread-crumb.component';
+import { ComparisonTypeComponent } from './comparison-type/comparison-type.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { MetricBreadcrumbComponent as MetricBreadcrumbComponent } from './metric/metric-bread-crumb/metric-bread-crumb.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -25,7 +27,9 @@ import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread
     WaysToImproveComponent,
     EmTableComponent,
     HowItWorksComponent,
-    HiwBreadCrumbComponent
+    HiwBreadCrumbComponent,
+    ComparisonTypeComponent,
+    CtBreadCrumbComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

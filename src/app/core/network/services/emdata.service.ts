@@ -13,7 +13,7 @@ export class EmdataService {
 constructor(private http: HttpClient, @Inject(appSettings) private settings: AppSettings) { }
 
 getEmData(urn: number): Observable<EMModel> {
-  return this.http.get<EMModel>(`${this.settings.apiDomain}/api/efficiencymetric/${urn}`)
+  return this.http.get<EMModel>(`${this.settings.apiDomain}/${urn}`)
     .pipe(
       tap(_ => this.log('fetched emData')),
       catchError(this.handleError<EMModel>('getEmData', new EMModel()))
