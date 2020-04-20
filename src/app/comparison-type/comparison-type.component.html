@@ -9,8 +9,7 @@
 </p>
 <hr class="govuk-section-break govuk-section-break--m">
 
-<form action="{{settings.sfbDomain}}/BenchmarkCharts/GenerateFromEfficiencyMetrics">
-  <input type="hidden" name="urn" [value]='urn' />
+<form #emTypeForm="ngForm">
   <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -20,13 +19,13 @@
       </legend>
       <div class="govuk-radios">
         <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="top-schools" name="comparisonType" type="radio" value="EfficiencyTop" checked>
+          <input class="govuk-radios__input" id="top-schools" name="comparisonType" type="radio" [(ngModel)]='comparisonType' [value]="'EfficiencyTop'" required>
           <label class="govuk-label govuk-radios__label" for="top-schools">
             Compare against the top 30% in the efficiency metric
           </label>
         </div>
         <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="manual" name="comparisonType" type="radio" value="EfficiencyManual">
+          <input class="govuk-radios__input" id="manual" name="comparisonType" type="radio" [(ngModel)]='comparisonType' [value]="'EfficiencyManual'" required>
           <label class="govuk-label govuk-radios__label" for="manual">
             Manually select schools from the efficiency metric
           </label>
@@ -39,7 +38,7 @@
 
   <div class="govuk-grid-row govuk-body">
     <div class="govuk-grid-column-full">
-      <button class="govuk-button" data-module="govuk-button" type="submit" for>
+      <button class="govuk-button" data-module="govuk-button" type="submit" (click)='onContinue()'>
         Continue
       </button>
       <a routerLink="/efficiency-metric/metric/{{urn}}"

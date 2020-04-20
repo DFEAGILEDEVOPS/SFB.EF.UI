@@ -1,3 +1,5 @@
+import { ManualComparisonComponent } from './manual-comparison/manual-comparison.component';
+import { FormsModule } from '@angular/forms';
 import { CtBreadCrumbComponent } from './comparison-type/ct-bread-crumb/ct-bread-crumb.component';
 import { ComparisonTypeComponent } from './comparison-type/comparison-type.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
@@ -29,11 +31,13 @@ import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread
     HowItWorksComponent,
     HiwBreadCrumbComponent,
     ComparisonTypeComponent,
-    CtBreadCrumbComponent
+    CtBreadCrumbComponent,
+    ManualComparisonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     NgBootstrapFormValidationModule.forRoot(),
     CoreModule.forRoot(),

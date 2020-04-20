@@ -1,3 +1,4 @@
+import { ManualComparisonComponent } from './manual-comparison/manual-comparison.component';
 import { ComparisonTypeComponent } from './comparison-type/comparison-type.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { MetricComponent } from './metric/metric.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'efficiency-metric/metric/:urn', component: MetricComponent},
   { path: 'efficiency-metric/how-it-works/:urn/:name', component: HowItWorksComponent},
   { path: 'efficiency-metric/comparison-type/:urn/:name', component: ComparisonTypeComponent},
+  { path: 'efficiency-metric/manual-comparison/:urn', component: ManualComparisonComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
