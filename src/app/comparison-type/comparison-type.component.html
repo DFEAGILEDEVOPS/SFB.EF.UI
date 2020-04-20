@@ -9,7 +9,7 @@
 </p>
 <hr class="govuk-section-break govuk-section-break--m">
 
-<form action="{{settings.sfbDomain}}/emcomparison" action="post">
+<form action="{{settings.sfbDomain}}/BenchmarkCharts/GenerateFromEfficiencyMetrics">
   <input type="hidden" name="urn" [value]='urn' />
   <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
@@ -39,7 +39,7 @@
 
   <div class="govuk-grid-row govuk-body">
     <div class="govuk-grid-column-full">
-      <button class="govuk-button" data-module="govuk-button" type="submit">
+      <button class="govuk-button" data-module="govuk-button" type="submit" for>
         Continue
       </button>
       <a routerLink="/efficiency-metric/metric/{{urn}}"
