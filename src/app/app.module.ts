@@ -1,3 +1,4 @@
+import { McBreadCrumbComponent } from './manual-comparison/mc-bread-crumb/mc-bread-crumb.component';
 import { ManualComparisonComponent } from './manual-comparison/manual-comparison.component';
 import { FormsModule } from '@angular/forms';
 import { CtBreadCrumbComponent } from './comparison-type/ct-bread-crumb/ct-bread-crumb.component';
@@ -32,7 +33,8 @@ import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread
     HiwBreadCrumbComponent,
     ComparisonTypeComponent,
     CtBreadCrumbComponent,
-    ManualComparisonComponent
+    ManualComparisonComponent,
+    McBreadCrumbComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

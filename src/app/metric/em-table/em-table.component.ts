@@ -34,7 +34,7 @@ export class EmTableComponent implements OnInit {
     this.scroll(document.querySelector('#emTable') );
   }
 
-  scroll(el: HTMLElement) {
+  private scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
 

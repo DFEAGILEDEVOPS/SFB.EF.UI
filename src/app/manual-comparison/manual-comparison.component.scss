@@ -1,0 +1,32 @@
+.sort-select-wrapper {
+  float: right;
+  margin-top: 15px;
+  margin-bottom: -15px;
+}
+
+.sort-select-wrapper__label {
+  display: inline;
+  margin-right: 5px;
+}
+
+.sort-select-wrapper__select {
+  display: inline;
+}
+
+.em-rank-icon__text{
+  height: 19px;
+  width: 19px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+.school-list__item{
+  margin-top: 10px;
+}
+
+.school-list__add-button{
+  float: right;
+}

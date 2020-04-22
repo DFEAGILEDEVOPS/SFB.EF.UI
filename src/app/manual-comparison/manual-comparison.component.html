@@ -1,3 +1,67 @@
-<p>
-  manual-comparison works!
+<app-mc-bread-crumb [urn]='urn' [name]='model.name'></app-mc-bread-crumb>
+
+<h1 class="govuk-heading-xl">Manual comparison</h1>
+<p class="govuk-body-s">
+  Comparing to
+  <span class="highlight">
+    <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+  </span>
 </p>
+
+<p class="govuk-body-m govuk-!-font-weight-bold">Schools in this efficiency metric</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <p></p>
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    <p><span class="govuk-!-font-weight-bold">{{model.neighbourDataModels?.length}}</span> schools found - <span class="govuk-!-font-weight-bold">{{selectedSchools.length}}</span> selected (max. 30)</p>
+    <hr class="govuk-section-break govuk-section-break--visible">
+    <div class="govuk-form-group">
+      <div class="sort-select-wrapper">
+      <label class="govuk-label sort-select-wrapper__label" for="sort">
+        Sorted by
+      </label>
+      <select class="govuk-select sort-select-wrapper__select" id="sort" name="sort" [(ngModel)]='sort' (change)='sortSchools()'>
+        <option value="AlphabeticalAZ">Alphabetical (A-Z)</option>
+        <option value="AlphabeticalZA">Alphabetical (Z-A)</option>
+      </select>
+    </div>
+    </div>
+    <hr class="govuk-section-break govuk-section-break--visible">
+
+    <ul class="govuk-list school-list">
+      <li *ngFor="let school of model.neighbourDataModels" class="school-list__item">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-three-quarters">
+            <a class="govuk-link govuk-!-font-weight-bold" href='{{settings.sfbDomain}}/school/detail?urn={{school.urn}}'>{{school.name}}</a>
+            <p class="govuk-body-s">
+              <span>{{school.address}}</span><br/>
+              <span>{{school.overallPhase}}</span><span> ({{school.pupils}} pupils)</span><br/>
+              <span>Efficiency metric rank: <span class="govuk-!-font-size-14 em-rank-icon__text em-rank-text--{{school.rank}}">{{school.rank}}</span></span>
+            </p>
+          </div>
+          <div class="govuk-grid-column-one-quarter">
+            <button class="govuk-button govuk-button--secondary school-list__add-button" [hidden]='selectedSchools.includes(school.urn)' (click)='addToManualBasket(school.urn)'>Add</button>
+            <button class="govuk-button govuk-button--secondary school-list__add-button" [hidden]='!selectedSchools.includes(school.urn)' (click)='removeFromManualBasket(school.urn)'>Remove</button>
+          </div>
+        </div>
+        <hr class="govuk-section-break govuk-section-break--visible">
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<ng-template #basketFullModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Not enough space in basket</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">Close</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>You can only benchmark up to 30 schools.</p>
+  </div>
+</ng-template>
