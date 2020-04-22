@@ -27,7 +27,7 @@ export class ComparisonTypeComponent implements OnInit {
   onContinue() {
     if (this.comparisonType === 'EfficiencyTop') {
       window.open(
-        `${this.settings.sfbDomain}/BenchmarkCharts/GenerateFromEfficiencyMetrics?urn=${this.urn}&comparisonType=EfficiencyTop`, '_self');
+        `${this.settings.sfbDomain}/BenchmarkCharts/GenerateFromEfficiencyMetricsTop?urn=${this.urn}`, '_self');
     } else {
       this.router.navigate(['efficiency-metric/manual-comparison', this.urn]);
     }

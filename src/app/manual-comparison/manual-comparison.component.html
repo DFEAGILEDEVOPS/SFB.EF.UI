@@ -16,7 +16,23 @@
   </div>
 
   <div class="govuk-grid-column-two-thirds">
-    <p><span class="govuk-!-font-weight-bold">{{model.neighbourDataModels?.length}}</span> schools found - <span class="govuk-!-font-weight-bold">{{selectedSchools.length}}</span> selected (max. 30)</p>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <p class="school-count-text">
+          <span class="govuk-!-font-weight-bold">{{model.neighbourDataModels?.length}}</span> schools found -
+          <span class="govuk-!-font-weight-bold">{{selectedSchools.length}}</span> selected (max. 30)
+        </p>
+      </div>
+      <div class="govuk-grid-column-one-half">
+          <form ngNoForm id="selectionForm" action="{{settings.sfbDomain}}/benchmarkcharts/GenerateFromEfficiencyMetricsManual" method="post" >
+            <div class="continue-form">
+            <input type="hidden" name='urn' [value]='urn' />
+            <input type="hidden" name='neighbourURNs' [value]='selectedSchools.join(",")' />
+            <button class="govuk-button continue-button" data-module="govuk-button" type="submit" [hidden]='selectedSchools.length === 0'>Continue to benchmarking charts</button>
+            </div>
+          </form>
+      </div>
+    </div>
     <hr class="govuk-section-break govuk-section-break--visible">
     <div class="govuk-form-group">
       <div class="sort-select-wrapper">
