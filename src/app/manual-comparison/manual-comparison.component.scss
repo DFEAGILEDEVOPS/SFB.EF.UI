@@ -1,3 +1,5 @@
+@import "govuk-frontend/govuk/core/_typography.scss";
+
 .sort-select-wrapper {
   float: right;
   margin-top: 15px;
@@ -29,6 +31,7 @@
 
 .school-list__add-button{
   float: right;
+  margin-bottom: 5px;
 }
 
 .continue-form, .school-count-text{
@@ -37,4 +40,11 @@
 }
 .continue-button{
   margin-bottom: 0;
+}
+
+.hidden-link{
+  font-size: 14px;
+  cursor: default;
+  color: govuk-colour("white");
+  float: right;
 }

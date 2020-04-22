@@ -61,7 +61,8 @@
           <div class="govuk-grid-column-one-quarter">
             <button class="govuk-button govuk-button--secondary school-list__add-button" [hidden]='selectedSchools.includes(school.urn)' (click)='addToManualBasket(school.urn)'>Add</button>
             <button class="govuk-button govuk-button--secondary school-list__add-button" [hidden]='!selectedSchools.includes(school.urn)' (click)='removeFromManualBasket(school.urn)'>Remove</button>
-          </div>
+            <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link" [hidden]='selectedSchools.length === 0'>Continue to benchmarking charts</a>
+           </div>
         </div>
         <hr class="govuk-section-break govuk-section-break--visible">
       </li>
