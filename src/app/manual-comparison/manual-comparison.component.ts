@@ -4,6 +4,7 @@ import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
+import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -18,8 +19,12 @@ export class ManualComparisonComponent implements OnInit {
   urn: number;
   model: EMModel;
   modalRef: BsModalRef;
-  selectedSchools: Array<number>;
+  selectedSchoolUrns: Array<number>;
   sort: string;
+  filterReligions: Array<FilterItem>;
+  filterRanks: Array<FilterItem>;
+  filterOfsteds: Array<FilterItem>;
+  visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,8 +35,28 @@ export class ManualComparisonComponent implements OnInit {
         this.urn = +params.urn;
       });
       this.model = new EMModel();
-      this.selectedSchools = new Array<number>();
+      this.selectedSchoolUrns = new Array<number>();
       this.sort = 'AlphabeticalAZ';
+      this.filterReligions = new Array<FilterItem>();
+      this.filterRanks = [
+        new FilterItem('1'),
+        new FilterItem('2'),
+        new FilterItem('3'),
+        new FilterItem('4'),
+        new FilterItem('5'),
+        new FilterItem('6'),
+        new FilterItem('7'),
+        new FilterItem('8'),
+        new FilterItem('9'),
+        new FilterItem('10'),
+      ];
+      this.filterOfsteds = [
+        new FilterItem('0'),
+        new FilterItem('1'),
+        new FilterItem('2'),
+        new FilterItem('3'),
+        new FilterItem('4')
+      ];
     }
 
   ngOnInit() {
@@ -39,28 +64,57 @@ export class ManualComparisonComponent implements OnInit {
     subscribe(result => {
       this.model = result;
       this.model.neighbourDataModels = this.model.neighbourDataModels.filter(n => n.urn !== this.urn);
+      this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
       this.sortSchools();
+      this.buildReligionFiltersFromDataModel();
     });
   }
 
   sortSchools() {
-    this.model.neighbourDataModels = this.model.neighbourDataModels.sort((n1, n2) => this.sortByName(n1.name, n2.name));
+    this.visibleSchoolList = this.visibleSchoolList.sort((n1, n2) => this.sortByName(n1.name, n2.name));
   }
 
   addToManualBasket(urn) {
-    if (this.selectedSchools.length < 30) {
-      this.selectedSchools.push(urn);
+    if (this.selectedSchoolUrns.length < 30) {
+      this.selectedSchoolUrns.push(urn);
     } else {
       this.openModal(this.basketFullModal);
     }
   }
 
   removeFromManualBasket(urn) {
-    this.selectedSchools = this.selectedSchools.filter(s => s !== urn);
+    this.selectedSchoolUrns = this.selectedSchoolUrns.filter(s => s !== urn);
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {animated: false, class: 'sfb-modal-dialog'});
+  filterResults() {
+    this.visibleSchoolList = this.model.neighbourDataModels
+    .filter(n => this.selectedFilterRanks.length === 0 || this.selectedFilterRanks.includes(n.rank.toString()))
+    .filter(n => this.selectedFilterOfsteds.length === 0 || this.selectedFilterOfsteds.includes(n.ofstedRating.toString()))
+    .filter(n => this.selectedFilterReligions.length === 0 || this.selectedFilterReligions.includes(n.religiousCharacter.toString()));
+    this.sortSchools();
+  }
+
+  ofstedNoInText(rank: string) {
+    switch (rank) {
+      case '0':
+        return 'Not rated';
+      case '1':
+        return 'Outstanding';
+      case '2':
+        return 'Good';
+      case '3':
+        return 'Requires improvement';
+      case '4':
+        return 'Inadequate';
+    }
+  }
+
+  private buildReligionFiltersFromDataModel() {
+    this.visibleSchoolList.map(n => n.religiousCharacter).forEach(n => {
+      if (!this.filterReligions.map(f => f.key).includes(n)) {
+        this.filterReligions.push(new FilterItem(n));
+      }
+    });
   }
 
   private sortByName(name1: string, name2: string) {
@@ -71,4 +125,26 @@ export class ManualComparisonComponent implements OnInit {
     }
   }
 
+  private openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {animated: false, class: 'sfb-modal-dialog'});
+  }
+
+  private get selectedFilterRanks() {
+    return this.filterRanks.filter(f => f.value).map(f => f.key);
+  }
+
+  private get selectedFilterOfsteds() {
+    return this.filterOfsteds.filter(f => f.value).map(f => f.key);
+  }
+
+  private get selectedFilterReligions() {
+    return this.filterReligions.filter(f => f.value).map(f => f.key);
+  }
+
+  get diagnostic() { return JSON.stringify(this.selectedFilterRanks); }
+
+}
+
+class FilterItem {
+  constructor(public key: string, public value: boolean = false) {}
 }

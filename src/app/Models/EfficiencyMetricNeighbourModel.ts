@@ -15,4 +15,7 @@ export class EfficiencyMetricNeighbourModel {
   address: string;
   telephone: string;
   headTeacher: string;
+  ofstedRating: string;
+  religiousCharacter: string;
+  schoolType: string;
 }

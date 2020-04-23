@@ -1,3 +1,5 @@
+<!-- {{diagnostic}} -->
+
 <app-mc-bread-crumb [urn]='urn' [name]='model.name'></app-mc-bread-crumb>
 
 <h1 class="govuk-heading-xl">Manual comparison</h1>
@@ -10,63 +12,124 @@
 
 <p class="govuk-body-m govuk-!-font-weight-bold">Schools in this efficiency metric</p>
 
-<div class="govuk-grid-row">
+<div class="govuk-grid-row ">
   <div class="govuk-grid-column-one-third">
-    <p></p>
+    <p>Filter by:</p>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset filter-box">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend">
+          <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+            Efficiency metric rank
+          </h3>
+        </legend>
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+          <div class="govuk-checkboxes__item filter-box__check-item" *ngFor="let rank of filterRanks; let i = index">
+            <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='rank.value' name="filterRank-{{i}}" id="filterRank-{{i}}" (change)='filterResults()'>
+            <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterRank-{{i}}">{{rank.key}}</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset filter-box">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend">
+          <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+            Ofsted rating
+          </h3>
+        </legend>
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+          <div class="govuk-checkboxes__item filter-box__check-item" *ngFor="let ofsted of filterOfsteds; let i = index">
+            <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='ofsted.value' name="filterOfsted-{{i}}" id="filterOfsted-{{i}}" (change)='filterResults()'>
+            <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterOfsted-{{i}}">{{ofstedNoInText(ofsted.key)}}</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset filter-box">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend">
+          <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+            Religious character
+          </h3>
+        </legend>
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+           <div class="govuk-checkboxes__item  filter-box__check-item" *ngFor="let religion of filterReligions; let i = index">
+            <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='religion.value' name="filterReligion-{{i}}" id="filterReligion-{{i}}" (change)='filterResults()'>
+            <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterReligion-{{i}}">{{religion.key}}</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
   </div>
 
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
         <p class="school-count-text">
-          <span class="govuk-!-font-weight-bold">{{model.neighbourDataModels?.length}}</span> schools found -
-          <span class="govuk-!-font-weight-bold">{{selectedSchools.length}}</span> selected (max. 30)
+          <span class="govuk-!-font-weight-bold">{{visibleSchoolList?.length}}</span> schools found -
+          <span class="govuk-!-font-weight-bold">{{selectedSchoolUrns.length}}</span> selected (max. 30)
         </p>
       </div>
       <div class="govuk-grid-column-one-half">
-          <form ngNoForm id="selectionForm" action="{{settings.sfbDomain}}/benchmarkcharts/GenerateFromEfficiencyMetricsManual" method="post" >
-            <div class="continue-form">
+        <form ngNoForm id="selectionForm"
+          action="{{settings.sfbDomain}}/benchmarkcharts/GenerateFromEfficiencyMetricsManual" method="post">
+          <div class="continue-form">
             <input type="hidden" name='urn' [value]='urn' />
-            <input type="hidden" name='neighbourURNs' [value]='selectedSchools.join(",")' />
-            <button class="govuk-button continue-button" data-module="govuk-button" type="submit" [hidden]='selectedSchools.length === 0'>Continue to benchmarking charts</button>
-            </div>
-          </form>
+            <input type="hidden" name='neighbourURNs' [value]='selectedSchoolUrns.join(",")' />
+            <button class="govuk-button continue-button" data-module="govuk-button" type="submit"
+              [hidden]='selectedSchoolUrns.length === 0'>Continue to benchmarking charts</button>
+          </div>
+        </form>
       </div>
     </div>
     <hr class="govuk-section-break govuk-section-break--visible">
     <div class="govuk-form-group">
       <div class="sort-select-wrapper">
-      <label class="govuk-label sort-select-wrapper__label" for="sort">
-        Sorted by
-      </label>
-      <select class="govuk-select sort-select-wrapper__select" id="sort" name="sort" [(ngModel)]='sort' (change)='sortSchools()'>
-        <option value="AlphabeticalAZ">Alphabetical (A-Z)</option>
-        <option value="AlphabeticalZA">Alphabetical (Z-A)</option>
-      </select>
-    </div>
+        <label class="govuk-label sort-select-wrapper__label" for="sort">
+          Sorted by
+        </label>
+        <select class="govuk-select sort-select-wrapper__select" id="sort" name="sort" [(ngModel)]='sort'
+          (change)='sortSchools()'>
+          <option value="AlphabeticalAZ">Alphabetical (A-Z)</option>
+          <option value="AlphabeticalZA">Alphabetical (Z-A)</option>
+        </select>
+      </div>
     </div>
     <hr class="govuk-section-break govuk-section-break--visible">
 
     <ul class="govuk-list school-list">
-      <li *ngFor="let school of model.neighbourDataModels" class="school-list__item">
+      <li *ngFor="let school of visibleSchoolList" class="school-list__item">
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-three-quarters">
-            <a class="govuk-link govuk-!-font-weight-bold" href='{{settings.sfbDomain}}/school/detail?urn={{school.urn}}'>{{school.name}}</a>
+            <a class="govuk-link govuk-!-font-weight-bold"
+              href='{{settings.sfbDomain}}/school/detail?urn={{school.urn}}'>{{school.name}}</a>
             <p class="govuk-body-s">
-              <span>{{school.address}}</span><br/>
-              <span>{{school.overallPhase}}</span><span> ({{school.pupils}} pupils)</span><br/>
-              <span>Efficiency metric rank: <span class="govuk-!-font-size-14 em-rank-icon__text em-rank-text--{{school.rank}}">{{school.rank}}</span></span>
+              <span>{{school.address}}</span><br />
+              <span>{{school.overallPhase}}</span><span> ({{school.pupils}} pupils)</span><br />
+              <span>{{school.schoolType}}</span><br />
+              <span>Efficiency metric rank: <span
+                  class="govuk-!-font-size-14 em-rank-icon__text em-rank-text--{{school.rank}}">{{school.rank}}</span></span>
             </p>
           </div>
           <div class="govuk-grid-column-one-quarter">
-            <button class="govuk-button govuk-button--secondary school-list__add-button" [hidden]='selectedSchools.includes(school.urn)' (click)='addToManualBasket(school.urn)'>Add</button>
-            <button class="govuk-button govuk-button--secondary school-list__add-button" [hidden]='!selectedSchools.includes(school.urn)' (click)='removeFromManualBasket(school.urn)'>Remove</button>
-            <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link" [hidden]='selectedSchools.length === 0'>Continue to benchmarking charts</a>
-           </div>
+            <button class="govuk-button govuk-button--secondary school-list__add-button"
+              [hidden]='selectedSchoolUrns.includes(school.urn)' (click)='addToManualBasket(school.urn)'>Add</button>
+            <button class="govuk-button govuk-button--secondary school-list__add-button"
+              [hidden]='!selectedSchoolUrns.includes(school.urn)'
+              (click)='removeFromManualBasket(school.urn)'>Remove</button>
+            <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link"
+              [hidden]='selectedSchoolUrns.length === 0'>Continue to benchmarking charts</a>
+          </div>
         </div>
         <hr class="govuk-section-break govuk-section-break--visible">
       </li>
     </ul>
+
+    <div [hidden]='visibleSchoolList.length > 0'><span class="govuk-!-font-weight-bold">No schools found.</span> <br> Please try removing some of your filters.</div>
   </div>
 </div>
 

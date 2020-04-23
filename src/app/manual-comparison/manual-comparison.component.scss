@@ -48,3 +48,25 @@
   color: govuk-colour("white");
   float: right;
 }
+
+.filter-box {
+  border: 10px solid;
+  color: govuk-colour("mid-grey");
+}
+
+.filter-box__legend__heading{
+  background-color: govuk-colour("mid-grey");
+  padding: 5px 0;
+  margin-top: 23px;
+}
+
+.filter-box__check-item{
+  margin-left: 10px;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  border-bottom: solid 1px govuk-colour("light-grey");
+}
+
+.filter-box__check-item__label{
+  font-size: 16px;
+}
