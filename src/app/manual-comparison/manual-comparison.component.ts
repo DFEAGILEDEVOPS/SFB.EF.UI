@@ -1,3 +1,7 @@
+import 'app/core/map/azure-schools-map.js';
+import '../../../node_modules/leaflet/dist/leaflet.js';
+import '../../../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js';
+import '../../../node_modules/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js';
 import { Component, OnInit, Inject, TemplateRef, ViewChild} from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { EMModel } from 'app/Models/EMModel';
@@ -5,6 +9,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
+
+declare let GOVUK: any;
 
 @Component({
   selector: 'app-manual-comparison',
@@ -25,6 +31,9 @@ export class ManualComparisonComponent implements OnInit {
   filterRanks: Array<FilterItem>;
   filterOfsteds: Array<FilterItem>;
   visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
+  resultSectionState: string;
+  map: any;
+  mapLoaded: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,6 +66,9 @@ export class ManualComparisonComponent implements OnInit {
         new FilterItem('3'),
         new FilterItem('4')
       ];
+      this.resultSectionState = 'list-view';
+      this.visibleSchoolList = [];
+      this.mapLoaded = false;
     }
 
   ngOnInit() {
@@ -72,6 +84,14 @@ export class ManualComparisonComponent implements OnInit {
 
   sortSchools() {
     this.visibleSchoolList = this.visibleSchoolList.sort((n1, n2) => this.sortByName(n1.name, n2.name));
+  }
+
+  onResultSectionStateToggle() {
+    this.resultSectionState = this.resultSectionState === 'list-view' ? 'map-view' : 'list-view';
+    setTimeout(() => {
+      this.bindAzureMap(this.settings.azureMapsAPIKey);
+    }, 100);
+
   }
 
   addToManualBasket(urn) {
@@ -92,6 +112,7 @@ export class ManualComparisonComponent implements OnInit {
     .filter(n => this.selectedFilterOfsteds.length === 0 || this.selectedFilterOfsteds.includes(n.ofstedRating.toString()))
     .filter(n => this.selectedFilterReligions.length === 0 || this.selectedFilterReligions.includes(n.religiousCharacter.toString()));
     this.sortSchools();
+    this.bindAzureMap(this.settings.azureMapsAPIKey);
   }
 
   ofstedNoInText(rank: string) {
@@ -116,6 +137,35 @@ export class ManualComparisonComponent implements OnInit {
       }
     });
   }
+
+  private bindAzureMap(mapApiKey) {
+    if (!this.mapLoaded && this.resultSectionState === 'map-view') {
+
+        const location = { lat: 52.636, lng: -1.139 }; // no location specified, so use central England.
+
+        const options = {
+            elementId: 'azuremap',
+            primaryMarker: {
+                geometry: {
+                    location: {
+                        lat: location.lat,
+                        lng: location.lng
+                    }
+                }
+            },
+            mapApiKey,
+            fullScreen: true
+        };
+
+        this.map = new GOVUK.AzureSchoolLocationsMap(options);
+
+        this.mapLoaded = true;
+    }
+
+    debugger;
+    this.map.renderMapPinsForAzureMap(this.visibleSchoolList, this.settings.sfbDomain);
+}
+
 
   private sortByName(name1: string, name2: string) {
     if (this.sort === 'AlphabeticalAZ') {

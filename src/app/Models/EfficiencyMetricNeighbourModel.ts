@@ -18,4 +18,10 @@ export class EfficiencyMetricNeighbourModel {
   ofstedRating: string;
   religiousCharacter: string;
   schoolType: string;
+  location: Location;
+}
+
+class Location {
+  type: string;
+  coordinates: string[];
 }

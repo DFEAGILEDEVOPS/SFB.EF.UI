@@ -12,7 +12,8 @@
       "robots": "index, follow"
     },
     "sfbDomain": "http://localhost",
-    "apiDomain": "https://localhost:5001/api/efficiencymetric"
+    "apiDomain": "https://localhost:5001/api/efficiencymetric",
+    "azureMapsAPIKey": "a__5AhQrG6OxElxgZbNmbWu3CAlP_-VKdcxzcwA6WYo"
   },
   "emailSettings": {
     "emailAddresses": [

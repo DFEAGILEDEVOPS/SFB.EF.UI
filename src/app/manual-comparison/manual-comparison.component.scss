@@ -1,5 +1,16 @@
 @import "govuk-frontend/govuk/core/_typography.scss";
 
+.results-map {
+  height: 600px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  @media(mobile) {
+      height: 400px;
+  }
+}
+
 .sort-select-wrapper {
   float: right;
   margin-top: 15px;
@@ -69,4 +80,11 @@
 
 .filter-box__check-item__label{
   font-size: 16px;
+}
+
+.map-toggle-button{
+  font-size: 19px;
+  font-weight: bold;
+  float: left;
+  margin-top: 20px;
 }

@@ -87,52 +87,68 @@
       </div>
     </div>
     <hr class="govuk-section-break govuk-section-break--visible">
-    <div class="govuk-form-group">
-      <div class="sort-select-wrapper">
-        <label class="govuk-label sort-select-wrapper__label" for="sort">
-          Sorted by
-        </label>
-        <select class="govuk-select sort-select-wrapper__select" id="sort" name="sort" [(ngModel)]='sort'
-          (change)='sortSchools()'>
-          <option value="AlphabeticalAZ">Alphabetical (A-Z)</option>
-          <option value="AlphabeticalZA">Alphabetical (Z-A)</option>
-        </select>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <a [routerLink]="" (click)='onResultSectionStateToggle()' class="govuk-link a-button map-toggle-button">
+          <img src="assets/images/icon-map.png" class="small-icon" />
+          <span *ngIf='this.resultSectionState === "list-view"'>View on a map</span>
+          <span *ngIf='this.resultSectionState === "map-view"'>View as list</span>
+        </a>
+      </div>
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group">
+          <div class="sort-select-wrapper">
+            <label class="govuk-label sort-select-wrapper__label" for="sort">
+              Sorted by
+            </label>
+            <select class="govuk-select sort-select-wrapper__select" id="sort" name="sort" [(ngModel)]='sort'
+              (change)='sortSchools()'>
+              <option value="AlphabeticalAZ">Alphabetical (A-Z)</option>
+              <option value="AlphabeticalZA">Alphabetical (Z-A)</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
     <hr class="govuk-section-break govuk-section-break--visible">
 
-    <ul class="govuk-list school-list">
-      <li *ngFor="let school of visibleSchoolList" class="school-list__item">
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-three-quarters">
-            <a class="govuk-link govuk-!-font-weight-bold"
-              href='{{settings.sfbDomain}}/school/detail?urn={{school.urn}}'>{{school.name}}</a>
-            <p class="govuk-body-s">
-              <span>{{school.address}}</span><br />
-              <span>{{school.overallPhase}}</span><span> ({{school.pupils}} pupils)</span><br />
-              <span>{{school.schoolType}}</span><br />
-              <span>Efficiency metric rank: <span
-                  class="govuk-!-font-size-14 em-rank-icon__text em-rank-text--{{school.rank}}">{{school.rank}}</span></span>
-            </p>
+    <div [hidden]='visibleSchoolList.length === 0 || resultSectionState === "map-view"'>
+      <ul class="govuk-list school-list">
+        <li *ngFor="let school of visibleSchoolList" class="school-list__item">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-three-quarters">
+              <a class="govuk-link govuk-!-font-weight-bold"
+                href='{{settings.sfbDomain}}/school/detail?urn={{school.urn}}'>{{school.name}}</a>
+              <p class="govuk-body-s">
+                <span>{{school.address}}</span><br />
+                <span>{{school.overallPhase}}</span><span> ({{school.pupils}} pupils)</span><br />
+                <span>{{school.schoolType}}</span><br />
+                <span>Efficiency metric rank: <span
+                    class="govuk-!-font-size-14 em-rank-icon__text em-rank-text--{{school.rank}}">{{school.rank}}</span></span>
+              </p>
+            </div>
+            <div class="govuk-grid-column-one-quarter">
+              <button class="govuk-button govuk-button--secondary school-list__add-button"
+                [hidden]='selectedSchoolUrns.includes(school.urn)' (click)='addToManualBasket(school.urn)'>Add</button>
+              <button class="govuk-button govuk-button--secondary school-list__add-button"
+                [hidden]='!selectedSchoolUrns.includes(school.urn)'
+                (click)='removeFromManualBasket(school.urn)'>Remove</button>
+              <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link"
+                [hidden]='selectedSchoolUrns.length === 0'>Continue to benchmarking charts</a>
+            </div>
           </div>
-          <div class="govuk-grid-column-one-quarter">
-            <button class="govuk-button govuk-button--secondary school-list__add-button"
-              [hidden]='selectedSchoolUrns.includes(school.urn)' (click)='addToManualBasket(school.urn)'>Add</button>
-            <button class="govuk-button govuk-button--secondary school-list__add-button"
-              [hidden]='!selectedSchoolUrns.includes(school.urn)'
-              (click)='removeFromManualBasket(school.urn)'>Remove</button>
-            <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link"
-              [hidden]='selectedSchoolUrns.length === 0'>Continue to benchmarking charts</a>
-          </div>
-        </div>
-        <hr class="govuk-section-break govuk-section-break--visible">
-      </li>
-    </ul>
+          <hr class="govuk-section-break govuk-section-break--visible">
+        </li>
+      </ul>
+    </div>
+
+    <div [hidden]='visibleSchoolList.length === 0 || resultSectionState === "list-view"'>
+      <div id="azuremap" class="results-map" title="An Azure map of the school locations" aria-label="An Azure map of the school locations"></div>
+    </div>
 
     <div [hidden]='visibleSchoolList.length > 0'><span class="govuk-!-font-weight-bold">No schools found.</span> <br> Please try removing some of your filters.</div>
   </div>
 </div>
-
 
 <ng-template #basketFullModal>
   <div class="modal-header">

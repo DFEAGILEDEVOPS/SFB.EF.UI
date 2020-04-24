@@ -4,6 +4,7 @@ import { MetaTag } from '../../seo/models';
 export class AppSettings {
   sfbDomain: string;
   apiDomain: string;
+  azureMapsAPIKey: string;
   domain: string;
   name: string;
   version: string;
