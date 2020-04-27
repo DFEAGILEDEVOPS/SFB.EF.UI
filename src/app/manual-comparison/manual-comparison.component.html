@@ -143,7 +143,11 @@
     </div>
 
     <div [hidden]='visibleSchoolList.length === 0 || resultSectionState === "list-view"'>
-      <div id="azuremap" class="results-map" title="An Azure map of the school locations" aria-label="An Azure map of the school locations"></div>
+      <div *ngIf='mapOptions' id="azuremap" class="results-map" leaflet
+      [leafletOptions]="mapOptions"
+      [leafletLayers]="mapLayers"
+      [leafletFitBounds]="mapFitBounds"
+      title="An Azure map of the school locations" aria-label="An Azure map of the school locations"></div>
     </div>
 
     <div [hidden]='visibleSchoolList.length > 0'><span class="govuk-!-font-weight-bold">No schools found.</span> <br> Please try removing some of your filters.</div>

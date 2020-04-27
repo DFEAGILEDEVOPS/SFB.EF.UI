@@ -20,6 +20,7 @@ import { WaysToImproveComponent } from './metric/ways-to-improve/ways-to-improve
 import { MetricComponent } from './metric/metric.component';
 import { GovUkLayoutComponent } from '@layouts/gov-uk-layout/gov-uk-layout.component';
 import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread-crumb.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread
     CoreModule.forRoot(),
     GovUkLayoutModule,
     AppRoutingModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
