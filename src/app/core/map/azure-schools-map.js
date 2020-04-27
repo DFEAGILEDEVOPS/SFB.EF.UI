@@ -105,13 +105,13 @@
                       <div id ="${info.urn}" data-urn="${info.urn}">`;
 
         //if (DfE.Util.ComparisonList.isInManualList(info.Id)) {
-        if (true) {
-          html += `<div class="button add add-remove" style="display: none" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Add')">Add</div>
-                          <div class="button remove add-remove" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Remove')">Remove</div>`;
-        } else {
-          html += `<div class="button add add-remove" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Add')">Add</div>
-                          <div class="button remove add-remove" style="display: none" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Remove')">Remove</div>`;
-        }
+        // if (true) {
+        //   html += `<div class="button add add-remove" style="display: none" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Add')">Add</div>
+        //                   <div class="button remove add-remove" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Remove')">Remove</div>`;
+        // } else {
+        //   html += `<div class="button add add-remove" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Add')">Add</div>
+        //                   <div class="button remove add-remove" style="display: none" onclick="DfE.Views.SchoolsResultsViewModel.updateManualBasket('${info.urn}','Remove')">Remove</div>`;
+        // }
 
         marker.bindPopup(html);
         marker.on('click', function (ev) {
