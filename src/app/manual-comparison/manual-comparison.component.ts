@@ -7,8 +7,6 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { tileLayer, latLng, marker, icon, latLngBounds } from 'leaflet';
 
-declare let GOVUK: any;
-
 @Component({
   selector: 'app-manual-comparison',
   templateUrl: './manual-comparison.component.html',
