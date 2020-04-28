@@ -6,6 +6,7 @@ import { EmdataService } from '@core/network/services/emdata.service';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { tileLayer, latLng, marker, icon, latLngBounds } from 'leaflet';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -25,6 +26,9 @@ export class ManualComparisonComponent implements OnInit {
   filterReligions: Array<FilterItem>;
   filterRanks: Array<FilterItem>;
   filterOfsteds: Array<FilterItem>;
+  filterReligionsCollapsed: boolean;
+  filterRanksCollapsed: boolean;
+  filterOfstedsCollapsed: boolean;
   visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
   resultSectionState: string;
   map: any;
@@ -69,6 +73,9 @@ export class ManualComparisonComponent implements OnInit {
     this.visibleSchoolList = [];
     this.mapLoaded = false;
     this.mapLayers = [];
+    this.filterRanksCollapsed = false;
+    this.filterReligionsCollapsed = true;
+    this.filterOfstedsCollapsed = true;
   }
 
   ngOnInit() {
@@ -210,6 +217,18 @@ export class ManualComparisonComponent implements OnInit {
     }
   }
 
+  get selectedFilterRanks() {
+    return this.filterRanks.filter(f => f.value).map(f => f.key);
+  }
+
+  get selectedFilterOfsteds() {
+    return this.filterOfsteds.filter(f => f.value).map(f => f.key);
+  }
+
+  get selectedFilterReligions() {
+    return this.filterReligions.filter(f => f.value).map(f => f.key);
+  }
+
   private buildReligionFiltersFromDataModel() {
     this.visibleSchoolList.map(n => n.religiousCharacter).forEach(n => {
       if (!this.filterReligions.map(f => f.key).includes(n)) {
@@ -228,18 +247,6 @@ export class ManualComparisonComponent implements OnInit {
 
   private openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, { animated: false, class: 'sfb-modal-dialog' });
-  }
-
-  private get selectedFilterRanks() {
-    return this.filterRanks.filter(f => f.value).map(f => f.key);
-  }
-
-  private get selectedFilterOfsteds() {
-    return this.filterOfsteds.filter(f => f.value).map(f => f.key);
-  }
-
-  private get selectedFilterReligions() {
-    return this.filterReligions.filter(f => f.value).map(f => f.key);
   }
 
   get diagnostic() { return JSON.stringify(this.selectedFilterRanks); }
