@@ -1,0 +1,18 @@
+<div class="govuk-form-group filter-box">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterOfstedsCollapsed = !filterOfstedsCollapsed'>
+      <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+        Ofsted rating
+        <span aria-hidden="true" style="float: right" [hidden]='!filterOfstedsCollapsed'>˅</span>
+        <span aria-hidden="true" style="float: right" [hidden]='filterOfstedsCollapsed'>˄</span>
+      </h3>
+      <div class="filter-box__legend__count" [hidden]='selectedFilterOfsteds.length === 0'>{{selectedFilterOfsteds.length}} selected</div>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" [hidden]='filterOfstedsCollapsed'>
+      <div class="govuk-checkboxes__item filter-box__check-item" *ngFor="let ofsted of filterOfsteds; let i = index">
+        <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='ofsted.value' name="filterOfsted-{{i}}" id="filterOfsted-{{i}}" (change)='emitFilterResults()'>
+        <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterOfsted-{{i}}">{{ofstedNoInText(ofsted.key)}}</label>
+      </div>
+    </div>
+  </fieldset>
+</div>

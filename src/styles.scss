@@ -172,3 +172,40 @@ span.table-cell-highlight {
       font-size: 14px;
   }
 }
+
+.filter-box {
+  border: 5px solid;
+  color: govuk-colour("mid-grey");
+  margin-bottom: 15px;
+}
+
+.filter-box__legend {
+  margin-bottom: 0;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.filter-box__legend__heading{
+  background-color: govuk-colour("mid-grey");
+  padding: 5px;
+}
+
+.filter-box__legend__count{
+  background-color: govuk-colour("mid-grey");
+  padding: 5px;
+  @include govuk-font(14);
+}
+
+.filter-box__check-item{
+  margin-left: 10px;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  border-bottom: solid 1px govuk-colour("light-grey");
+}
+
+.filter-box__check-item__label{
+  font-size: 16px;
+  width: 100%;
+  min-width: 200px;
+}

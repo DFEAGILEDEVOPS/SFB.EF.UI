@@ -1,3 +1,6 @@
+import { ReligionFilterComponent } from './manual-comparison/religion-filter/religion-filter.component';
+import { OfstedFilterComponent } from './manual-comparison/ofsted-filter/ofsted-filter.component';
+import { RanksFilterComponent } from './manual-comparison/ranks-filter/ranks-filter.component';
 import { McBreadCrumbComponent } from './manual-comparison/mc-bread-crumb/mc-bread-crumb.component';
 import { ManualComparisonComponent } from './manual-comparison/manual-comparison.component';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +38,10 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ComparisonTypeComponent,
     CtBreadCrumbComponent,
     ManualComparisonComponent,
-    McBreadCrumbComponent
+    McBreadCrumbComponent,
+    RanksFilterComponent,
+    OfstedFilterComponent,
+    ReligionFilterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

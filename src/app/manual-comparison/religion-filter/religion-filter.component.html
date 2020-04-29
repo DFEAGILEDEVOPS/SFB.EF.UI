@@ -1,0 +1,18 @@
+<div class="govuk-form-group filter-box">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterReligionsCollapsed = !filterReligionsCollapsed'>
+      <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+        Religious character
+        <span aria-hidden="true" style="float: right" [hidden]='!filterReligionsCollapsed'>˅</span>
+        <span aria-hidden="true" style="float: right" [hidden]='filterReligionsCollapsed'>˄</span>
+      </h3>
+      <div class="filter-box__legend__count" [hidden]='selectedFilterReligions.length === 0'>{{selectedFilterReligions.length}} selected</div>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" [hidden]='filterReligionsCollapsed'>
+       <div class="govuk-checkboxes__item  filter-box__check-item" *ngFor="let religion of filterReligions; let i = index">
+        <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='religion.value' name="filterReligion-{{i}}" id="filterReligion-{{i}}" (change)='emitFilterResults()'>
+        <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterReligion-{{i}}">{{religion.key}}</label>
+      </div>
+    </div>
+  </fieldset>
+</div>

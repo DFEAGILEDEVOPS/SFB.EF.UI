@@ -6,7 +6,9 @@ import { EmdataService } from '@core/network/services/emdata.service';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { tileLayer, latLng, marker, icon, latLngBounds } from 'leaflet';
-import { VirtualTimeScheduler } from 'rxjs';
+import { RanksFilterComponent } from './ranks-filter/ranks-filter.component';
+import { OfstedFilterComponent } from './ofsted-filter/ofsted-filter.component';
+import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -18,17 +20,20 @@ export class ManualComparisonComponent implements OnInit {
   @ViewChild('basketFullModal')
   private basketFullModal: TemplateRef<any>;
 
+  @ViewChild('ranksFilter')
+  private ranksFilter: RanksFilterComponent;
+
+  @ViewChild('ofstedFilter')
+  private ofstedFilter: OfstedFilterComponent;
+
+  @ViewChild('religionFilter')
+  private religionFilter: ReligionFilterComponent;
+
   urn: number;
   model: EMModel;
   modalRef: BsModalRef;
   selectedSchoolUrns: Array<number>;
   sort: string;
-  filterReligions: Array<FilterItem>;
-  filterRanks: Array<FilterItem>;
-  filterOfsteds: Array<FilterItem>;
-  filterReligionsCollapsed: boolean;
-  filterRanksCollapsed: boolean;
-  filterOfstedsCollapsed: boolean;
   visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
   resultSectionState: string;
   map: any;
@@ -49,33 +54,10 @@ export class ManualComparisonComponent implements OnInit {
     this.model = new EMModel();
     this.selectedSchoolUrns = new Array<number>();
     this.sort = 'AlphabeticalAZ';
-    this.filterReligions = new Array<FilterItem>();
-    this.filterRanks = [
-      new FilterItem('1'),
-      new FilterItem('2'),
-      new FilterItem('3'),
-      new FilterItem('4'),
-      new FilterItem('5'),
-      new FilterItem('6'),
-      new FilterItem('7'),
-      new FilterItem('8'),
-      new FilterItem('9'),
-      new FilterItem('10'),
-    ];
-    this.filterOfsteds = [
-      new FilterItem('0'),
-      new FilterItem('1'),
-      new FilterItem('2'),
-      new FilterItem('3'),
-      new FilterItem('4')
-    ];
     this.resultSectionState = 'list-view';
     this.visibleSchoolList = [];
     this.mapLoaded = false;
     this.mapLayers = [];
-    this.filterRanksCollapsed = false;
-    this.filterReligionsCollapsed = true;
-    this.filterOfstedsCollapsed = true;
   }
 
   ngOnInit() {
@@ -84,8 +66,8 @@ export class ManualComparisonComponent implements OnInit {
         this.model = result;
         this.model.neighbourDataModels = this.model.neighbourDataModels.filter(n => n.urn !== this.urn);
         this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
+        this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
         this.sortSchools();
-        this.buildReligionFiltersFromDataModel();
       });
   }
 
@@ -116,42 +98,6 @@ export class ManualComparisonComponent implements OnInit {
     this.renderMapPinsForAzureMap(this.visibleSchoolList);
   }
 
-  private renderMapPinsForAzureMap(schools) {
-
-    const latLangs = [];
-    this.mapLayers = [];
-
-    schools.forEach(school => {
-      const schoolMarker = marker(latLng(school.location.coordinates[1], school.location.coordinates[0]),
-        {
-          icon: icon({
-            iconUrl: '/assets/images/icon-location.png',
-            iconSize: [20, 32]
-          })
-        });
-
-      schoolMarker.bindPopup(() => {
-        const divElement = document.createElement('div');
-        divElement.className = 'infowindow-school-summary';
-        divElement.innerHTML = `<a href ="${this.settings.sfbDomain}/school/detail?urn=${school.urn}">${school.name}</a>
-        <p>${school.address}</p>
-        <p>${school.overallPhase}</p>
-        <p>${school.schoolType}</p>`;
-        const buttonElement = document.createElement('button');
-        buttonElement.className = 'govuk-button govuk-button--secondary';
-        buttonElement.textContent = this.selectedSchoolUrns.includes(school.urn) ? 'Remove' : 'Add';
-        buttonElement.addEventListener('click', () => this.addRemoveFromPopup(school.urn, buttonElement));
-        divElement.appendChild(buttonElement);
-        return divElement;
-      });
-
-      this.mapLayers.push(schoolMarker);
-      latLangs.push([school.location.coordinates[1], school.location.coordinates[0]]);
-    });
-
-    this.mapFitBounds = latLngBounds(latLangs);
-  }
-
   sortSchools() {
     this.visibleSchoolList = this.visibleSchoolList.sort((n1, n2) => this.sortByName(n1.name, n2.name));
   }
@@ -164,7 +110,7 @@ export class ManualComparisonComponent implements OnInit {
 
   }
 
-  addRemoveFromPopup(urn: number, button: HTMLButtonElement) {
+  addRemoveFromMapPopup(urn: number, button: HTMLButtonElement) {
     this.zone.run(
       () => {
         if (this.selectedSchoolUrns.includes(urn)) {
@@ -195,46 +141,12 @@ export class ManualComparisonComponent implements OnInit {
 
   filterResults() {
     this.visibleSchoolList = this.model.neighbourDataModels
-      .filter(n => this.selectedFilterRanks.length === 0 || this.selectedFilterRanks.includes(n.rank.toString()))
-      .filter(n => this.selectedFilterOfsteds.length === 0 || this.selectedFilterOfsteds.includes(n.ofstedRating.toString()))
-      .filter(n => this.selectedFilterReligions.length === 0 || this.selectedFilterReligions.includes(n.religiousCharacter.toString()));
+      .filter(n => this.ranksFilter.isFiltered(n.rank))
+      .filter(n => this.ofstedFilter.isFiltered(n.ofstedRating))
+      .filter(n => this.religionFilter.isFiltered(n.religiousCharacter));
+
     this.sortSchools();
     this.bindAzureMap();
-  }
-
-  ofstedNoInText(rank: string) {
-    switch (rank) {
-      case '0':
-        return 'Not rated';
-      case '1':
-        return 'Outstanding';
-      case '2':
-        return 'Good';
-      case '3':
-        return 'Requires improvement';
-      case '4':
-        return 'Inadequate';
-    }
-  }
-
-  get selectedFilterRanks() {
-    return this.filterRanks.filter(f => f.value).map(f => f.key);
-  }
-
-  get selectedFilterOfsteds() {
-    return this.filterOfsteds.filter(f => f.value).map(f => f.key);
-  }
-
-  get selectedFilterReligions() {
-    return this.filterReligions.filter(f => f.value).map(f => f.key);
-  }
-
-  private buildReligionFiltersFromDataModel() {
-    this.visibleSchoolList.map(n => n.religiousCharacter).forEach(n => {
-      if (!this.filterReligions.map(f => f.key).includes(n)) {
-        this.filterReligions.push(new FilterItem(n));
-      }
-    });
   }
 
   private sortByName(name1: string, name2: string) {
@@ -249,10 +161,41 @@ export class ManualComparisonComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { animated: false, class: 'sfb-modal-dialog' });
   }
 
-  get diagnostic() { return JSON.stringify(this.selectedFilterRanks); }
+  private renderMapPinsForAzureMap(schools) {
 
+    const latLangs = [];
+    this.mapLayers = [];
+
+    schools.forEach(school => {
+      const schoolMarker = marker(latLng(school.location.coordinates[1], school.location.coordinates[0]),
+        {
+          icon: icon({
+            iconUrl: '/assets/images/icon-location.png',
+            iconSize: [20, 32]
+          })
+        });
+
+      schoolMarker.bindPopup(() => {
+        const divElement = document.createElement('div');
+        divElement.className = 'infowindow-school-summary';
+        divElement.innerHTML = `<a href ="${this.settings.sfbDomain}/school/detail?urn=${school.urn}">${school.name}</a>
+        <p>${school.address}</p>
+        <p>${school.overallPhase}</p>
+        <p>${school.schoolType}</p>`;
+        const buttonElement = document.createElement('button');
+        buttonElement.className = 'govuk-button govuk-button--secondary';
+        buttonElement.textContent = this.selectedSchoolUrns.includes(school.urn) ? 'Remove' : 'Add';
+        buttonElement.addEventListener('click', () => this.addRemoveFromMapPopup(school.urn, buttonElement));
+        divElement.appendChild(buttonElement);
+        return divElement;
+      });
+
+      this.mapLayers.push(schoolMarker);
+      latLangs.push([school.location.coordinates[1], school.location.coordinates[0]]);
+    });
+
+    this.mapFitBounds = latLngBounds(latLangs);
+  }
 }
 
-class FilterItem {
-  constructor(public key: string, public value: boolean = false) { }
-}
+

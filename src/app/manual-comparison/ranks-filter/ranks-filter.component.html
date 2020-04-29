@@ -1,0 +1,18 @@
+<div class="govuk-form-group filter-box">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterRanksCollapsed = !filterRanksCollapsed'>
+      <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+        Efficiency metric rank
+        <span aria-hidden="true" style="float: right" [hidden]='!filterRanksCollapsed'>˅</span>
+        <span aria-hidden="true" style="float: right" [hidden]='filterRanksCollapsed'>˄</span>
+      </h3>
+      <div class="filter-box__legend__count" [hidden]='selectedFilterRanks.length === 0'>{{selectedFilterRanks.length}} selected</div>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" [hidden]='filterRanksCollapsed'>
+      <div class="govuk-checkboxes__item filter-box__check-item" *ngFor="let rank of filterRanks; let i = index">
+        <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='rank.value' name="filterRank-{{i}}" id="filterRank-{{i}}" (change)='emitFilterResults()'>
+        <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterRank-{{i}}">{{rank.key}}</label>
+      </div>
+    </div>
+  </fieldset>
+</div>
