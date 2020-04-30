@@ -1,16 +1,5 @@
 @import "govuk-frontend/govuk/core/_typography.scss";
 
-.results-map {
-  height: 600px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-
-  @media(mobile) {
-      height: 400px;
-  }
-}
-
 .sort-select-wrapper {
   float: right;
   margin-top: 15px;

@@ -1,3 +1,4 @@
+import { MapComponent } from './manual-comparison/map/map.component';
 import { ReligionFilterComponent } from './manual-comparison/religion-filter/religion-filter.component';
 import { OfstedFilterComponent } from './manual-comparison/ofsted-filter/ofsted-filter.component';
 import { RanksFilterComponent } from './manual-comparison/ranks-filter/ranks-filter.component';
@@ -41,7 +42,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     McBreadCrumbComponent,
     RanksFilterComponent,
     OfstedFilterComponent,
-    ReligionFilterComponent
+    ReligionFilterComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
