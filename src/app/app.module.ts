@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmTableComponent } from './metric/em-table/em-table.component';
-import { WaysToImproveComponent } from './metric/ways-to-improve/ways-to-improve.component';
+import { WaysToImproveComponent } from './ways-to-improve/ways-to-improve.component';
 import { MetricComponent } from './metric/metric.component';
 import { GovUkLayoutComponent } from '@layouts/gov-uk-layout/gov-uk-layout.component';
 import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread-crumb.component';

@@ -32,7 +32,6 @@ export class MapComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    debugger;
     this.renderMapPinsForAzureMap();
   }
 

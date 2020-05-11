@@ -8,6 +8,18 @@
   font-size: 16px;
 }
 
+.govuk-table__body--border{
+  border-top: 1px solid #b1b4b6;
+}
+
+.govuk-table__cell{
+  border-top: 1px solid #b1b4b6;
+  border-bottom: none;
+}
+
+.link-cell{
+  border-top: none;
+}
 .em-table__ks2-header, .em-table__p8-header{
   background-color: govuk-colour("light-grey");
 }
@@ -17,6 +29,7 @@
   vertical-align: top;
   text-align: -webkit-center;
   padding-top: 1%;
+  border-top: none;
 }
 .em-table-rank-cell--1{
   background-color: rgb(230,241,236)
@@ -100,4 +113,16 @@
     background-color: #006435;
     color: #fff;
 }
+}
+
+.improve-link-wrapper{
+  border: 3px solid $govuk-link-colour;
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
+
+  a{
+    font-size: 14px;
+    font-weight: bold;
+  }
 }
