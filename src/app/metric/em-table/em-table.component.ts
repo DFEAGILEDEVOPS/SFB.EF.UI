@@ -18,7 +18,7 @@ export class EmTableComponent implements OnInit {
   }
 
   onColumnDetailsShow() {
-    this.scroll(document.querySelector('#emTable .em-rank-text--7').parentElement);
+    this.scroll(document.querySelector('#emTable .em-rank-text--' + this.model.rank).parentElement);
   }
 
   private scroll(el: HTMLElement) {

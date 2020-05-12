@@ -1,0 +1,21 @@
+<a routerLink='/efficiency-metric/{{urn}}' class="govuk-back-link">Back to the efficiency metric ranking</a>
+
+<hr class="govuk-section-break govuk-section-break--m">
+
+<h1 class="govuk-heading-xl">Contact details</h1>
+
+<div *ngFor='let neighbour of model.neighbourDataModels; let i = index'>
+  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+  <a class="govuk-link govuk-body-m govuk-!-font-weight-bold school-link" href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">
+    {{neighbour.name}}
+  </a>
+  <hr class="govuk-section-break govuk-section-break--m">
+  <ul class="details-list govuk-list govuk-body-s">
+    <li><strong>Address: </strong><span>{{neighbour.address}}</span></li>
+    <li><strong>Telephone: </strong><span>{{neighbour.telephone}}</span></li>
+    <li><strong>Headteacher: </strong><span>{{neighbour.headTeacher}}</span></li>
+    <li><strong>School phase: </strong><span>{{neighbour.overallPhase}} ({{neighbour.pupils}} pupils)</span></li>
+    <li><strong>School type: </strong><span>{{neighbour.schoolType}}</span></li>
+    <li><strong>Efficiency metric ranking: </strong><span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span></li>
+  </ul>
+</div>

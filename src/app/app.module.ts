@@ -1,3 +1,4 @@
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { HowItIsCalculatedComponent } from './how-it-is-calculated/how-it-is-calculated.component';
 import { MapComponent } from './manual-comparison/map/map.component';
 import { ReligionFilterComponent } from './manual-comparison/religion-filter/religion-filter.component';
@@ -45,7 +46,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     OfstedFilterComponent,
     ReligionFilterComponent,
     MapComponent,
-    HowItIsCalculatedComponent
+    HowItIsCalculatedComponent,
+    ContactDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

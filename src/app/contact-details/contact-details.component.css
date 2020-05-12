@@ -1,0 +1,14 @@
+.details-list{
+  column-count: 3;
+}
+
+.em-rank-text{
+  height: 1.2em;
+  width: 1.2em;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 14px;
+}
