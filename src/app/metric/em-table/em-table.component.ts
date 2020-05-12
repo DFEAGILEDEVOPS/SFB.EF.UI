@@ -16,4 +16,12 @@ export class EmTableComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onColumnDetailsShow() {
+    this.scroll(document.querySelector('#emTable .em-rank-text--7').parentElement);
+  }
+
+  private scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 }

@@ -1,27 +1,43 @@
 <app-metric-bread-crumb [urn]='model.urn' [name]='model.name'></app-metric-bread-crumb>
 
-<h1 class="govuk-heading-xl">Efficiency Metric Ranking</h1>
-<p class="govuk-body-s">
-  Results for
-  <span class="highlight">
-    <span class="govuk-!-font-weight-bold">{{model.name}}</span>
-  </span>
-</p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Efficiency Metric Ranking</h1>
+    <p class="govuk-body-s">
+      Results for
+      <span class="highlight">
+        <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+      </span>
+    </p>
 
-<div class="govuk-grid-row govuk-body em-rank-content-wrapper">
-  <div class="govuk-grid-column-full">
-    <div class="em-rank-icon">
-      <span class="em-rank-icon__text em-rank-text--{{model.rank}}">{{model.rank}}</span>
+    <div class="govuk-grid-row govuk-body em-rank-content-wrapper">
+      <div class="govuk-grid-column-full">
+        <div class="em-rank-icon">
+          <span class="em-rank-icon__text em-rank-text--{{model.rank}}">{{model.rank}}</span>
+        </div>
+        <div class="em-rank-content">
+          <span class="govuk-!-font-size-24 govuk-!-font-weight-bold">This school's Efficiency Metric Ranking is
+            {{model.rank}}</span>
+          <br>
+          <span>This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
+            schools get better pupil progress for a similar amount of money. </span>
+          <a [routerLink]="" (click)='emTable.onColumnDetailsShow()' class="govuk-link">See this school's ranking</a>
+        </div>
+      </div>
     </div>
-    <div class="em-rank-content">
-      <span class="govuk-!-font-size-24 govuk-!-font-weight-bold">This school's Efficiency Metric Ranking is {{model.rank}}</span>
-      <br>
-      <span>This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar schools get better pupil progress for a similar amount of money.</span>
-      <br>
-      <a [routerLink]="" (click)='openModal(template)' class="govuk-link" >How we calculate the Efficiency Metric Ranking</a>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <div class="links-wrapper">
+      <h2 class="govuk-heading-s">Useful links</h2>
+      <ul class="govuk-list">
+        <li><a class="govuk-link" routerLink='/efficiency-metric/how-it-is-calculated/{{model.urn}}'>How the efficiency metric ranking is calculated</a></li>
+        <li><a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{model.urn}}/{{model.name}}'>Ways to improve your school's ranking</a></li>
+        <li><a class="govuk-link" routerLink=''>Contact details of schools in this ranking</a></li>
+      </ul>
     </div>
   </div>
 </div>
+
 
 <app-em-table [model]='model' #emTable></app-em-table>
 

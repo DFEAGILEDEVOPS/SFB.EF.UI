@@ -12,7 +12,7 @@ export class WaysToImproveComponent implements OnInit {
   @Input() urn: number;
   @Input() name: string;
 
-  constructor(private route: ActivatedRoute, @Inject(appSettings) public settings: AppSettings) {
+  constructor(private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.urn = +params.urn;
       this.name = params.name;

@@ -5,8 +5,12 @@
 }
 
 .em-rank-icon{
-  display: inline-block;
+  vertical-align: text-top;
   @include govuk-font($size: 36, $weight: bold);
+  @include govuk-media-query($from: tablet) {
+    width: 15%;
+    float: left;
+  }
 }
 
 .em-rank-icon__text{
@@ -21,7 +25,17 @@
 }
 
 .em-rank-content{
-  display: inline-block;
-  padding-left: 20px;
+  @include govuk-media-query($from: tablet) {
+    width: 85%;
+    float: left;
+  }
+}
+
+.links-wrapper{
+  border-top: 2px solid $govuk-brand-colour;
+  padding-top: 10px;
+  @include govuk-media-query($from: desktop) {
+    margin-left: 40px;
+  }
 }
 

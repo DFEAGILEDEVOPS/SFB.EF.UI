@@ -20,8 +20,17 @@
 .link-cell{
   border-top: none;
 }
-.em-table__ks2-header, .em-table__p8-header{
+
+.em-table__ks2-header{
   background-color: govuk-colour("light-grey");
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.em-table__p8-header{
+  background-color: govuk-colour("light-grey");
+  padding-left: 20px;
+  padding-right: 15px;
 }
 .em-table-rank-cell{
   padding: 0;
@@ -77,9 +86,15 @@
   padding-left: 10px;
 }
 
-.em-table-p8-cell, .em-table-ks2-reading-cell, .em-table-ks2-writing-cell, .em-table-ks2-maths-cell{
-  padding-left: 5px;
-  padding-right: 5px;
+.em-table-p8-cell{
+  padding-left: 20px;
+  padding-right: 15px;
+  background-color: govuk-colour("light-grey");
+}
+
+.em-table-ks2-reading-cell, .em-table-ks2-writing-cell, .em-table-ks2-maths-cell{
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: govuk-colour("light-grey");
 }
 
@@ -125,4 +140,8 @@
     font-size: 14px;
     font-weight: bold;
   }
+}
+
+.govuk-table__header{
+  vertical-align: bottom;
 }

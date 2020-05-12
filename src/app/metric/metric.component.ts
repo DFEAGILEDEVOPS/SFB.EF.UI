@@ -22,6 +22,7 @@ export class MetricComponent implements OnInit {
       this.urn = +params.urn;
     });
     this.model = new EMModel();
+    this.model.name = 'Your school';
   }
 
   ngOnInit() {
