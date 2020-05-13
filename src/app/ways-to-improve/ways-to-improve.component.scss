@@ -1,22 +1,36 @@
 @import "govuk-frontend/govuk/core/_typography.scss";
 
+.clipboard-image-wrapper{
+  width: 300px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.clipboard-image-wrapper--blue{
+  background-color: govuk-colour("blue");
+}
+
+.clipboard-image-wrapper--navy{
+  background-color: govuk-colour("dark-blue");
+}
+
+.clipboard-image-wrapper--turquise{
+  background-color: govuk-colour("turquoise");
+}
+
 .clipboard-image{
-  width: 100%;
-  max-height: 150px;
+  max-width: 300px;
   margin-bottom: 10px;
 }
 
 .clipboard-image--blue{
-  background-color: govuk-colour("blue");
-  padding: 20px 110px;
+  padding: 20px 94px;
 }
 
 .clipboard-image--navy{
-  background-color: govuk-colour("dark-blue");
-  padding: 20px 80px;
+  padding: 38px 73px;
 }
 
 .clipboard-image--turquise{
-  background-color: govuk-colour("turquoise");
-  padding: 20px 90px;
+  padding: 35px 80px;
 }

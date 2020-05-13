@@ -9,10 +9,10 @@
       <th scope="col" class="govuk-table__header govuk-table__header--numeric">Pupils</th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric">Ever6 FSM</th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric">SEN/EHCP</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Income per pupil</th>
-      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Reading</th>
-      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Writing</th>
-      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Maths</th>
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expenditure per pupil</th>
+      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Progress Reading</th>
+      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Progress Writing</th>
+      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Progress Maths</th>
       <th scope="col" class="govuk-table__header em-table__p8-header" *ngIf='model.phase === "Secondary"'>Progress 8 score</th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@
       <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" rowspan="2">
         <span *ngIf='i % 5 === 0' class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
       </td>
-      <td class="govuk-table__cell em-table-name-cell"><a [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
+      <td class="govuk-table__cell em-table-name-cell"><a class="govuk-link" [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
       <td class="govuk-table__cell"><span [class.table-cell-highlight]='neighbour.localAuthority === model.localAuthority'>{{neighbour.localAuthority}}</span></td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.pupils}}</td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 | percent:'1.1'}} </td>
@@ -75,7 +75,7 @@
     <tr *ngIf='neighbour.urn === model.urn'>
       <td class="govuk-table__cell link-cell" colspan="6">
         <div class="improve-link-wrapper">
-          <a routerLink='/efficiency-metric/ways-to-improve/{{neighbour.urn}}/{{neighbour.name}}'>See ways to improve your school's efficiency metric ranking</a>
+          <a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{neighbour.urn}}/{{neighbour.name}}'>See ways to improve your school's efficiency metric ranking</a>
         </div>
       </td>
       <td class="govuk-table__cell link-cell em-table-ks2-reading-cell" *ngIf='model.phase === "Primary"'></td>
