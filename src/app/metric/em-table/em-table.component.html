@@ -30,44 +30,44 @@
       <td class="govuk-table__cell em-table-ks2-reading-cell" *ngIf='model.phase === "Primary"'>
         <span class="em-table-ks2-reading-cell__text"
         [ngClass]="{
-          'em-table-ks2-reading-cell__text--well-below': neighbour.progressReading <= -5 ,
-          'em-table-ks2-reading-cell__text--below': neighbour.progressReading > -5 && neighbour.progressReading < -0.25,
-          'em-table-ks2-reading-cell__text--average': neighbour.progressReading >= -0.25 && neighbour.progressReading <= 0.25,
-          'em-table-ks2-reading-cell__text--above': neighbour.progressReading < 5 && neighbour.progressReading > 0.25,
-          'em-table-ks2-reading-cell__text--well-above': neighbour.progressReading >= 5}">
+          'em-table-ks2-reading-cell__text--well-below': neighbour.progressReading < -3 ,
+          'em-table-ks2-reading-cell__text--below': neighbour.progressReading >= -3 && neighbour.progressReading < -2,
+          'em-table-ks2-reading-cell__text--average': neighbour.progressReading >= -2 && neighbour.progressReading <= 2,
+          'em-table-ks2-reading-cell__text--above': neighbour.progressReading <= 3 && neighbour.progressReading > 2,
+          'em-table-ks2-reading-cell__text--well-above': neighbour.progressReading > 3}">
           {{neighbour.progressReading | number: '1.2-2' }}
         </span>
       </td>
       <td  class="govuk-table__cell em-table-ks2-writing-cell" *ngIf='model.phase === "Primary"'>
         <span class="em-table-ks2-writing-cell__text"
         [ngClass]="{
-          'em-table-ks2-reading-cell__text--well-below': neighbour.progressWriting <= -5 ,
-          'em-table-ks2-reading-cell__text--below': neighbour.progressWriting > -5 && neighbour.progressWriting < -0.25,
-          'em-table-ks2-reading-cell__text--average': neighbour.progressWriting >= -0.25 && neighbour.progressWriting <= 0.25,
-          'em-table-ks2-reading-cell__text--above': neighbour.progressWriting < 5 && neighbour.progressWriting > 0.25,
-          'em-table-ks2-reading-cell__text--well-above': neighbour.progressWriting >= 5}">
+          'em-table-ks2-reading-cell__text--well-below': neighbour.progressWriting < -3 ,
+          'em-table-ks2-reading-cell__text--below': neighbour.progressWriting >= -3 && neighbour.progressWriting < -2,
+          'em-table-ks2-reading-cell__text--average': neighbour.progressWriting >= -2 && neighbour.progressWriting <= 2,
+          'em-table-ks2-reading-cell__text--above': neighbour.progressWriting <= 3 && neighbour.progressWriting > 2,
+          'em-table-ks2-reading-cell__text--well-above': neighbour.progressWriting > 3}">
           {{neighbour.progressWriting | number: '1.2-2'}}
         </span>
       </td>
       <td  class="govuk-table__cell em-table-ks2-maths-cell" *ngIf='model.phase === "Primary"'>
         <span class="em-table-ks2-maths-cell__text"
         [ngClass]="{
-          'em-table-ks2-reading-cell__text--well-below': neighbour.progressMaths <= -5 ,
-          'em-table-ks2-reading-cell__text--below': neighbour.progressMaths > -5 && neighbour.progressMaths < -0.25,
-          'em-table-ks2-reading-cell__text--average': neighbour.progressMaths >= -0.25 && neighbour.progressMaths <= 0.25,
-          'em-table-ks2-reading-cell__text--above': neighbour.progressMaths < 5 && neighbour.progressMaths > 0.25,
-          'em-table-ks2-reading-cell__text--well-above': neighbour.progressMaths >= 5}">
+          'em-table-ks2-reading-cell__text--well-below': neighbour.progressMaths < -3 ,
+          'em-table-ks2-reading-cell__text--below': neighbour.progressMaths >= -3 && neighbour.progressMaths < -2,
+          'em-table-ks2-reading-cell__text--average': neighbour.progressMaths >= -2 && neighbour.progressMaths <= 2,
+          'em-table-ks2-reading-cell__text--above': neighbour.progressMaths <= 3 && neighbour.progressMaths > 2,
+          'em-table-ks2-reading-cell__text--well-above': neighbour.progressMaths > 3}">
           {{neighbour.progressMaths | number: '1.2-2'}}
         </span>
       </td>
       <td  class="govuk-table__cell em-table-p8-cell" *ngIf='model.phase === "Secondary"'>
         <span class="em-table-p8-cell__text"
         [ngClass]="{
-        'em-table-p8-cell__text--well-below': neighbour.progress8 <= -5 ,
-        'em-table-p8-cell__text--below': neighbour.progress8 > -5 && neighbour.progress8 < -0.25,
+        'em-table-p8-cell__text--well-below': neighbour.progress8 < -0.5 ,
+        'em-table-p8-cell__text--below': neighbour.progress8 >= -0.5 && neighbour.progress8 < -0.25,
         'em-table-p8-cell__text--average': neighbour.progress8 >= -0.25 && neighbour.progress8 <= 0.25,
-        'em-table-p8-cell__text--above': neighbour.progress8 < 5 && neighbour.progress8 > 0.25,
-        'em-table-p8-cell__text--well-above': neighbour.progress8 >= 5}">
+        'em-table-p8-cell__text--above': neighbour.progress8 <= 0.5 && neighbour.progress8 > 0.25,
+        'em-table-p8-cell__text--well-above': neighbour.progress8 > 0.5}">
           {{neighbour.progress8 | number: '1.2-2'}}
         </span>
       </td>
