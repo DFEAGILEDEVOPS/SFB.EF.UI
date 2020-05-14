@@ -3,17 +3,17 @@
 <table class="govuk-table em-table" id="emTable">
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Rank</th>
-      <th scope="col" class="govuk-table__header">School</th>
-      <th scope="col" class="govuk-table__header">Local authority</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Pupils</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Ever6 FSM</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric">SEN/EHCP</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expenditure per pupil</th>
-      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Progress Reading</th>
-      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Progress Writing</th>
-      <th scope="col" class="govuk-table__header em-table__ks2-header" *ngIf='model.phase === "Primary"'>Progress Maths</th>
-      <th scope="col" class="govuk-table__header em-table__p8-header" *ngIf='model.phase === "Secondary"'>Progress 8 score</th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky"><div>Rank</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky"><div>School</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky"><div>Local authority</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>Pupils</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>Ever6 FSM</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>SEN/EHCP</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>Expenditure per pupil</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.phase === "Primary"'><div>Progress Reading</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.phase === "Primary"'><div>Progress Writing</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.phase === "Primary"'><div>Progress Maths</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__p8-header" *ngIf='model.phase === "Secondary"'><div>Progress 8 score</div></th>
     </tr>
   </thead>
   <tbody class="govuk-table__body" [class.govuk-table__body--border]='i % 5 === 0' *ngFor='let neighbour of model.neighbourDataModels; let i = index'>

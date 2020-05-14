@@ -23,15 +23,21 @@
 }
 
 .em-table__ks2-header{
-  background-color: govuk-colour("light-grey");
-  padding-left: 10px;
-  padding-right: 10px;
+  text-align: center;
+  background-color: govuk-colour("light-grey")!important;
+  div{
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
 }
 
 .em-table__p8-header{
-  background-color: govuk-colour("light-grey");
-  padding-left: 20px;
-  padding-right: 15px;
+  text-align: center;
+  background-color: govuk-colour("light-grey")!important;
+  div{
+    padding-left: 15px!important;
+    padding-right: 10px!important;
+  }
 }
 .em-table-rank-cell{
   padding: 0;
@@ -94,7 +100,7 @@
 }
 
 .em-table-ks2-reading-cell, .em-table-ks2-writing-cell, .em-table-ks2-maths-cell{
-  padding-left: 10px;
+  padding-left: 15px;
   padding-right: 10px;
   background-color: govuk-colour("light-grey");
 }
@@ -133,8 +139,7 @@
 
 .improve-link-wrapper{
   border: 3px solid $govuk-link-colour;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin: 0 5px 5px 5px;
   text-align: center;
   padding: 5px;
 
@@ -146,4 +151,19 @@
 
 .govuk-table__header{
   vertical-align: bottom;
+}
+
+.govuk-table__header--sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    background-color: white;
+    padding-bottom: 0;
+    padding-right: 0;
+    div{
+      border-bottom: 1px solid #b1b4b6;
+      padding-bottom: 10px;
+      padding-right: 20px;
+    }
 }
