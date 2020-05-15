@@ -31,6 +31,10 @@
   }
 }
 
+.em-table__expenditure-header{
+  background-color: govuk-colour("light-grey")!important;
+}
+
 .em-table__p8-header{
   text-align: center;
   background-color: govuk-colour("light-grey")!important;
@@ -102,6 +106,11 @@
 .em-table-ks2-reading-cell, .em-table-ks2-writing-cell, .em-table-ks2-maths-cell{
   padding-left: 15px;
   padding-right: 10px;
+  background-color: govuk-colour("light-grey");
+}
+
+
+.em-table-expenditure-cell{
   background-color: govuk-colour("light-grey");
 }
 

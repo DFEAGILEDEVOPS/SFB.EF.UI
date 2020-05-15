@@ -99,6 +99,14 @@ span.table-cell-highlight {
       color: white;
       &:hover {
           text-decoration: underline;
+          color: white;
+      }
+      &:focus
+      {
+        color: black!important;
+      }
+      &:visited {
+        color: white;
       }
 
 
