@@ -26,7 +26,7 @@
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.pupils}}</td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 | percent:'1.1'}} </td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.sen | percent:'1.1'}}</td>
-      <td class="govuk-table__cell em-table-expenditure-cell govuk-table__cell--numeric">{{neighbour.incomePP | currency :'GBP':'symbol':'0.0-0'}}</td>
+      <td class="govuk-table__cell em-table-expenditure-cell govuk-table__cell--numeric"><div>{{neighbour.incomePP | currency :'GBP':'symbol':'0.0-0'}}</div></td>
       <td class="govuk-table__cell em-table-ks2-reading-cell" *ngIf='model.phase === "Primary"'>
         <span class="em-table-ks2-reading-cell__text"
         [ngClass]="{

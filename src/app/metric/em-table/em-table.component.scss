@@ -32,7 +32,14 @@
 }
 
 .em-table__expenditure-header{
-  background-color: govuk-colour("light-grey")!important;
+  padding-top: 0;
+  div{
+    background-color: govuk-colour("light-grey")!important;
+    margin-right: 5px;
+    padding-top: 10px!important;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
 }
 
 .em-table__p8-header{
@@ -111,7 +118,11 @@
 
 
 .em-table-expenditure-cell{
-  background-color: govuk-colour("light-grey");
+  padding: 0 5px 0 0;
+  div{
+    background-color: govuk-colour("light-grey");
+    padding: 10px 5px 30px 0;
+  }
 }
 
 .em-table-p8-cell__text, .em-table-ks2-reading-cell__text, .em-table-ks2-writing-cell__text, .em-table-ks2-maths-cell__text {
