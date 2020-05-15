@@ -12,3 +12,17 @@
   color: #ffffff;
   font-size: 14px;
 }
+
+.sort-select-wrapper {
+  float: right;
+  margin-bottom: -10px;
+}
+
+.sort-select-wrapper__label {
+  display: inline;
+  margin-right: 5px;
+}
+
+.sort-select-wrapper__select {
+  display: inline;
+}
