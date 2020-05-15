@@ -1,3 +1,4 @@
+import { ContactMapComponent } from './contact-details/contact-map/contact-map.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { HowItIsCalculatedComponent } from './how-it-is-calculated/how-it-is-calculated.component';
 import { MapComponent } from './manual-comparison/map/map.component';
@@ -47,7 +48,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ReligionFilterComponent,
     MapComponent,
     HowItIsCalculatedComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    ContactMapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

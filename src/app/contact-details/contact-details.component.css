@@ -15,7 +15,7 @@
 
 .sort-select-wrapper {
   float: right;
-  margin-bottom: -10px;
+  margin-bottom: -30px;
 }
 
 .sort-select-wrapper__label {
@@ -25,4 +25,11 @@
 
 .sort-select-wrapper__select {
   display: inline;
+}
+
+.map-toggle-button{
+  font-size: 19px;
+  font-weight: bold;
+  float: left;
+  margin-top: 5px;
 }

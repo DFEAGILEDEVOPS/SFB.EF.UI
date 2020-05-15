@@ -1,9 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { EMModel } from 'app/Models/EMModel';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
+import { MapComponent } from 'app/manual-comparison/map/map.component';
+import { ContactMapComponent } from './contact-map/contact-map.component';
 
 @Component({
   selector: 'app-contact-details',
@@ -15,6 +17,10 @@ export class ContactDetailsComponent implements OnInit {
   model: EMModel;
   sort: string;
   visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
+  resultSectionState: string;
+
+  @ViewChild(ContactMapComponent)
+  private map: ContactMapComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +32,7 @@ export class ContactDetailsComponent implements OnInit {
     this.model = new EMModel();
     this.sort = 'Rank';
     this.visibleSchoolList = [];
+    this.resultSectionState = 'list-view';
   }
 
   ngOnInit() {
@@ -34,6 +41,13 @@ export class ContactDetailsComponent implements OnInit {
       this.model = result;
       this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
     });
+  }
+
+  onResultSectionStateToggle() {
+    this.resultSectionState = this.resultSectionState === 'list-view' ? 'map-view' : 'list-view';
+    if (this.resultSectionState === 'map-view') {
+      this.map.bindAzureMap();
+    }
   }
 
   sortSchools() {
