@@ -1,5 +1,7 @@
 # SFB Efficiency Metrics (Proof of Concept)
 
+[![Build status](https://dev.azure.com/agilefactory/Financial%20Benchmarking/_apis/build/status/SFB.EF.UI)](https://dev.azure.com/agilefactory/Financial%20Benchmarking/_build/latest?definitionId=456) ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/DFEAGILEDEVOPS/SFB.EF.UI?include_prereleases)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 it also contains out-of-the-box the latest version of the [Gov.uk Design System](https://design-system.service.gov.uk/).
 
