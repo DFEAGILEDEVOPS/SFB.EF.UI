@@ -19,6 +19,12 @@ a{
 
 .a-button{
   text-decoration: none;
+  &:visited{
+    color: initial!important;
+  }
+  &:hover{
+    text-decoration: none;
+  }
 }
 
 .back-button{
@@ -30,7 +36,7 @@ a{
 }
 
 .small-icon{
-  width: 20px;
+  //width: 20px;
   margin-right: 5px;
 }
 
@@ -58,7 +64,7 @@ a{
 .highlight {
   background-color: #d53880;
   display: inline;
-  padding: 5px 5px;
+  padding: 2px 5px;
 
   span {
       color: white;
@@ -83,7 +89,7 @@ span.table-cell-highlight {
 
     background-color: #d53880;
     display: inline;
-    padding: 6px 8px 6px 8px;
+    padding: 2px 5px;
     color: white;
       line-height: 1.8em;
       font-weight: bold;
@@ -92,7 +98,7 @@ span.table-cell-highlight {
   a.table-cell-highlight {
       background-color: #d53880;
       display: inline;
-      padding: 6px 8px 6px 8px;
+      padding: 2px 5px;
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -230,4 +236,23 @@ span.table-cell-highlight {
 .intro-formula{
   margin-top: 1em;
   display: block;
+}
+
+@media print {
+  .show-in-print {
+    display: block!important;
+  }
+
+  .hide-in-print {
+    display: none!important;
+  }
+
+  .main-header{
+     margin-top: 1em!important;
+  }
+
+  .expand-in-print{
+    width: 100%;
+  }
+
 }

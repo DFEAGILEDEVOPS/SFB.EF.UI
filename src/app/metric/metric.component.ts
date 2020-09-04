@@ -1,5 +1,5 @@
 import { EmdataService } from '../core/network/services/emdata.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -15,6 +15,7 @@ export class MetricComponent implements OnInit {
   modalRef: BsModalRef;
 
   constructor(
+  private router: Router,
   private route: ActivatedRoute,
   private modalService: BsModalService,
   private emDataService: EmdataService) {
@@ -34,5 +35,17 @@ export class MetricComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {animated: false, class: 'sfb-modal-dialog'});
+  }
+
+  onDownload() {
+
+  }
+
+  onPrintPage() {
+    window.print();
+  }
+
+  onGotoBenchmark() {
+    this.router.navigate(['efficiency-metric/comparison-type/', this.urn, this.model.name]);
   }
 }

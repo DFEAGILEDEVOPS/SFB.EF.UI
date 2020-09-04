@@ -1,14 +1,27 @@
-<app-metric-bread-crumb [urn]='model.urn' [name]='model.name'></app-metric-bread-crumb>
+<app-metric-bread-crumb [urn]='model.urn' [name]='model.name' class="hide-in-print"></app-metric-bread-crumb>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Efficiency Metric Ranking</h1>
+  <div class="govuk-grid-column-two-thirds expand-in-print">
+    <h1 class="govuk-heading-xl main-header">Efficiency Metric Ranking</h1>
     <p class="govuk-body-s">
       Results for
       <span class="highlight">
         <span class="govuk-!-font-weight-bold">{{model.name}}</span>
       </span>
     </p>
+
+    <div class="govuk-grid-row hide-in-print">
+      <div class="govuk-grid-column-one-half">
+        <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold" (click)="onDownload()">
+          <img src="assets/images/icon-file-download.png" class="small-icon" alt=""/>
+          <span id="downloadPage">Download page</span>
+        </a>
+        <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold ml-4" (click)='onPrintPage()'>
+          <img src="assets/images/icon-print.png" class="small-icon" alt=""/>
+          <span>Print page</span>
+        </a>
+      </div>
+    </div>
 
     <div class="govuk-grid-row govuk-body em-rank-content-wrapper">
       <div class="govuk-grid-column-full">
@@ -26,14 +39,15 @@
       </div>
     </div>
   </div>
-  <div class="govuk-grid-column-one-third">
+  <div class="govuk-grid-column-one-third hide-in-print">
     <div class="links-wrapper">
-      <h2 class="govuk-heading-s">Efficiency metric next steps</h2>
-      <ul class="govuk-list govuk-body-s">
+      <h2 class="govuk-heading-s">About the efficiency metric</h2>
+      <ul class="govuk-list govuk-body-s govuk-!-margin-bottom-4">
         <li><a class="govuk-link" routerLink='/efficiency-metric/how-it-is-calculated/{{model.urn}}'>How the efficiency metric ranking is calculated</a></li>
-        <li><a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{model.urn}}/{{model.name}}'>Ways to improve your school's ranking</a></li>
-        <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in this ranking</a></li>
+        <li><a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{model.urn}}/{{model.name}}'>Tools to improve school's efficiency</a></li>
+        <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in the table</a></li>
       </ul>
+      <button class="govuk-button bm-button" (click)="onGotoBenchmark()">Benchmark with these schools</button>
     </div>
   </div>
 </div>
