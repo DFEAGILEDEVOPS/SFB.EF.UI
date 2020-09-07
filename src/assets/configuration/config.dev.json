@@ -18,7 +18,7 @@
     "ai_instrumentationKey": "d641c0d9-73ac-4445-9c7b-b0f17d287c15",
     "customErrorPage": false,
     "consoleErrors": true,
-    "logExceptions": true
+    "logExceptions": true 
   }
 }
 
