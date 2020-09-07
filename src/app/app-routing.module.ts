@@ -7,7 +7,8 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { MetricComponent } from './metric/metric.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from '@layouts/gov-uk-layout/not-found/not-found.component';
+import { ServiceProblemComponent } from '@core/error-handling/ServiceProblem/ServiceProblem.component';
+import { NotFoundErrorComponent } from '@core/error-handling/NotFoundError/NotFoundError.component';
 
 const routes: Routes = [
   { path: 'efficiency-metric/:urn', component: MetricComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'efficiency-metric/manual-comparison/:urn', component: ManualComparisonComponent},
   { path: 'efficiency-metric/how-it-is-calculated/:urn', component: HowItIsCalculatedComponent},
   { path: 'efficiency-metric/contact-details/:urn', component: ContactDetailsComponent},
-  { path: '**', component: NotFoundComponent }
+  { path: 'service-problem', component: ServiceProblemComponent},
+  { path: '**', component: NotFoundErrorComponent }
 ];
 
 @NgModule({

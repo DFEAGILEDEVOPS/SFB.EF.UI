@@ -1,32 +1,23 @@
 {
   "appSettings": {
-    "name": "Schools financial benchmarking",
+    "name": "Schools Financial Benchmarking",
     "version": "1.0.0",
     "demo": false,
     "logo": "",
     "seo": {
-      "title": "Schools financial benchmarking",
-      "titleSuffix": "",
-      "description": "Schools financial benchmarking - Efficiency Metric",
-      "author": "Extended Code",
+      "title": "Schools Financial Benchmarking",
+      "titleSuffix": "SFB",
+      "description": "Schools Financial Benchmarking - Efficiency Metric",
+      "author": "Department of Education",
       "robots": "index, follow"
     },
-    "sfbDomain": "https://as-t1dv-sfb.azurewebsites.net",
-    "apiDomain": "https://aa-t1dv-sfb.azurewebsites.net/api/efficiencymetric",
-    "azureMapsAPIKey": "a__5AhQrG6OxElxgZbNmbWu3CAlP_-VKdcxzcwA6WYo"
-  },
-  "emailSettings": {
-    "emailAddresses": [
-      {
-        "name": "Demo Email",
-        "email": "demowebnet@gmail.com"
-      }
-    ],
-    "providers": [
-      {
-        "name": "sendinblue",
-        "apiUrl": "https://api.sendinblue.com/v3/smtp/email"
-      }
-    ]
+    "sfbDomain": "https://as-t1stg-sfb.azurewebsites.net",
+    "apiDomain": "https://aa-t1stg-sfb.azurewebsites.net/api",
+    "cookieDomain": "as-t1stg-sfb-sa.azurewebsites.net",
+    "azureMapsAPIKey": "a9NgtkMSBjA8_lOofQh2cpm1TkxboXmpwzMAVMbgWP8",
+    "ai_instrumentationKey": "ca412d46-a9cf-415c-8ae6-304d34305261",
+    "customErrorPage": true,
+    "consoleErrors": false,
+    "logExceptions": true
   }
 }

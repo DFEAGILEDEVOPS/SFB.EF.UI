@@ -4,6 +4,11 @@ import { MetaTag } from '../../seo/models';
 export class AppSettings {
   sfbDomain: string;
   apiDomain: string;
+  cookieDomain: string;
+  customErrorPage: boolean;
+  consoleErrors: boolean;
+  logExceptions: boolean;
+  ai_instrumentationKey: string;
   azureMapsAPIKey: string;
   domain: string;
   name: string;

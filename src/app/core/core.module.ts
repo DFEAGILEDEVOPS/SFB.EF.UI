@@ -4,11 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppConfigModule } from './config/app-config.module';
 
-import { httpInterceptors } from './interceptors';
-
-const coreProviders = [
-  ...httpInterceptors
-];
 
 @NgModule({
   imports: [
@@ -21,8 +16,7 @@ const coreProviders = [
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: CoreModule,
-      providers: coreProviders
+      ngModule: CoreModule
     };
   }
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

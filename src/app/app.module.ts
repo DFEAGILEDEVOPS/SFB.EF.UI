@@ -13,7 +13,7 @@ import { ComparisonTypeComponent } from './comparison-type/comparison-type.compo
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { MetricBreadcrumbComponent as MetricBreadcrumbComponent } from './metric/metric-bread-crumb/metric-bread-crumb.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
@@ -28,6 +28,7 @@ import { MetricComponent } from './metric/metric.component';
 import { GovUkLayoutComponent } from '@layouts/gov-uk-layout/gov-uk-layout.component';
 import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread-crumb.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { GlobalErrorHandler } from '@core/error-handling/GlobalErrorHandler';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ModalModule.forRoot(),
     LeafletModule
   ],
-  providers: [],
+  providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

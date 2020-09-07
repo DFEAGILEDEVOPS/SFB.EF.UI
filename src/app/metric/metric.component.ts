@@ -38,7 +38,7 @@ export class MetricComponent implements OnInit {
   }
 
   onDownload() {
-
+    throw new Error("This feature is not implemented yet!");
   }
 
   onPrintPage() {
