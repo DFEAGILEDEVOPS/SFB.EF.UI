@@ -95,7 +95,9 @@ export class MapComponent implements OnInit, OnChanges {
         latLangs.push([school.location.coordinates[1], school.location.coordinates[0]]);
       });
 
-      this.mapFitBounds = latLngBounds(latLangs);
+      if(latLangs.length > 0) {
+        this.mapFitBounds = latLngBounds(latLangs);
+      }
     }
   }
 
