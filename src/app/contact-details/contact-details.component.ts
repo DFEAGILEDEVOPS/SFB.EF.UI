@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { EMModel } from 'app/Models/EMModel';
@@ -18,6 +18,8 @@ export class ContactDetailsComponent implements OnInit {
   sort: string;
   visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
   resultSectionState: string;
+  isMobileScreen: boolean;
+  tabletBreakPoint = 641;
 
   @ViewChild(ContactMapComponent)
   private map: ContactMapComponent;
@@ -33,6 +35,12 @@ export class ContactDetailsComponent implements OnInit {
     this.sort = 'Rank';
     this.visibleSchoolList = [];
     this.resultSectionState = 'list-view';
+    this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
   }
 
   ngOnInit() {

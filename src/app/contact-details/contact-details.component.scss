@@ -37,8 +37,28 @@
 }
 
 .map-toggle-button{
-  font-size: 19px;
+  font-size: 16px;
   font-weight: bold;
   float: left;
   margin-top: 5px;
+  @include govuk-media-query($from: tablet) {
+    font-size: 19px;
+  }
 }
+
+.mobile-table {
+  border-top: 1px black solid;
+  border-bottom: none;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 14px!important;
+
+  tr:last-of-type{
+    border-bottom: none;
+    th, td{
+      border-bottom: none;
+    }
+  }
+}
+
+
