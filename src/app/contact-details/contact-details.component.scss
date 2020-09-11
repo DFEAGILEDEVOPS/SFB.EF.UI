@@ -1,3 +1,5 @@
+@import "govuk-frontend/govuk/all";
+
 .details-list{
   column-count: 3;
 }
@@ -14,8 +16,15 @@
 }
 
 .sort-select-wrapper {
-  float: right;
-  margin-bottom: -30px;
+  float: left;
+  margin-top: 25px;
+  margin-bottom: 0;
+
+  @include govuk-media-query($from: tablet) {
+    float: right;
+    margin-top: 0;
+    margin-bottom: -30px;
+  }
 }
 
 .sort-select-wrapper__label {

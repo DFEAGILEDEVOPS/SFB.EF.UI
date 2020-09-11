@@ -206,13 +206,25 @@ span.table-cell-highlight {
 
 .filter-box__legend__heading{
   background-color: govuk-colour("mid-grey");
-  padding: 5px;
+  padding: 5px 1px;
+  width: 100%;
+
+  @include govuk-media-query($from: desktop) {
+    padding: 5px;
+    width: auto;
+  }
 }
 
 .filter-box__legend__count{
-  background-color: govuk-colour("mid-grey");
-  padding: 5px;
   @include govuk-font(14);
+  background-color: govuk-colour("mid-grey");
+  padding: 5px 1px;
+  width: 100%;
+
+  @include govuk-media-query($from: desktop) {
+    padding: 5px;
+    width: auto;
+  }
 }
 
 .filter-box__check-item{
@@ -236,6 +248,12 @@ span.table-cell-highlight {
 .intro-formula{
   margin-top: 1em;
   display: block;
+}
+
+.govuk-list li {
+  @include govuk-media-query($until: tablet) {
+    margin-bottom: 15px!important;
+  }
 }
 
 @media print {

@@ -1,3 +1,4 @@
+@import "govuk-frontend/govuk/all";
 @import "govuk-frontend/govuk/core/_typography.scss";
 
 .em-rank-content-wrapper{
@@ -5,11 +6,11 @@
 }
 
 .em-rank-icon{
+  float: left;
   vertical-align: text-top;
   @include govuk-font($size: 36, $weight: bold);
   @include govuk-media-query($from: tablet) {
     width: 15%;
-    float: left;
   }
 }
 
@@ -25,9 +26,12 @@
 }
 
 .em-rank-content{
-  @include govuk-media-query($from: tablet) {
-    width: 85%;
-    float: left;
+  width: 80%;
+  float: left;
+  padding-left: 10px;
+
+  @include govuk-media-query($from: desktop) {
+    padding-left: 0;
   }
 }
 

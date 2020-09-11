@@ -11,7 +11,7 @@
     </p>
 
     <div class="govuk-grid-row hide-in-print">
-      <div class="govuk-grid-column-one-half">
+      <div class="govuk-grid-column-full">
         <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold" (click)="onDownload()">
           <img src="assets/images/icon-file-download.png" class="small-icon" alt=""/>
           <span id="downloadPage">Download page</span>
@@ -42,7 +42,7 @@
   <div class="govuk-grid-column-one-third hide-in-print">
     <div class="links-wrapper">
       <h2 class="govuk-heading-s">About the efficiency metric</h2>
-      <ul class="govuk-list govuk-body-s govuk-!-margin-bottom-4">
+      <ul class="govuk-list govuk-body-s govuk-!-margin-bottom-6">
         <li><a class="govuk-link" routerLink='/efficiency-metric/how-it-is-calculated/{{model.urn}}'>How the efficiency metric ranking is calculated</a></li>
         <li><a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{model.urn}}/{{model.name}}'>Tools to improve school's efficiency</a></li>
         <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in the table</a></li>

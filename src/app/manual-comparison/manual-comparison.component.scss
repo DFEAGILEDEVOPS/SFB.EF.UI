@@ -1,9 +1,15 @@
 @import "govuk-frontend/govuk/core/_typography.scss";
 
 .sort-select-wrapper {
-  float: right;
-  margin-top: 15px;
-  margin-bottom: -15px;
+  float: left;
+  margin-top: 25px;
+  margin-bottom: 0;
+
+  @include govuk-media-query($from: tablet) {
+    float: right;
+    margin-top: 15px;
+    margin-bottom: -15px;
+  }
 }
 
 .sort-select-wrapper__label {
@@ -23,6 +29,10 @@
   vertical-align: middle;
   border-radius: 50%;
   color: #ffffff;
+
+  @include govuk-media-query($until: tablet) {
+    line-height: 1.5!important;
+  }
 }
 
 .school-list__item{

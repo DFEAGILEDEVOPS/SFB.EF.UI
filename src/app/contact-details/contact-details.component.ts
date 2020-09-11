@@ -10,7 +10,7 @@ import { ContactMapComponent } from './contact-map/contact-map.component';
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.css']
+  styleUrls: ['./contact-details.component.scss']
 })
 export class ContactDetailsComponent implements OnInit {
   urn: number;
