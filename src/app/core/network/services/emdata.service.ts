@@ -10,17 +10,24 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 })
 export class EmdataService {
 
-constructor(private http: HttpClient, @Inject(appSettings) private settings: AppSettings) { }
+  model: EMModel;
 
-getEmData(urn: number): Observable<EMModel> {
-  return this.http.get<EMModel>(`${this.settings.apiDomain}/efficiencymetric/${urn}`)
-    .pipe(
-      tap(_ => this.log('fetched emData'))
-    );
-}
+  constructor(private http: HttpClient, @Inject(appSettings) private settings: AppSettings) { }
 
-private log(message: string) {
-  // this.messageService.add(`HeroService: ${message}`);
-}
+  getEmData(urn: number): Observable<EMModel> {
+    if (this.model) {
+      return new Observable((observer) => {
+        observer.next(this.model);
+        observer.complete();
+      });
+    } else {
+      return this.http.get<EMModel>(`${this.settings.apiDomain}/efficiencymetric/${urn}`)
+        .pipe(
+          tap(dataModel => {
+            this.model = dataModel;
+          })
+        );
+    }
+  }
 
 }

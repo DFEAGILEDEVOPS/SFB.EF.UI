@@ -1,5 +1,5 @@
 import { MapComponent } from './map/map.component';
-import { Component, OnInit, Inject, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -15,7 +15,7 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
   templateUrl: './manual-comparison.component.html',
   styleUrls: ['./manual-comparison.component.scss']
 })
-export class ManualComparisonComponent implements OnInit {
+export class ManualComparisonComponent implements OnInit, AfterViewInit {
 
   @ViewChild('basketFullModal')
   private basketFullModal: TemplateRef<any>;
@@ -41,7 +41,7 @@ export class ManualComparisonComponent implements OnInit {
   resultSectionState: string;
 
   constructor(
-    private route: ActivatedRoute    ,
+    private route: ActivatedRoute,
     @Inject(appSettings) public settings: AppSettings,
     private modalService: BsModalService,
     private emDataService: EmdataService) {
@@ -61,9 +61,12 @@ export class ManualComparisonComponent implements OnInit {
         this.model = result;
         this.model.neighbourDataModels = this.model.neighbourDataModels.filter(n => n.urn !== this.urn);
         this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
-        this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
         this.sortSchools();
       });
+  }
+
+  ngAfterViewInit(){
+    this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
   }
 
   sortSchools() {
