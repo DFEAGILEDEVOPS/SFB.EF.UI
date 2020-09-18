@@ -7,11 +7,9 @@ export class EfficiencyMetricNeighbourModel {
   pupils: number;
   ever6: number;
   sen: number;
-  incomePP: number;
-  progressReading: number;
-  progressWriting: number;
-  progressMaths: number;
+  expenditurePP: number;
   progress8: number;
+  efficiencyScore: number;
   address: string;
   telephone: string;
   headTeacher: string;

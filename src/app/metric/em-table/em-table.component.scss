@@ -22,12 +22,13 @@
   padding: 0;
 }
 
-.em-table__ks2-header{
-  text-align: center;
-  background-color: govuk-colour("light-grey")!important;
+.em-table__rank-header{
+    text-align: center;
+}
+
+.em-table__school-header {
   div{
-    padding-left: 10px!important;
-    padding-right: 10px!important;
+    padding-left: 10px;
   }
 }
 
@@ -40,6 +41,16 @@
   }
 }
 
+.em-table__ks2-header{
+  text-align: center;
+  background-color: govuk-colour("light-grey")!important;
+  border-right: 5px solid white;
+  div{
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+}
+
 .em-table__p8-header{
   text-align: center;
   background-color: govuk-colour("light-grey")!important;
@@ -48,6 +59,16 @@
     padding-right: 10px!important;
   }
 }
+
+.em-table__score-header{
+  text-align: center;
+  background-color: govuk-colour("light-grey")!important;
+  div{
+    padding-left: 15px!important;
+    padding-right: 20px!important;
+  }
+}
+
 .em-table-rank-cell{
   padding: 0;
   text-align: center;
@@ -103,31 +124,36 @@
 }
 
 .em-table-p8-cell{
-  padding-left: 20px;
-  padding-right: 15px;
+  text-align: center;
+  padding-right: 0;
   background-color: govuk-colour("light-grey");
 }
 
-.em-table-ks2-reading-cell, .em-table-ks2-writing-cell, .em-table-ks2-maths-cell{
-  padding-left: 15px;
-  padding-right: 10px;
+.em-table-ks2-cell{
+  border-right: 5px solid white;
+  text-align: center;
+  padding-right: 0;
   background-color: govuk-colour("light-grey");
 }
-
 
 .em-table-expenditure-cell{
   border-right: 5px solid white;
   background-color: govuk-colour("light-grey");
 }
 
-.em-table-p8-cell__text, .em-table-ks2-reading-cell__text, .em-table-ks2-writing-cell__text, .em-table-ks2-maths-cell__text {
+.em-table-score-cell{
+  padding-right: 20px;
+  background-color: govuk-colour("light-grey");
+}
+
+.em-table-p8-cell__text, .em-table-ks2-cell__text{
   text-align: center;
   padding: 3px;
-  min-width: 50px;
+  min-width: 40px;
   display: inline-block;
   border-radius: 3px;
 
-  &--well-below {
+&--well-below {
     background-color: #df3034;
     color: #fff;
 }
@@ -172,7 +198,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 10000;
+    z-index: 100;
     background-color: white;
     padding-bottom: 0;
     padding-right: 0;
@@ -182,3 +208,4 @@
       padding-right: 20px;
     }
 }
+
