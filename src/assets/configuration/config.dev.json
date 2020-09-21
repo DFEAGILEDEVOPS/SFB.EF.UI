@@ -12,8 +12,10 @@
       "robots": "index, follow"
     },
     "sfbDomain": "http://localhost",
-    "apiDomain": "https://localhost:5001/api",
+    "apiDomain": "https://aa-t1dv-sfb.azurewebsites.net/api",
     "cookieDomain": "localhost",
+    "academyTerm": "2018/2019",
+    "maintainedTerm": "2018-2019",
     "azureMapsAPIKey": "a9NgtkMSBjA8_lOofQh2cpm1TkxboXmpwzMAVMbgWP8",
     "ai_instrumentationKey": "d641c0d9-73ac-4445-9c7b-b0f17d287c15",
     "customErrorPage": false,

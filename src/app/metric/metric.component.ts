@@ -1,8 +1,9 @@
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Inject, OnInit, TemplateRef } from '@angular/core';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class MetricComponent implements OnInit {
   private router: Router,
   private route: ActivatedRoute,
   private modalService: BsModalService,
-  private emDataService: EmdataService) {
+  private emDataService: EmdataService,
+  @Inject(appSettings) public settings: AppSettings) {
     this.route.params.subscribe(params => {
       this.urn = +params.urn;
     });

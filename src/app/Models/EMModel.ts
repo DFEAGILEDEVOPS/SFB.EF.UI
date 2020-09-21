@@ -6,6 +6,7 @@ export class EMModel {
   rank: number;
   phase: string;
   localAuthority: string;
+  schoolType: string;
   neighbourDataModels: EfficiencyMetricNeighbourModel[];
 }
 

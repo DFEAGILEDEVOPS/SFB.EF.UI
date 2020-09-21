@@ -1,4 +1,4 @@
-<a routerLink='/efficiency-metric/{{urn}}' class="govuk-back-link">Back to the efficiency metric ranking</a>
+<a routerLink='/efficiency-metric/{{urn}}' class="govuk-back-link">Back to the efficiency metric</a>
 
 <hr class="govuk-section-break govuk-section-break--m">
 
@@ -20,7 +20,7 @@
         <label class="govuk-label sort-select-wrapper__label" for="sort">Sorted by</label>
         <select class="govuk-select sort-select-wrapper__select" id="sort" name="sort" [(ngModel)]='sort'
           (change)='sortSchools()'>
-          <option value="Rank">Efficiency metric ranking</option>
+          <option value="Rank">Efficiency metric</option>
           <option value="AlphabeticalAZ">Alphabetical (A-Z)</option>
           <option value="AlphabeticalZA">Alphabetical (Z-A)</option>
         </select>
@@ -48,7 +48,7 @@
         <li><strong>Headteacher: </strong><span>{{neighbour.headTeacher}}</span></li>
         <li><strong>School phase: </strong><span>{{neighbour.overallPhase}} ({{neighbour.pupils}} pupils)</span></li>
         <li><strong>School type: </strong><span>{{neighbour.schoolType}}</span></li>
-        <li><strong>Efficiency metric ranking: </strong><span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
+        <li><strong>Efficiency metric: </strong><span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
           </li>
       </ul>
     </div>

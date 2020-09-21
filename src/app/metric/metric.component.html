@@ -2,12 +2,16 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds expand-in-print">
-    <h1 class="govuk-heading-xl main-header">Efficiency Metric Ranking</h1>
+    <h1 class="govuk-heading-xl main-header">Efficiency Metric</h1>
     <p class="govuk-body-s">
       Results for
       <span class="highlight">
         <span class="govuk-!-font-weight-bold">{{model.name}}</span>
       </span>
+      <span> using
+        <span class="govuk-!-font-weight-bold" *ngIf="model.schoolType === 'Maintained'">{{settings.maintainedTerm}}</span>
+        <span class="govuk-!-font-weight-bold" *ngIf="model.schoolType === 'Academy'">{{settings.academyTerm}}</span>
+         finance data</span>
     </p>
 
     <div class="govuk-grid-row hide-in-print">
@@ -29,12 +33,12 @@
           <span class="em-rank-icon__text em-rank-text--{{model.rank}}">{{model.rank}}</span>
         </div>
         <div class="em-rank-content">
-          <span class="govuk-!-font-size-24 govuk-!-font-weight-bold">This school's Efficiency Metric Ranking is
+          <span class="govuk-!-font-size-24 govuk-!-font-weight-bold">This school's efficiency metric rank is
             {{model.rank}}</span>
           <br>
           <span>This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
             schools get better pupil progress for a similar amount of money. </span>
-          <a [routerLink]="" (click)='emTable.onColumnDetailsShow()' class="govuk-link">See this school's ranking</a>
+          <a [routerLink]="" (click)='emTable.onColumnDetailsShow()' class="govuk-link">See this school's rank</a>
         </div>
       </div>
     </div>
@@ -43,7 +47,7 @@
     <div class="links-wrapper">
       <h2 class="govuk-heading-s">About the efficiency metric</h2>
       <ul class="govuk-list govuk-body-s govuk-!-margin-bottom-6">
-        <li><a class="govuk-link" routerLink='/efficiency-metric/how-it-is-calculated/{{model.urn}}'>How the efficiency metric ranking is calculated</a></li>
+        <li><a class="govuk-link" routerLink='/efficiency-metric/how-it-is-calculated/{{model.urn}}'>How the efficiency metric rank is calculated</a></li>
         <li><a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{model.urn}}/{{model.name}}'>Tools to improve school's efficiency</a></li>
         <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in the table</a></li>
       </ul>
@@ -73,7 +77,7 @@
     </ul>
     <p>We divide these school's progress score by their expenditure per pupil (we will standardise the score) allowing us to rank the 50 schools.</p>
     <p class="govuk-!-font-weight-bold">
-      Standardised progress score / Expenditure per pupil = Efficiency Metric Ranking
+      Standardised progress score / Expenditure per pupil = Efficiency metric rank
     </p>
   </div>
 </ng-template>

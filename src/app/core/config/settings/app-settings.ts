@@ -5,6 +5,8 @@ export class AppSettings {
   sfbDomain: string;
   apiDomain: string;
   cookieDomain: string;
+  academyTerm: string
+  maintainedTerm: string;
   customErrorPage: boolean;
   consoleErrors: boolean;
   logExceptions: boolean;
