@@ -20,7 +20,7 @@ export class EmTableDesktopComponent implements OnInit {
   ngOnInit() {
   }
 
-  onColumnDetailsShow() {
+  onScrollToSchool() {
     this.scroll(document.querySelector('#emTableDesktop .em-rank-text--' + this.model.rank).parentElement);
   }
 

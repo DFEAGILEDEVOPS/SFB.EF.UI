@@ -38,8 +38,8 @@
           <br>
           <span>This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
             schools get better pupil progress for a similar amount of money. </span>
-          <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onColumnDetailsShow()' class="govuk-link">See this school's rank</a>
-          <a [hidden]="!isMobileScreen" [routerLink]="" (click)='emTableMobile.onColumnDetailsShow()' class="govuk-link">See this school's rank</a>
+          <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onScrollToSchool()' class="govuk-link">See this school's rank</a>
+          <a [hidden]="!isMobileScreen" [routerLink]="" (click)='emTableMobile.onScrollToSchool()' class="govuk-link">See this school's rank</a>
         </div>
       </div>
     </div>

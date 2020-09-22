@@ -13,15 +13,21 @@ export class EmTableMobileComponent implements OnInit {
 
   @Input() model: EMModel;
   modalRef: BsModalRef;
+  mode: string;
 
   constructor(@Inject(appSettings) public settings: AppSettings, private modalService: BsModalService) {
+    this.mode = "summary";
   }
 
   ngOnInit() {
   }
 
-  onColumnDetailsShow() {
+  onScrollToSchool() {
     this.scroll(document.querySelector('#emTableMobile .em-rank-text--' + this.model.rank).parentElement);
+  }
+
+  onToggleMode() {
+    this.mode = this.mode === "summary" ? "detailed" : "summary";
   }
 
   openModalWithComponent(field: string) {
