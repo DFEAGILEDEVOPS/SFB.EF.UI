@@ -38,7 +38,8 @@
           <br>
           <span>This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
             schools get better pupil progress for a similar amount of money. </span>
-          <a [routerLink]="" (click)='emTable.onColumnDetailsShow()' class="govuk-link">See this school's rank</a>
+          <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onColumnDetailsShow()' class="govuk-link">See this school's rank</a>
+          <a [hidden]="!isMobileScreen" [routerLink]="" (click)='emTableMobile.onColumnDetailsShow()' class="govuk-link">See this school's rank</a>
         </div>
       </div>
     </div>
@@ -56,12 +57,13 @@
   </div>
 </div>
 
+<app-em-table-desktop [hidden]="isMobileScreen" [model]='model' #emTableDesktop></app-em-table-desktop>
 
-<app-em-table [model]='model' #emTable></app-em-table>
+<app-em-table-mobile [hidden]="!isMobileScreen" [model]='model' #emTableMobile></app-em-table-mobile>
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Methodology</h4>
+    <h4 class="govuk-heading-m modal-title pull-left">Methodology</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">Close</span>
     </button>

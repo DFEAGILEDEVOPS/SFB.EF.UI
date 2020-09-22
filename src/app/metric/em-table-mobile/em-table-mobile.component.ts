@@ -5,11 +5,11 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { EditDataInfoModalComponent } from 'app/edit-data-info-modal/edit-data-info-modal.component';
 
 @Component({
-  selector: 'app-em-table',
-  templateUrl: './em-table.component.html',
-  styleUrls: ['./em-table.component.scss']
+  selector: 'app-em-table-mobile',
+  templateUrl: './em-table-mobile.component.html',
+  styleUrls: ['./em-table-mobile.component.scss']
 })
-export class EmTableComponent implements OnInit {
+export class EmTableMobileComponent implements OnInit {
 
   @Input() model: EMModel;
   modalRef: BsModalRef;
@@ -21,7 +21,7 @@ export class EmTableComponent implements OnInit {
   }
 
   onColumnDetailsShow() {
-    this.scroll(document.querySelector('#emTable .em-rank-text--' + this.model.rank).parentElement);
+    this.scroll(document.querySelector('#emTableMobile .em-rank-text--' + this.model.rank).parentElement);
   }
 
   openModalWithComponent(field: string) {
@@ -73,4 +73,5 @@ export class EmTableComponent implements OnInit {
   private scroll(el: HTMLElement) {
     el.scrollIntoView({ behavior: 'smooth' });
   }
+
 }

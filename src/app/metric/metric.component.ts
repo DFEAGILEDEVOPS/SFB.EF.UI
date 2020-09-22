@@ -4,6 +4,7 @@ import { Component, Inject, OnInit, TemplateRef } from '@angular/core';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,8 @@ export class MetricComponent implements OnInit {
   urn: number;
   model: EMModel;
   modalRef: BsModalRef;
+  isMobileScreen: boolean;
+  tabletBreakPoint = 641;
 
   constructor(
   private router: Router,
@@ -26,6 +29,12 @@ export class MetricComponent implements OnInit {
     });
     this.model = new EMModel();
     this.model.name = 'Your school';
+    this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
   }
 
   ngOnInit() {

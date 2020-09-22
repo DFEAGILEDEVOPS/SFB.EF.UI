@@ -22,13 +22,14 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EmTableComponent } from './metric/em-table/em-table.component';
+import { EmTableDesktopComponent } from './metric/em-table-desktop/em-table-desktop.component';
 import { WaysToImproveComponent } from './ways-to-improve/ways-to-improve.component';
 import { MetricComponent } from './metric/metric.component';
 import { GovUkLayoutComponent } from '@layouts/gov-uk-layout/gov-uk-layout.component';
 import { HiwBreadCrumbComponent } from './how-it-works/hiw-bread-crumb/hiw-bread-crumb.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { GlobalErrorHandler } from '@core/error-handling/GlobalErrorHandler';
+import { EmTableMobileComponent } from './metric/em-table-mobile/em-table-mobile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GlobalErrorHandler } from '@core/error-handling/GlobalErrorHandler';
     MetricComponent,
     MetricBreadcrumbComponent,
     WaysToImproveComponent,
-    EmTableComponent,
+    EmTableDesktopComponent,
+    EmTableMobileComponent,
     HowItWorksComponent,
     HiwBreadCrumbComponent,
     ComparisonTypeComponent,

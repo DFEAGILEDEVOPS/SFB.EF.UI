@@ -334,6 +334,18 @@ span.table-cell-highlight {
   }
 }
 
+.govuk-template__body {
+  @include govuk-media-query($until: tablet) {
+    font-size: 14px;
+  }
+}
+
+.modal-content {
+  @include govuk-media-query($until: tablet) {
+    width: auto;
+  }
+}
+
 @media print {
   .show-in-print {
     display: block!important;

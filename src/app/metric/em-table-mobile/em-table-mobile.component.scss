@@ -5,7 +5,7 @@
 }
 
 .em-table{
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .govuk-table__body--border{
@@ -74,7 +74,7 @@
   text-align: center;
   vertical-align: top;
   text-align: -webkit-center;
-  padding-top: 1%;
+  padding-top: 2%;
   border-top: none;
 }
 .em-table-rank-cell--1{
@@ -185,7 +185,7 @@
   padding: 5px;
 
   a{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
   }
 }
@@ -209,3 +209,6 @@
     }
 }
 
+tbody:last-child td{
+  border-bottom: 1px solid #b1b4b6 !important;
+}

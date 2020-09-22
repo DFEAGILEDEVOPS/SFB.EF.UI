@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EmTableComponent } from './em-table.component';
+import { EmTableMobileComponent } from './em-table-mobile.component';
 
-describe('EmTableComponent', () => {
-  let component: EmTableComponent;
-  let fixture: ComponentFixture<EmTableComponent>;
+describe('EmTableMobileComponent', () => {
+  let component: EmTableMobileComponent;
+  let fixture: ComponentFixture<EmTableMobileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmTableComponent ]
+      declarations: [ EmTableMobileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmTableComponent);
+    fixture = TestBed.createComponent(EmTableMobileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
