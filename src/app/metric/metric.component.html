@@ -17,11 +17,11 @@
     <div class="govuk-grid-row hide-in-print">
       <div class="govuk-grid-column-full">
         <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold" (click)="onDownload()">
-          <img src="assets/images/icon-file-download.png" class="small-icon" alt=""/>
+          <img src="assets/images/download.svg" class="small-icon download-icon" alt=""/>
           <span id="downloadPage">Download page</span>
         </a>
         <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold ml-4" (click)='onPrintPage()'>
-          <img src="assets/images/icon-print.png" class="small-icon" alt=""/>
+          <img src="assets/images/print.svg" class="small-icon print-icon" alt=""/>
           <span>Print page</span>
         </a>
       </div>
@@ -52,7 +52,7 @@
         <li><a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{model.urn}}/{{model.name}}'>Tools to improve school's efficiency</a></li>
         <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in the table</a></li>
       </ul>
-      <button class="govuk-button bm-button" (click)="onGotoBenchmark()">Benchmark with these schools</button>
+      <button class="govuk-button bm-button" (click)="onGotoBenchmark()">Benchmark these schools</button>
     </div>
   </div>
 </div>

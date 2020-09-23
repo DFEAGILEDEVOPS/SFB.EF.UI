@@ -48,10 +48,13 @@ a{
 }
 
 .small-icon{
-  //width: 20px;
   margin-right: 5px;
   margin-left: 5px;
   vertical-align: sub;
+}
+
+.download-icon, .print-icon {
+  width: 24px;
 }
 
 .large-icon{
