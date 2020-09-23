@@ -23,7 +23,11 @@ export class EmTableMobileComponent implements OnInit {
   }
 
   onScrollToSchool() {
-    this.scroll(document.querySelector('#emTableMobile .em-rank-text--' + this.model.rank).parentElement);
+    if(this.mode === "summary" ){
+      this.scroll(document.querySelector('#emTableMobileSummary .em-rank-text--' + this.model.rank).parentElement);
+    } else {
+      this.scroll(document.querySelector('#emTableMobileDetailed .table-cell-highlight').parentElement.parentElement.parentElement);
+    }
   }
 
   onToggleMode() {

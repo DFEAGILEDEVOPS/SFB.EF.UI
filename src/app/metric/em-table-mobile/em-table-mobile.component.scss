@@ -109,26 +109,18 @@
 }
 
 .em-rank-text{
-  height: 2em;
-  width: 2em;
-  display: table-cell;
+  height: 1.2em;
+  width: 1.2em;
+  display: inline-block;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
   color: #ffffff;
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .em-table-name-cell{
   padding-left: 10px;
-}
-
-.em-table-p8-cell{
-
-}
-
-.em-table-ks2-cell{
-
 }
 
 .em-table-expenditure-cell{
@@ -147,6 +139,7 @@
   min-width: 40px;
   display: inline-block;
   border-radius: 3px;
+  width: 79%;
 
 &--well-below {
     background-color: #df3034;
@@ -182,6 +175,10 @@
   a{
     font-size: 14px;
     font-weight: bold;
+  }
+
+  &--detail{
+    margin: 10px 0;
   }
 }
 

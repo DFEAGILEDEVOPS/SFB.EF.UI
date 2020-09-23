@@ -43,9 +43,15 @@ a{
 }
 }
 
+.width-one-half {
+  width: 50%;
+}
+
 .small-icon{
   //width: 20px;
   margin-right: 5px;
+  margin-left: 5px;
+  vertical-align: sub;
 }
 
 .large-icon{
@@ -285,7 +291,7 @@ span.table-cell-highlight {
   font-size: 14px;
   text-align: center;
   width: 18%;
-  margin-left: 0.6em;
+  margin-left: 0.5em;
 
   .score {
       font-size: 14px;
