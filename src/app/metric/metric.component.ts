@@ -54,17 +54,17 @@ export class MetricComponent implements OnInit {
   }
 
   onDownload() {
-    debugger;
-    this.downloadingMessage.nativeElement.textContent = "Downloading...";
     if (this.isMobileScreen) {
       this.isMobilePdfInProgress = true;
+      this.downloadingMessage.nativeElement.textContent = "Downloading...";
       setTimeout(() => {
         this.pdfService.generatePdf("mobile").then(() => {
-        this.isMobilePdfInProgress = false;
-        this.downloadingMessage.nativeElement.textContent = "Download page";
+          this.isMobilePdfInProgress = false;
+          this.downloadingMessage.nativeElement.textContent = "Download page";
         });
-      }, 1000);
+      }, 500);
     }else{
+      this.downloadingMessage.nativeElement.textContent = "Downloading...";
       this.pdfService.generatePdf("desktop").then(() => {
         this.downloadingMessage.nativeElement.textContent = "Download page";
       });

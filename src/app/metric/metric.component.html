@@ -3,7 +3,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds expand-in-print">
     <h1 class="govuk-heading-xl main-header">Efficiency Metric</h1>
-    <p class="govuk-body-s">
+    <p id="resultsFor" class="govuk-body-s">
       Results for
       <span class="highlight">
         <span class="govuk-!-font-weight-bold">{{model.name}}</span>
@@ -32,12 +32,14 @@
         <div class="em-rank-icon">
           <span class="em-rank-icon__text em-rank-text--{{model.rank}}">{{model.rank}}</span>
         </div>
-        <div class="em-rank-content">
-          <span class="govuk-!-font-size-24 govuk-!-font-weight-bold">This school's efficiency metric rank is
-            {{model.rank}}</span>
+        <div id="emRankContent" class="em-rank-content">
+          <span id="emRankContent-1" class="govuk-!-font-size-24 govuk-!-font-weight-bold">This school's efficiency metric rank is
+            {{model.rank}}
+          </span>
           <br>
-          <span>This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
-            schools get better pupil progress for a similar amount of money. </span>
+          <span id="emRankContent-2">This means <span class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
+            schools get better pupil progress for a similar amount of money.
+          </span>
           <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onScrollToSchool()' class="govuk-link">See this school's rank</a>
           <a [hidden]="!isMobileScreen" [routerLink]="" (click)='emTableMobile.onScrollToSchool()' class="govuk-link">See this school's rank</a>
         </div>

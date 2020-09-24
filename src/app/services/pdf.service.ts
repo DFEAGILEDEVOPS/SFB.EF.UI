@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import html2canvas from "html2canvas";
 import * as $ from 'jquery';
-import { from } from 'rxjs';
 import { jsPDF } from "jspdf";
 
 @Injectable({
@@ -11,40 +10,36 @@ export class PdfService {
   MARGIN_LEFT: number;
   doc: any;
   offset: number;
-  canvassesForDesktopTables: any[];
-  //canvassesForMobileTables: any[];
 
   constructor() {
     this.MARGIN_LEFT = 50;
   }
 
   public generatePdf(media: string) {
-    //$("#downloadPage").text(" Loading...");
     $("body").css("cursor", "wait");
     this.offset = 60;
     this.doc = new jsPDF({ unit: 'px', format: 'a1', orientation: 'portrait' });
-    this.pdfWriteLine("H1", $("H1").text(), media === "mobile");
+    this.pdfWriteLine("H1", $("H1").text());
+    this.pdfWriteLine("Bold", $("#resultsFor").text());
+    this.pdfWriteLine("Normal", $("#emRankContent-1").text());
+    this.pdfWriteLine("Normal", $("#emRankContent-2").text());
 
     return new Promise((resolve) => {
-        setTimeout(() => {
-          this.pdfGenerateImage('#emTableDesktop').then((canvas) => {
-            if(media === "mobile") {
-              this.pdfAddImage(canvas, 500, 1550);
-            }else {
-              this.pdfAddImage(canvas, null, null);
-            }
+      //setTimeout(() => {
+      this.pdfGenerateImage('#emTableDesktop').then((canvas) => {
+        if (media === "mobile") {
+          this.pdfAddImage(canvas, 500, 1550);
+        } else {
+          this.pdfAddImage(canvas, null, null);
+        }
 
-            this.pdfSave("Self-assessment-dashboard.pdf");
-            $("body").css("cursor", "");
-            resolve();
-          });
-        }, 1000);
-  })
-
-
+        this.pdfSave("Self-assessment-dashboard.pdf");
+        $("body").css("cursor", "");
+        resolve();
+      });
+      //}, 1000);
+    })
   }
-
-
 
   private pdfAddNewPage() {
     this.doc.addPage('a1', 'portrait');
@@ -71,7 +66,7 @@ export class PdfService {
     this.doc.save(pdfName);
   }
 
-  private pdfWriteLine(type: string, text: string, isMobile?: boolean) {
+  private pdfWriteLine(type: string, text: string) {
     this.doc.setTextColor(0, 0, 0);
     let fontSize;
     switch (type) {
@@ -118,11 +113,7 @@ export class PdfService {
     }
 
     this.doc.setFontSize(fontSize);
-    if (isMobile) {
-      this.doc.text(this.MARGIN_LEFT, this.offset, text);
-    }else{
-      this.doc.text(this.MARGIN_LEFT + 5, this.offset, text);
-    }
+    this.doc.text(this.MARGIN_LEFT, this.offset, text);
     this.offset += fontSize + 8;
   }
 
