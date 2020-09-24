@@ -57,7 +57,7 @@ export class MetricComponent implements OnInit {
         this.pdfService.generatePdf("mobile").then(() => {
         this.isMobileScreen = true;
         });
-      }, 100);
+      }, 1000);
     }else{
       this.pdfService.generatePdf("desktop");
     }

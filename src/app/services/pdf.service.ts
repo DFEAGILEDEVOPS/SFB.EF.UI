@@ -23,119 +23,34 @@ export class PdfService {
     $("body").css("cursor", "wait");
     this.offset = 60;
     this.doc = new jsPDF({ unit: 'px', format: 'a1', orientation: 'portrait' });
-    //this.writeHeadingsForDesktop();
-    //this.writeWarnings();
+    this.pdfWriteLine("H1", $("H1").text(), media === "mobile");
+
     return new Promise((resolve) => {
         if(media === "mobile") {
           $('#emTableDesktop').css("width", "1000px");
           $('#emTableDesktop .em-table__rank-header').css("padding-top", "50px");
         }
-        this.pdfGenerateImage('#emTableDesktop').then((canvas) => {
-          // this.pdfAddNewPage();
-          this.pdfAddImage(canvas, null, null);
-          //this.offset += canvas.height + 50;
+        setTimeout(() => {
+          this.pdfGenerateImage('#emTableDesktop').then((canvas) => {
+            // this.pdfAddNewPage();
+            this.pdfAddImage(canvas, null, null);
+            //this.offset += canvas.height + 50;
 
-          this.pdfSave("Self-assessment-dashboard.pdf");
-          $("#downloadPage").text(" Download page");
-          $("body").css("cursor", "");
-          if(media === "mobile") {
-            $('#emTableDesktop').css("width", "unset");
-            $('#emTableDesktop .em-table__rank-header').css("padding-top", "unset");
-          }
-          resolve();
-        });
+            this.pdfSave("Self-assessment-dashboard.pdf");
+            $("#downloadPage").text(" Download page");
+            $("body").css("cursor", "");
+            if(media === "mobile") {
+              $('#emTableDesktop').css("width", "unset");
+              $('#emTableDesktop .em-table__rank-header').css("padding-top", "unset");
+            }
+            resolve();
+          });
+        }, 1000);
   })
 
 
   }
 
-  // public generatePdfForMobile() {
-  //   this.expandDetails();
-  //   $("#downloadPage").text(" Loading...");
-  //   $("body").css("cursor", "wait");
-  //   this.offset = 60;
-  //   this.doc = new jsPDF({ unit: 'px', format: 'a3', orientation: 'portrait' });
-  //   this.writeHeadingsForMobile();
-  //   this.writeWarnings();
-  //   setTimeout(() => {
-  //     this.generateCanvassesForMobileTables().subscribe(() => {
-
-  //       this.writeTableFromCanvasForMobile("criteriaTables");
-  //       this.writeTableFromCanvasForMobile("page1Tables");
-  //       this.pdfAddNewPage();
-  //       this.writeTableFromCanvasForMobile("page2Tables");
-  //       this.pdfAddNewPage();
-  //       this.writeTableFromCanvasForMobile("page3Tables");
-
-  //       this.pdfSave("Self-assessment-dashboard.pdf");
-  //       $("#downloadPage").text(" Download page");
-  //       $("body").css("cursor", "");
-  //     });
-  //   }, 100);
-  // }
-
-  // private writeTableFromCanvasForMobile(id: string) {
-  //   let canvas = this.canvassesForMobileTables.find(ct => ct.id === id).canvas;
-  //   let ratio = canvas.width / canvas.height;
-  //   let width = 155;
-  //   let height = 155 / ratio;
-  //   if (this.offset + height > 900) {
-  //     this.pdfAddNewPage();
-  //   }
-  //   this.pdfAddImage(canvas, width, height);
-  //   this.offset += height + 25;
-  // }
-
-  private writeTableFromCanvasForDesktop(id: string) {
-    let canvas = this.canvassesForDesktopTables.find(ct => ct.id === id).canvas;
-    if (this.offset + canvas.height > 900) {
-      this.pdfAddNewPage();
-    }
-    this.pdfAddImage(canvas, null, null);
-    this.offset += canvas.height + 50;
-  }
-
-  private writeHeadingsForDesktop() {
-    this.pdfWriteLine('H1', $('#h1').get(0).innerText);
-    this.offset -= 20;
-    if ($('#dateCaption').length > 0) {
-      this.pdfWriteLine('Grayed', $('#dateCaption').get(0).innerText);
-    }
-    this.offset += 10;
-    let assessingText = $('#assessing').get(0).innerText;
-    let part1 = assessingText.substring(0, assessingText.indexOf('.') + 1);
-    let part2 = assessingText.substring(assessingText.indexOf('.') + 2);
-    this.pdfWriteLine('Bold', part1);
-    if (part2) {
-      this.pdfWriteLine('Bold', part2);
-    }
-  }
-
-  // private writeHeadingsForMobile() {
-  //   this.pdfWriteLine('H2', $('#h1').get(0).innerText);
-  //   this.offset -= 20;
-  //   if ($('#dateCaption').length > 0) {
-  //     this.pdfWriteLine('Grayed', $('#dateCaption').get(0).innerText);
-  //   }
-  //   this.offset += 10;
-  //   let assessingText = $('#assessing').get(0).innerText;
-  //   let part1 = assessingText.substring(0, assessingText.indexOf('.') + 1);
-  //   let part2 = assessingText.substring(assessingText.indexOf('.') + 2);
-  //   this.pdfWriteLine('Bold', part1);
-  //   if (part2) {
-  //     this.pdfWriteLine('Bold', part2);
-  //   }
-  // }
-
-  private writeWarnings() {
-    if ($('#partialWarning').length > 0) {
-      let warningText = $('#partialWarning__text').get(0).innerText;
-      let part1 = warningText.substring(0, warningText.indexOf('.') + 1);
-      let part2 = warningText.substring(warningText.indexOf('.') + 2);
-      this.pdfWriteLine('Warning', part1);
-      this.pdfWriteLine('Warning', part2);
-    }
-  }
 
 
   private pdfAddNewPage() {
@@ -153,7 +68,6 @@ export class PdfService {
       allowTaint:true
     });
   }
-
 
   private pdfAddImage(canvas, width, height) {
     let img = canvas.toDataURL("image/png");
@@ -219,56 +133,5 @@ export class PdfService {
     this.offset += fontSize + 8;
   }
 
-  // private generateCanvassesForMobileTables() {
 
-  //   this.canvassesForMobileTables = [
-  //     { id: "criteriaTables" },
-  //     { id: "page1Tables" },
-  //     { id: "page2Tables" },
-  //     { id: "page3Tables" },
-  //   ];
-
-  //   return from(new Promise((resolve) => {
-  //     this.canvassesForMobileTables.forEach(tableCanvas => {
-  //       this.pdfGenerateImage('#' + tableCanvas.id).then((canvas) => {
-  //         tableCanvas.canvas = canvas;
-  //         if (this.canvassesForMobileTables.every(ct => ct.canvas)) {
-  //           resolve();
-  //         }
-  //       })
-  //     });
-  //   }));
-
-  // }
-
-  // private generateCanvassesForDesktopTables() {
-  //   this.canvassesForDesktopTables = [
-  //     { id: "criteriaTable" },
-  //     { id: "reserveTable" },
-  //     { id: "spendingTable" },
-  //     { id: "charTable" },
-  //     { id: "outcomesTable" }
-  //   ]
-
-  //   return from(new Promise((resolve) => {
-  //     this.canvassesForDesktopTables.forEach(tableCanvas => {
-  //       this.pdfGenerateImage('#' + tableCanvas.id).then((canvas) => {
-  //         tableCanvas.canvas = canvas;
-  //         document.body.appendChild(canvas);
-  //         if (this.canvassesForDesktopTables.every(ct => ct.canvas)) {
-  //           resolve();
-  //         }
-  //       })
-  //     });
-  //   }));
-  // }
-
-  // private expandDetails() {
-  //   let detailses = document.getElementsByTagName("details");
-  //   let details;
-  //   var i = -1;
-  //   while (details = detailses[++i]) {
-  //     details["open"] = true;
-  //   }
-  // }
 }
