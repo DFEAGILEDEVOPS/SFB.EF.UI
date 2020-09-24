@@ -19,31 +19,23 @@ export class PdfService {
   }
 
   public generatePdf(media: string) {
-    $("#downloadPage").text(" Loading...");
+    //$("#downloadPage").text(" Loading...");
     $("body").css("cursor", "wait");
     this.offset = 60;
     this.doc = new jsPDF({ unit: 'px', format: 'a1', orientation: 'portrait' });
-    //this.pdfWriteLine("H1", $("H1").text(), media === "mobile");
+    this.pdfWriteLine("H1", $("H1").text(), media === "mobile");
 
     return new Promise((resolve) => {
-        if(media === "mobile") {
-          $('#emTableDesktop').css("width", "1000px");
-          $('#emTableDesktop .em-table__rank-header').css("padding-top", "300px");
-        }
         setTimeout(() => {
           this.pdfGenerateImage('#emTableDesktop').then((canvas) => {
-            // this.pdfAddNewPage();
-
-            this.pdfAddImage(canvas, 500, 1550);
-            //this.offset += canvas.height + 50;
+            if(media === "mobile") {
+              this.pdfAddImage(canvas, 500, 1550);
+            }else {
+              this.pdfAddImage(canvas, null, null);
+            }
 
             this.pdfSave("Self-assessment-dashboard.pdf");
-            $("#downloadPage").text(" Download page");
             $("body").css("cursor", "");
-            if(media === "mobile") {
-              $('#emTableDesktop').css("width", "unset");
-              $('#emTableDesktop .em-table__rank-header').css("padding-top", "unset");
-            }
             resolve();
           });
         }, 1000);

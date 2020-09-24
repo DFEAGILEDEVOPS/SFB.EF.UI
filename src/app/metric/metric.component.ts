@@ -1,7 +1,7 @@
 import { PdfService } from './../services/pdf.service';
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Inject, OnInit, TemplateRef } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { EMModel } from 'app/Models/EMModel';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
@@ -17,7 +17,9 @@ export class MetricComponent implements OnInit {
   model: EMModel;
   modalRef: BsModalRef;
   isMobileScreen: boolean;
+  isMobilePdfInProgress: boolean;
   tabletBreakPoint = 641;
+  @ViewChild('downloadingMessage') downloadingMessage: ElementRef;
 
   constructor(
   private router: Router,
@@ -32,6 +34,7 @@ export class MetricComponent implements OnInit {
     this.model = new EMModel();
     this.model.name = 'Your school';
     this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
+    this.isMobilePdfInProgress = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -51,15 +54,20 @@ export class MetricComponent implements OnInit {
   }
 
   onDownload() {
+    debugger;
+    this.downloadingMessage.nativeElement.textContent = "Downloading...";
     if (this.isMobileScreen) {
-      this.isMobileScreen = false;
+      this.isMobilePdfInProgress = true;
       setTimeout(() => {
         this.pdfService.generatePdf("mobile").then(() => {
-        this.isMobileScreen = true;
+        this.isMobilePdfInProgress = false;
+        this.downloadingMessage.nativeElement.textContent = "Download page";
         });
       }, 1000);
     }else{
-      this.pdfService.generatePdf("desktop");
+      this.pdfService.generatePdf("desktop").then(() => {
+        this.downloadingMessage.nativeElement.textContent = "Download page";
+      });
     }
 
   }

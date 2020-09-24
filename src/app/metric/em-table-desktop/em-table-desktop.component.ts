@@ -11,6 +11,7 @@ import { EditDataInfoModalComponent } from 'app/edit-data-info-modal/edit-data-i
 })
 export class EmTableDesktopComponent implements OnInit {
 
+  @Input() isMobilePdfInProgress: boolean;
   @Input() model: EMModel;
   modalRef: BsModalRef;
 
