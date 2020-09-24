@@ -28,8 +28,8 @@ export class ContactDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     @Inject(appSettings) public settings: AppSettings,
     private emDataService: EmdataService) {
-    this.route.params.subscribe(params => {
-      this.urn = +params.urn;
+    this.route.paramMap.subscribe(pmap => {
+      this.urn = +pmap.get('urn');
     });
     this.model = new EMModel();
     this.sort = 'Rank';

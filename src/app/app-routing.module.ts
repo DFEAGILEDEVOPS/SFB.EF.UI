@@ -11,7 +11,7 @@ import { ServiceProblemComponent } from '@core/error-handling/ServiceProblem/Ser
 import { NotFoundErrorComponent } from '@core/error-handling/NotFoundError/NotFoundError.component';
 
 const routes: Routes = [
-  { path: 'efficiency-metric/:urn', component: MetricComponent},
+  //{ path: 'efficiency-metric/:urn', component: MetricComponent},
   { path: 'efficiency-metric/metric/:urn', component: MetricComponent},
   { path: 'efficiency-metric/how-it-works/:urn/:name', component: HowItWorksComponent},
   { path: 'efficiency-metric/ways-to-improve/:urn/:name', component: WaysToImproveComponent},
