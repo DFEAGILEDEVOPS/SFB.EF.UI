@@ -25,10 +25,9 @@ export class PdfService {
     this.pdfWriteLine("Normal", $("#emRankContent-2").text());
 
     return new Promise((resolve) => {
-      //setTimeout(() => {
       this.pdfGenerateImage('#emTableDesktop').then((canvas) => {
         if (media === "mobile") {
-          this.pdfAddImage(canvas, 500, 1550);
+          this.pdfAddImage(canvas, 500, 1500);
         } else {
           this.pdfAddImage(canvas, null, null);
         }
@@ -37,7 +36,6 @@ export class PdfService {
         $("body").css("cursor", "");
         resolve();
       });
-      //}, 1000);
     })
   }
 
