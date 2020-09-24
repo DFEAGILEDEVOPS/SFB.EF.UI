@@ -1,3 +1,4 @@
+import { PdfService } from './../services/pdf.service';
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Inject, OnInit, TemplateRef } from '@angular/core';
@@ -23,6 +24,7 @@ export class MetricComponent implements OnInit {
   private route: ActivatedRoute,
   private modalService: BsModalService,
   private emDataService: EmdataService,
+  private pdfService: PdfService,
   @Inject(appSettings) public settings: AppSettings) {
     this.route.params.subscribe(params => {
       this.urn = +params.urn;
@@ -49,7 +51,17 @@ export class MetricComponent implements OnInit {
   }
 
   onDownload() {
-    throw new Error("This feature is not implemented yet!");
+    if (this.isMobileScreen) {
+      this.isMobileScreen = false;
+      setTimeout(() => {
+        this.pdfService.generatePdf("mobile").then(() => {
+        this.isMobileScreen = true;
+        });
+      }, 100);
+    }else{
+      this.pdfService.generatePdf("desktop");
+    }
+
   }
 
   onPrintPage() {
