@@ -42,12 +42,12 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    @Inject(appSettings) public settings: AppSettings,
-    private modalService: BsModalService,
-    private emDataService: EmdataService) {
-    this.route.params.subscribe(params => {
-      this.urn = +params.urn;
-    });
+                    @Inject(appSettings) public settings: AppSettings,
+                    private modalService: BsModalService,
+                    private emDataService: EmdataService) {
+    this.route.paramMap.subscribe(pmap => {
+        this.urn = +pmap.get('urn');
+      });
     this.model = new EMModel();
     this.selectedSchoolUrns = new Array<number>();
     this.sort = 'AlphabeticalAZ';
@@ -66,6 +66,7 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
+    debugger;
     this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
   }
 

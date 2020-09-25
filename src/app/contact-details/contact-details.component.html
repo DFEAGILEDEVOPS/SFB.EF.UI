@@ -34,7 +34,7 @@
 </div>
 
 <div [hidden]='resultSectionState === "map-view"'>
-  <div *ngIf='!isMobileScreen'>
+  <div *ngIf='!isMobileScreen' id="schoolList">
     <div *ngFor='let neighbour of visibleSchoolList; let i = index'>
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
       <a class="govuk-link govuk-body-m govuk-!-font-weight-bold school-link"

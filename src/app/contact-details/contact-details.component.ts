@@ -26,8 +26,8 @@ export class ContactDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    @Inject(appSettings) public settings: AppSettings,
-    private emDataService: EmdataService) {
+                  @Inject(appSettings) public settings: AppSettings,
+                  private emDataService: EmdataService) {
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
     });
