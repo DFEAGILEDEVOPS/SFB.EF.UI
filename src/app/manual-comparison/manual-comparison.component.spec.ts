@@ -1,3 +1,4 @@
+import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 /* tslint:disable:no-unused-variable */
@@ -15,7 +16,6 @@ import { ActivatedRouteStub } from 'testing/activated-route-stub';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { EMModel } from 'app/Models/EMModel';
 import { of } from 'rxjs';
-import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 
 describe('ManualComparisonComponent', () => {
   let component: ManualComparisonComponent;
@@ -24,7 +24,7 @@ describe('ManualComparisonComponent', () => {
   let activatedRouteStub: ActivatedRouteStub = new ActivatedRouteStub();
   let configServiceSpy =  jasmine.createSpyObj('ConfigService', ['getSettings']);
   let urlServiceSpy =  jasmine.createSpyObj('URLService', ['getDomain']);
-  let bsModalServiceSpy = jasmine.createSpyObj("BsModalService", ['_'])
+  let bsModalServiceSpy = jasmine.createSpyObj("BsModalService", ['show'])
   let emDataServiceSpy =  jasmine.createSpyObj('EmdataService', ['getEmData']);
 
   beforeEach(async(() => {
@@ -44,21 +44,106 @@ describe('ManualComparisonComponent', () => {
   }));
 
   beforeEach(() => {
+    activatedRouteStub.setParamMap({ urn: 12 });
     configServiceSpy.getSettings.and.returnValue({appSettings: new AppSettings()});
     urlServiceSpy.getDomain.and.returnValue("localhost");
-    let stubEmModel = new EMModel();
-    let stubNeigbourModel = new EfficiencyMetricNeighbourModel();
-    stubNeigbourModel.urn = 123;
-    stubEmModel.neighbourDataModels = [stubNeigbourModel]
+
+  });
+
+  it('should sort alphabetically by default', () => {
+
+    let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
     emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
 
     fixture = TestBed.createComponent(ManualComparisonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    expect(component.visibleSchoolList[0]).toEqual(stubNeigbourModel2);
+    expect(component.visibleSchoolList[1]).toEqual(stubNeigbourModel1);
   });
 
-  it('should create', () => {
+  it('should not display the home school in the list', () => {
     activatedRouteStub.setParamMap({ urn: 123 });
-    expect(component).toBeTruthy();
+
+    let stubEmModel : EMModel = {urn: 123, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
+    emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
+
+    fixture = TestBed.createComponent(ManualComparisonComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(component.visibleSchoolList[0]).toEqual(stubNeigbourModel2);
+
   });
+
+  it('should add to basket', () => {
+
+    let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
+    emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
+
+    fixture = TestBed.createComponent(ManualComparisonComponent);
+    component = fixture.componentInstance;
+
+    component.addToManualBasket(123);
+    component.addToManualBasket(124);
+
+    fixture.detectChanges();
+
+    expect(component.selectedSchoolUrns.length).toEqual(2);
+
+  });
+
+  it('should remove from basket', () => {
+
+    let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
+    emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
+
+    fixture = TestBed.createComponent(ManualComparisonComponent);
+    component = fixture.componentInstance;
+
+    component.selectedSchoolUrns= [123, 124];
+
+    component.removeFromManualBasket(123);
+
+    fixture.detectChanges();
+
+    expect(component.selectedSchoolUrns.length).toEqual(1);
+    expect(component.selectedSchoolUrns[0]).toEqual(124);
+
+  });
+
+  it('should not allow to add more than 30 schools to basket', () => {
+
+    let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
+    emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
+
+    fixture = TestBed.createComponent(ManualComparisonComponent);
+    component = fixture.componentInstance;
+
+    for (let index = 0; index < 30; index++) {
+      component.selectedSchoolUrns.push(index);
+    }
+
+    component.addToManualBasket(123);
+
+    expect(component.selectedSchoolUrns.length).toBe(30);
+
+  });
+
 });

@@ -21,15 +21,14 @@ export class MetricComponent implements OnInit {
   tabletBreakPoint = 641;
   @ViewChild('downloadingMessage') downloadingMessage: ElementRef;
 
-  constructor(
-  private router: Router,
-  private route: ActivatedRoute,
-  private modalService: BsModalService,
-  private emDataService: EmdataService,
-  private pdfService: PdfService,
-  @Inject(appSettings) public settings: AppSettings) {
-    this.route.params.subscribe(params => {
-      this.urn = +params.urn;
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private modalService: BsModalService,
+              private emDataService: EmdataService,
+              private pdfService: PdfService,
+              @Inject(appSettings) public settings: AppSettings) {
+    this.route.paramMap.subscribe(pmap => {
+      this.urn = +pmap.get('urn');
     });
     this.model = new EMModel();
     this.model.name = 'Your school';
