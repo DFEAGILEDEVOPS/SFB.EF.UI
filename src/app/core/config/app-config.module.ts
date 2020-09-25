@@ -14,7 +14,6 @@ export function configLoaderFactory(http: HttpClient): ConfigLoader {
 }
 
 export function appSettingsFactory(configService: ConfigService, urlService: URLService): AppSettings {
-  debugger;
   const appsettings: AppSettings = configService.getSettings().appSettings;
   appsettings.domain = urlService.getDomain();
   return appsettings;

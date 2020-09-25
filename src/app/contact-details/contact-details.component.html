@@ -29,11 +29,11 @@
   </div>
 </div>
 
-<div [hidden]='resultSectionState === "list-view"'>
+<div id="mapWrapper" [hidden]='resultSectionState === "list-view"'>
   <app-contact-map [visibleSchoolList]='visibleSchoolList'></app-contact-map>
 </div>
 
-<div [hidden]='resultSectionState === "map-view"'>
+<div id="listWrapper" [hidden]='resultSectionState === "map-view"'>
   <div *ngIf='!isMobileScreen' id="schoolList">
     <div *ngFor='let neighbour of visibleSchoolList; let i = index'>
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
