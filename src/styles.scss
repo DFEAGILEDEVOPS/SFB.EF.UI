@@ -3,6 +3,8 @@
 // govuk-frontend
 @import "govuk-frontend/govuk/all";
 @import "bootstrap/scss/bootstrap";
+@import "modal.scss";
+@import "print.scss";
 
 *, *::before, *::after {
     box-sizing: content-box;//changed to fix check boxes
@@ -61,25 +63,10 @@ a{
   margin-right: 10px;
 }
 
-.modal-content{
-  padding: 15px 10px;
-}
-
-.modal-dialog {
-    @media (min-width: 576px){
-    max-width: 757px;
-  }
-}
-
 .ul-two-cols{
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
-}
-
-.sfb-modal-dialog .close{
-  font-size: 16px;
-  text-decoration: underline;
 }
 
 .highlight {
@@ -286,24 +273,6 @@ span.table-cell-highlight {
   }
 }
 
-.modal__score {
-  display: inline-block;
-  font-size: 14px;
-  text-align: center;
-  width: 18%;
-  margin-left: 0.5em;
-
-  .score {
-      font-size: 14px;
-      padding: 1em 0.3em;
-      margin: 0.5em 0;
-  }
-}
-
-.modal__score:first-of-type {
-  margin-left: 0;
-}
-
 .score {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
@@ -346,27 +315,5 @@ span.table-cell-highlight {
   }
 }
 
-.modal-content {
-  @include govuk-media-query($until: tablet) {
-    width: auto;
-  }
-}
 
-@media print {
-  .show-in-print {
-    display: block!important;
-  }
 
-  .hide-in-print {
-    display: none!important;
-  }
-
-  .main-header{
-     margin-top: 1em!important;
-  }
-
-  .expand-in-print{
-    width: 100%;
-  }
-
-}
