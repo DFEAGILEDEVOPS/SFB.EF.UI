@@ -54,8 +54,9 @@
 .em-table__p8-header{
   text-align: center;
   background-color: govuk-colour("light-grey")!important;
+  border-right: 5px solid white;
   div{
-    padding-left: 15px!important;
+    padding-left: 10px!important;
     padding-right: 10px!important;
   }
 }
@@ -65,7 +66,7 @@
   background-color: govuk-colour("light-grey")!important;
   div{
     padding-left: 15px!important;
-    padding-right: 20px!important;
+    padding-right: 15px!important;
   }
 }
 
@@ -124,13 +125,7 @@
   padding-left: 10px;
 }
 
-.em-table-p8-cell{
-  text-align: center;
-  padding-right: 0;
-  background-color: govuk-colour("light-grey");
-}
-
-.em-table-ks2-cell{
+.em-table-ks2-cell, .em-table-p8-cell{
   border-right: 5px solid white;
   text-align: center;
   padding-right: 0;
@@ -143,11 +138,11 @@
 }
 
 .em-table-score-cell{
-  padding-right: 20px;
+  text-align: center;
   background-color: govuk-colour("light-grey");
 }
 
-.em-table-p8-cell__text, .em-table-ks2-cell__text{
+.em-table-p8-cell__text, .em-table-ks2-cell__text {
   text-align: center;
   padding: 3px;
   min-width: 40px;

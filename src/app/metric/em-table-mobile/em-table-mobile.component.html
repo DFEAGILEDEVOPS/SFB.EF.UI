@@ -65,23 +65,23 @@
         <td class="govuk-table__cell width-one-half">{{neighbour.expenditurePP | currency :'GBP':'symbol':'0.0-0'}}</td>
       </tr>
       <tr>
-        <th scope="row" class="govuk-table__header width-one-half" *ngIf='model.phase === "Primary"'>Key stage 2 progress</th>
-        <th scope="row" class="govuk-table__header width-one-half" *ngIf='model.phase === "Secondary"'>Key stage 2 progress</th>
-        <td  class="govuk-table__cell em-table-ks2-cell width-one-half" *ngIf='model.phase === "Primary"'>
+        <th scope="row" class="govuk-table__header width-one-half" *ngIf='model.primarySecondary === "Primary"'>Key stage 2 progress</th>
+        <th scope="row" class="govuk-table__header width-one-half" *ngIf='model.primarySecondary === "Secondary"'>Key stage 2 progress</th>
+        <td  class="govuk-table__cell em-table-ks2-cell width-one-half" *ngIf='model.primarySecondary === "Primary"'>
           <span class="em-table-ks2-cell__text"
           [ngClass]="{
-            'em-table-ks2-cell__text--well-below': neighbour.progress8 < -3 ,
-            'em-table-ks2-cell__text--below': neighbour.progress8 >= -3 && neighbour.progress8 < -2,
-            'em-table-ks2-cell__text--average': neighbour.progress8 >= -2 && neighbour.progress8 <= 2,
-            'em-table-ks2-cell__text--above': neighbour.progress8 <= 3 && neighbour.progress8 > 2,
-            'em-table-ks2-cell__text--well-above': neighbour.progress8 > 3}">
-            {{neighbour.progress8 | number: '1.1-1'}}
+            'em-table-ks2-cell__text--well-below': neighbour.ks2 < -3 ,
+            'em-table-ks2-cell__text--below': neighbour.ks2 >= -3 && neighbour.ks2 < -2,
+            'em-table-ks2-cell__text--average': neighbour.ks2 >= -2 && neighbour.ks2 <= 2,
+            'em-table-ks2-cell__text--above': neighbour.ks2 <= 3 && neighbour.ks2 > 2,
+            'em-table-ks2-cell__text--well-above': neighbour.ks2 > 3}">
+            {{neighbour.ks2 | number: '1.1-1'}}
           </span>
           <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" attr.alt="Help for key stage 2 progress" class="small-icon" />
           </a>
         </td>
-        <td  class="govuk-table__cell em-table-p8-cell width-one-half" *ngIf='model.phase === "Secondary"'>
+        <td  class="govuk-table__cell em-table-p8-cell width-one-half" *ngIf='model.primarySecondary === "Secondary"'>
           <span class="em-table-p8-cell__text"
           [ngClass]="{
           'em-table-p8-cell__text--well-below': neighbour.progress8 < -0.5 ,
@@ -91,7 +91,7 @@
           'em-table-p8-cell__text--well-above': neighbour.progress8 > 0.5}">
             {{neighbour.progress8 | number: '1.1-1'}}
           </span>
-          <a [routerLink]='' (click)="openModalWithComponent('Progress 8')" class="rating-help-icon">
+          <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" attr.alt="Help for key progress 8" class="small-icon" />
           </a>
       </tr>

@@ -9,14 +9,14 @@
       <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>Ever6 FSM</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>SEN / EHCP</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__expenditure-header govuk-table__header--numeric"><div>Expenditure per pupil</div></th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.phase === "Primary"'>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.primarySecondary === "Primary"'>
         <div>Key stage 2 progress
           <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" attr.alt="Help for key stage 2 progress" class="small-icon" />
           </a>
         </div>
       </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__p8-header" *ngIf='model.phase === "Secondary"'>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__p8-header" *ngIf='model.primarySecondary === "Secondary"'>
         <div>Progress 8 score
           <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" attr.alt="Help for progress 8 score" class="small-icon" />
@@ -41,18 +41,18 @@
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 / 100 | percent:'1.1'}} </td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.sen / 100| percent:'1.1'}}</td>
       <td class="govuk-table__cell em-table-expenditure-cell govuk-table__cell--numeric"><div>{{neighbour.expenditurePP | currency :'GBP':'symbol':'0.0-0'}}</div></td>
-      <td  class="govuk-table__cell em-table-ks2-cell" *ngIf='model.phase === "Primary"'>
+      <td  class="govuk-table__cell em-table-ks2-cell" *ngIf='model.primarySecondary === "Primary"'>
         <span class="em-table-ks2-cell__text"
         [ngClass]="{
-          'em-table-ks2-cell__text--well-below': neighbour.progress8 < -3 ,
-          'em-table-ks2-cell__text--below': neighbour.progress8 >= -3 && neighbour.progress8 < -2,
-          'em-table-ks2-cell__text--average': neighbour.progress8 >= -2 && neighbour.progress8 <= 2,
-          'em-table-ks2-cell__text--above': neighbour.progress8 <= 3 && neighbour.progress8 > 2,
-          'em-table-ks2-cell__text--well-above': neighbour.progress8 > 3}">
-          {{neighbour.progress8 | number: '1.1-1'}}
+          'em-table-ks2-cell__text--well-below': neighbour.ks2 < -3 ,
+          'em-table-ks2-cell__text--below': neighbour.ks2 >= -3 && neighbour.ks2 < -2,
+          'em-table-ks2-cell__text--average': neighbour.ks2 >= -2 && neighbour.ks2 <= 2,
+          'em-table-ks2-cell__text--above': neighbour.ks2 <= 3 && neighbour.ks2 > 2,
+          'em-table-ks2-cell__text--well-above': neighbour.ks2 > 3}">
+          {{neighbour.ks2 | number: '1.1-1'}}
         </span>
       </td>
-      <td  class="govuk-table__cell em-table-p8-cell" *ngIf='model.phase === "Secondary"'>
+      <td  class="govuk-table__cell em-table-p8-cell" *ngIf='model.primarySecondary === "Secondary"'>
         <span class="em-table-p8-cell__text"
         [ngClass]="{
         'em-table-p8-cell__text--well-below': neighbour.progress8 < -0.5 ,
@@ -63,7 +63,11 @@
           {{neighbour.progress8 | number: '1.1-1'}}
         </span>
       </td>
-      <td class="govuk-table__cell govuk-table__cell--numeric em-table-score-cell">{{neighbour.efficiencyScore | number: '1.1-1'}}</td>
+      <td class="govuk-table__cell em-table-score-cell">
+        <span class="em-table-score-cell__text">
+        {{neighbour.efficiencyScore | number: '1.1-1'}}
+        </span>
+      </td>
     </tr>
     <tr class="govuk-table__row" *ngIf='neighbour.urn === model.urn'>
       <td class="govuk-table__cell link-cell" colspan="4">
@@ -72,8 +76,8 @@
         </div>
       </td>
       <td class="govuk-table__cell link-cell em-table-expenditure-cell"></td>
-      <td class="govuk-table__cell link-cell em-table-ks2-cell" *ngIf='model.phase === "Primary"'></td>
-      <td class="govuk-table__cell link-cell em-table-p8-cell" *ngIf='model.phase === "Secondary"'></td>
+      <td class="govuk-table__cell link-cell em-table-ks2-cell" *ngIf='model.primarySecondary === "Primary"'></td>
+      <td class="govuk-table__cell link-cell em-table-p8-cell" *ngIf='model.primarySecondary === "Secondary"'></td>
       <td class="govuk-table__cell link-cell em-table-score-cell"></td>
     </tr>
   </tbody>
