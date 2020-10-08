@@ -1,4 +1,4 @@
-<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" role="region" aria-label="cookie banner"
+<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" role="dialog" aria-label="cookie banner"
   data-nosnippet="" style="display: none;">
   <div class="gem-c-cookie-banner__wrapper govuk-width-container">
     <div class="govuk-grid-row">
@@ -42,7 +42,7 @@
   <app-header></app-header>
 
   <div class="govuk-width-container app-width-container--wide">
-    <div class="govuk-phase-banner">
+    <div class="govuk-phase-banner" role="region" aria-label="govuk beta banner">
       <p class="govuk-phase-banner__content">
         <strong class="govuk-tag govuk-phase-banner__content__tag">
           beta
@@ -55,7 +55,7 @@
       </p>
     </div>
 
-    <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
+    <main class="govuk-main-wrapper app-main-class" id="main-content">
       <router-outlet></router-outlet>
     </main>
   </div>

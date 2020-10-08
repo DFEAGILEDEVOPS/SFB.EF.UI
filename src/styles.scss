@@ -70,7 +70,7 @@ a{
 }
 
 .highlight {
-  background-color: #d53880;
+  background-color: #d4357f;
   display: inline;
   padding: 2px 5px;
 
@@ -153,14 +153,17 @@ span.table-cell-highlight {
 }
 .em-rank-text--2{
   background-color: rgb(133,154,75);
+  color: govuk-colour("black")!important;
 }
 
 .em-rank-text--3{
   background-color: rgb(41,161,151);
+  color: govuk-colour("black")!important;
 }
 
 .em-rank-text--4{
   background-color: rgb(87,148,203);
+  color: govuk-colour("black")!important;
 }
 
 .em-rank-text--5{
@@ -315,5 +318,12 @@ span.table-cell-highlight {
   }
 }
 
-
+.filter-toggle-button{
+  float: right;
+  color: govuk-colour("black");
+  text-decoration: none;
+  border: none;
+  font-weight: bold;
+  background-color: govuk-colour("mid-grey");
+}
 
