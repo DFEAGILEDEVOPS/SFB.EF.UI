@@ -56,7 +56,6 @@ export class ManualComparisonComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.emDataService.getEmData(this.urn).
       subscribe(result => {
         this.model = result;

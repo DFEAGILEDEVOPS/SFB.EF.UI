@@ -94,7 +94,7 @@ a{
 }
 
 span.table-cell-highlight {
-    background-color: #d53880;
+    background-color: #d4357f;
     display: inline;
     padding: 2px 5px;
     color: white;
@@ -102,7 +102,7 @@ span.table-cell-highlight {
 }
 
   a.table-cell-highlight {
-      background-color: #d53880;
+      background-color: #d4357f;
       display: inline;
       padding: 2px 5px;
       color: white!important;
@@ -152,22 +152,23 @@ span.table-cell-highlight {
   background-color: rgb(0,112,60);
 }
 .em-rank-text--2{
-  background-color: rgb(133,154,75);
-  color: govuk-colour("black")!important;
+  background-color: #697E3E;
+  //color: govuk-colour("black")!important;
 }
 
 .em-rank-text--3{
-  background-color: rgb(41,161,151);
-  color: govuk-colour("black")!important;
+  background-color: #218379;
+  //color: govuk-colour("black")!important;
 }
 
 .em-rank-text--4{
-  background-color: rgb(87,148,203);
-  color: govuk-colour("black")!important;
+  background-color: #3779B3;
+  //color: govuk-colour("black")!important;
 }
 
 .em-rank-text--5{
-  background-color: rgb(29,112,184);
+  background-color: #175B96;
+  //color: govuk-colour("black")!important;
 }
 
 .em-rank-text--6{
@@ -213,7 +214,7 @@ span.table-cell-highlight {
 
 .filter-box {
   border: 5px solid;
-  color: govuk-colour("mid-grey");
+  color: govuk-colour("light-grey");
   margin-bottom: 15px;
 }
 
@@ -225,7 +226,7 @@ span.table-cell-highlight {
 }
 
 .filter-box__legend__heading{
-  background-color: govuk-colour("mid-grey");
+  background-color: govuk-colour("light-grey");
   padding: 5px 1px;
   width: 100%;
 
@@ -237,7 +238,7 @@ span.table-cell-highlight {
 
 .filter-box__legend__count{
   @include govuk-font(14);
-  background-color: govuk-colour("mid-grey");
+  background-color: govuk-colour("light-grey");
   padding: 5px 1px;
   width: 100%;
 
@@ -294,7 +295,7 @@ span.table-cell-highlight {
 
   &.below {
     background-color: #f47738;
-    color: #fff;
+    color: #0C0C0C;
   }
 
   &.average {
@@ -303,7 +304,7 @@ span.table-cell-highlight {
 
   &.above {
     background-color: #85994b;
-    color: #fff;
+    color:#0C0C0C;
   }
 
   &.well-above {
@@ -324,6 +325,6 @@ span.table-cell-highlight {
   text-decoration: none;
   border: none;
   font-weight: bold;
-  background-color: govuk-colour("mid-grey");
+  background-color: govuk-colour("light-grey");
 }
 

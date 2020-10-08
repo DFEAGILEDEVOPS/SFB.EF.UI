@@ -156,7 +156,7 @@
 
 &--below {
     background-color: #f47738;
-    color: #fff;
+    color: govuk-colour("black")!important;
 }
 
 &--average {
@@ -165,7 +165,7 @@
 
 &--above {
     background-color: #85994b;
-    color: #fff;
+    color: govuk-colour("black")!important;
 }
 
 &--well-above {

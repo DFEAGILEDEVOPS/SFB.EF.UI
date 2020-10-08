@@ -26,7 +26,6 @@ export class ReligionFilterComponent implements OnInit {
   }
 
   buildReligionFiltersFromDataModel(visibleSchoolList) {
-    debugger;
     visibleSchoolList.map(n => n.religiousCharacter).forEach(n => {
       if (!this.filterReligions.map(f => f.key).includes(n)) {
         this.filterReligions.push(new FilterItem(n));
