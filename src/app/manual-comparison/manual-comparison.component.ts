@@ -15,7 +15,7 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
   templateUrl: './manual-comparison.component.html',
   styleUrls: ['./manual-comparison.component.scss']
 })
-export class ManualComparisonComponent implements OnInit, AfterViewInit {
+export class ManualComparisonComponent implements OnInit {
 
   @ViewChild('basketFullModal')
   private basketFullModal: TemplateRef<any>;
@@ -56,17 +56,15 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    debugger;
     this.emDataService.getEmData(this.urn).
       subscribe(result => {
         this.model = result;
         this.model.neighbourDataModels = this.model.neighbourDataModels.filter(n => n.urn !== this.urn);
         this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
+        this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
         this.sortSchools();
       });
-  }
-
-  ngAfterViewInit(){
-    this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
   }
 
   sortSchools() {
