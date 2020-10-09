@@ -6,24 +6,34 @@
       <th scope="col" [ngStyle]="{'padding-top': isMobilePdfInProgress ? '300px' : 'unset'}" class="govuk-table__header govuk-table__header--sticky em-table__rank-header"><div>Rank</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__school-header"><div>School</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky"><div>Local authority</div></th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>Ever6 FSM</div></th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric"><div>SEN / EHCP</div></th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric" aria-label="Ever 6 Free School Meals">
+        <div><abbr title="Ever 6 Free School Meals">Ever6 FSM</abbr></div>
+      </th>
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric" aria-label="Special Educational Needs / Education Health and Care Plan">
+        <div><abbr title="Special Educational Needs / Education Health and Care Plan">SEN / EHCP</abbr></div>
+      </th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__expenditure-header govuk-table__header--numeric"><div>Expenditure per pupil</div></th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.primarySecondary === "Primary"'>
-        <div>Key stage 2 progress
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.primarySecondary === "Primary"'
+      aria-labelledby="Ks2Col">
+        <div>
+          <span id="Ks2Col">Key stage 2 progress</span>
           <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" alt="Help for key stage 2 progress" class="small-icon" />
           </a>
         </div>
       </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__p8-header" *ngIf='model.primarySecondary === "Secondary"'>
-        <div>Progress 8 score
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__p8-header" *ngIf='model.primarySecondary === "Secondary"'
+      aria-labelledby="p8Col">
+        <div>
+          <span id="p8Col">Progress 8 score</span>
           <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" alt="Help for progress 8 score" class="small-icon" />
           </a>
         </div></th>
-      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__score-header govuk-table__header--numeric">
-        <div>Score
+      <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__score-header govuk-table__header--numeric"
+      aria-labelledby="scoreCol">
+        <div>
+          <span id="scoreCol">Score</span>
           <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon">
             <img src="assets/images/help-icon.png" alt="Help for score" class="small-icon" />
           </a>
@@ -33,11 +43,20 @@
   </thead>
   <tbody class="govuk-table__body" [class.govuk-table__body--border]='i % 5 === 0' *ngFor='let neighbour of model.neighbourDataModels; let i = index'>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" rowspan="2">
+      <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" attr.aria-label="{{neighbour.rank}}">
         <span *ngIf='i % 5 === 0' class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
+        <span *ngIf='i % 5 !== 0' class="visually-hidden">{{neighbour.rank}}</span>
       </td>
-      <td class="govuk-table__cell em-table-name-cell"><a class="govuk-link" [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
-      <td class="govuk-table__cell"><span [class.table-cell-highlight]='neighbour.localAuthority === model.localAuthority'>{{neighbour.localAuthority}}</span></td>
+      <td class="govuk-table__cell em-table-name-cell">
+        <a class="govuk-link" [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}
+          <span class="visually-hidden" *ngIf='neighbour.urn === model.urn'>- this is default school</span>
+        </a>
+      </td>
+      <td class="govuk-table__cell">
+        <span [class.table-cell-highlight]='neighbour.localAuthority === model.localAuthority'>{{neighbour.localAuthority}}
+          <span class="visually-hidden" *ngIf='neighbour.localAuthority === model.localAuthority'>- this is the local authority of the default school</span>
+        </span>
+      </td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 / 100 | percent:'1.1'}} </td>
       <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.sen / 100| percent:'1.1'}}</td>
       <td class="govuk-table__cell em-table-expenditure-cell govuk-table__cell--numeric"><div>{{neighbour.expenditurePP | currency :'GBP':'symbol':'0.0-0'}}</div></td>
@@ -70,15 +89,16 @@
       </td>
     </tr>
     <tr class="govuk-table__row" *ngIf='neighbour.urn === model.urn'>
+      <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" aria-hidden="true"></td>
       <td class="govuk-table__cell link-cell" colspan="4">
         <div class="improve-link-wrapper">
           <a class="govuk-link" routerLink='/efficiency-metric/ways-to-improve/{{neighbour.urn}}/{{neighbour.name}}'>See tools to improve your school's efficiency</a>
         </div>
       </td>
-      <td class="govuk-table__cell link-cell em-table-expenditure-cell"></td>
-      <td class="govuk-table__cell link-cell em-table-ks2-cell" *ngIf='model.primarySecondary === "Primary"'></td>
-      <td class="govuk-table__cell link-cell em-table-p8-cell" *ngIf='model.primarySecondary === "Secondary"'></td>
-      <td class="govuk-table__cell link-cell em-table-score-cell"></td>
+      <td class="govuk-table__cell link-cell em-table-expenditure-cell" aria-hidden="true"></td>
+      <td class="govuk-table__cell link-cell em-table-ks2-cell" *ngIf='model.primarySecondary === "Primary"' aria-hidden="true"></td>
+      <td class="govuk-table__cell link-cell em-table-p8-cell" *ngIf='model.primarySecondary === "Secondary"' aria-hidden="true"></td>
+      <td class="govuk-table__cell link-cell em-table-score-cell" aria-hidden="true"></td>
     </tr>
   </tbody>
 </table>
