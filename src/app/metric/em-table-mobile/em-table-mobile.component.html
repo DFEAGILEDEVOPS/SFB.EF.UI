@@ -3,7 +3,8 @@
 <div [hidden]='mode === "detailed"'>
   <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold float-right govuk-!-margin-bottom-2" (click)="onToggleMode()"> ◄ Show details</a>
   <table class="govuk-table em-table" id="emTableMobileSummary">
-    <thead class="govuk-table__head safari_only">
+    <caption class="govuk-table__caption safari_only" style="caption-side: top;"></caption>
+    <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__rank-header"><div>Rank</div></th>
         <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__school-header"><div>School</div></th>
@@ -39,7 +40,8 @@
 <div [hidden]='mode === "summary"'>
   <a [routerLink]="" class="govuk-link a-button govuk-!-font-weight-bold float-left govuk-!-margin-bottom-2" (click)="onToggleMode()">Hide details ► </a>
   <table class="govuk-table em-table" id="emTableMobileDetailed">
-    <tbody class="govuk-table__body--summary safari_only" *ngFor='let neighbour of model.neighbourDataModels'>
+    <caption class="govuk-table__caption safari_only" style="caption-side: top;"></caption>
+    <tbody class="govuk-table__body--summary" *ngFor='let neighbour of model.neighbourDataModels'>
       <tr>
         <th scope="row" class="govuk-table__header width-one-half">Rank</th>
         <td class="govuk-table__cell width-one-half"><span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span></td>
