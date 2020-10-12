@@ -61,7 +61,9 @@ export class ManualComparisonComponent implements OnInit {
         this.model = result;
         this.model.neighbourDataModels = this.model.neighbourDataModels.filter(n => n.urn !== this.urn);
         this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
-        this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
+        if(this.religionFilter) {
+          this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
+        }
         this.sortSchools();
       });
   }
