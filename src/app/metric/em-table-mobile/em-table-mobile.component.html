@@ -12,7 +12,7 @@
           <div>
             <span id="scoreCol">Score</span>
             <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon">
-              <img src="assets/images/help-icon.png" alt="Help for score" class="small-icon" />
+              <img src="assets/images/info.svg" alt="Help for score" class="small-icon" />
             </a>
           </div>
         </th>
@@ -83,7 +83,7 @@
             {{neighbour.ks2 | number: '1.1-1'}}
           </span>
           <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon">
-            <img src="assets/images/help-icon.png" alt="Help for key stage 2 progress" class="small-icon" />
+            <img src="assets/images/info.svg" alt="Help for key stage 2 progress" class="small-icon" />
           </a>
         </td>
         <td  class="govuk-table__cell em-table-p8-cell width-one-half" *ngIf='model.primarySecondary === "Secondary"'>
@@ -97,14 +97,14 @@
             {{neighbour.progress8 | number: '1.1-1'}}
           </span>
           <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon">
-            <img src="assets/images/help-icon.png" alt="Help for key progress 8" class="small-icon" />
+            <img src="assets/images/info.svg" alt="Help for key progress 8" class="small-icon" />
           </a>
       </tr>
       <tr>
         <th scope="row" class="govuk-table__header width-one-half" [ngStyle]="{'border-bottom': neighbour.urn === model.urn ? 'none' : ''}">Score</th>
         <td class="govuk-table__cell width-one-half">{{neighbour.efficiencyScore | number: '1.1-1'}}
           <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon">
-            <img src="assets/images/help-icon.png" alt="Help for score" class="small-icon" />
+            <img src="assets/images/info.svg" alt="Help for score" class="small-icon" />
           </a>
         </td>
       </tr>

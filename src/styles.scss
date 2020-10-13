@@ -49,10 +49,14 @@ a{
   width: 50%;
 }
 
+.edit-help-icon, .rating-help-icon img{
+  width: 20px!important;
+}
+
 .small-icon{
   margin-right: 5px;
   margin-left: 5px;
-  vertical-align: sub;
+  vertical-align: middle;
 }
 
 .download-icon, .print-icon {
