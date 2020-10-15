@@ -1,3 +1,4 @@
+import { PhaseFilterComponent } from './manual-comparison/phase-filter/phase-filter.component';
 import { TypeFilterComponent } from './manual-comparison/type-filter/type-filter.component';
 import { ContactMapComponent } from './contact-details/contact-map/contact-map.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
@@ -50,11 +51,12 @@ import { EmTableMobileComponent } from './metric/em-table-mobile/em-table-mobile
     RanksFilterComponent,
     OfstedFilterComponent,
     ReligionFilterComponent,
+    TypeFilterComponent,
+    PhaseFilterComponent,
     MapComponent,
     HowItIsCalculatedComponent,
     ContactDetailsComponent,
-    ContactMapComponent,
-    TypeFilterComponent
+    ContactMapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

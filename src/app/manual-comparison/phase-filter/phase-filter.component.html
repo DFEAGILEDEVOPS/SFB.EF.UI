@@ -1,0 +1,18 @@
+<div class="govuk-form-group filter-box">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterPhasesCollapsed = !filterPhasesCollapsed'>
+      <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+        Education phase
+        <button aria-label="School phases - expand filter" class="filter-toggle-button" [hidden]='!filterPhasesCollapsed'>˅</button>
+        <button aria-label="School phases - collapse filter" class="filter-toggle-button" [hidden]='filterPhasesCollapsed'>˄</button>
+      </h3>
+      <div class="filter-box__legend__count" [hidden]='selectedFilterPhases.length === 0'>{{selectedFilterPhases.length}} selected</div>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" [hidden]='filterPhasesCollapsed'>
+       <div class="govuk-checkboxes__item  filter-box__check-item" *ngFor="let phase of filterPhases; let i = index">
+        <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='phase.value' name="filterPhase-{{i}}" id="filterPhase-{{i}}" (change)='emitFilterResults()'>
+        <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterPhase-{{i}}">{{phase.key}}</label>
+      </div>
+    </div>
+  </fieldset>
+</div>
