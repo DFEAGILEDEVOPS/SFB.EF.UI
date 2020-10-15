@@ -1,3 +1,4 @@
+import { TypeFilterComponent } from './type-filter/type-filter.component';
 import { MapComponent } from './map/map.component';
 import { Component, OnInit, Inject, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +16,7 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
   templateUrl: './manual-comparison.component.html',
   styleUrls: ['./manual-comparison.component.scss']
 })
-export class ManualComparisonComponent implements OnInit {
+export class ManualComparisonComponent implements OnInit, AfterViewInit {
 
   @ViewChild('basketFullModal')
   private basketFullModal: TemplateRef<any>;
@@ -28,6 +29,9 @@ export class ManualComparisonComponent implements OnInit {
 
   @ViewChild(ReligionFilterComponent)
   private religionFilter: ReligionFilterComponent;
+
+  @ViewChild(TypeFilterComponent)
+  private typeFilter: TypeFilterComponent;
 
   @ViewChild(MapComponent)
   private map: MapComponent;
@@ -55,18 +59,24 @@ export class ManualComparisonComponent implements OnInit {
     this.visibleSchoolList = [];
   }
 
+  ngAfterViewInit(): void {
+      this.religionFilter?.buildReligionFiltersFromDataModel(this.visibleSchoolList);
+      this.typeFilter?.buildTypeFiltersFromDataModel(this.visibleSchoolList);
+  }
+
   ngOnInit() {
     this.emDataService.getEmData(this.urn).
       subscribe(result => {
         this.model = result;
         this.model.neighbourDataModels = this.model.neighbourDataModels.filter(n => n.urn !== this.urn);
         this.visibleSchoolList = Array.from(this.model.neighbourDataModels);
-        if(this.religionFilter) {
-          this.religionFilter.buildReligionFiltersFromDataModel(this.visibleSchoolList);
-        }
+        this.religionFilter?.buildReligionFiltersFromDataModel(this.visibleSchoolList);
+        this.typeFilter?.buildTypeFiltersFromDataModel(this.visibleSchoolList);
         this.sortSchools();
       });
   }
+
+
 
   sortSchools() {
     this.visibleSchoolList = this.visibleSchoolList.sort((n1, n2) => this.sortByName(n1.name, n2.name));
@@ -103,6 +113,7 @@ export class ManualComparisonComponent implements OnInit {
     this.visibleSchoolList = this.model.neighbourDataModels
       .filter(n => this.ranksFilter.isFiltered(n.rank))
       .filter(n => this.ofstedFilter.isFiltered(n.ofstedRating))
+      .filter(n => this.typeFilter.isFiltered(n.schoolType))
       .filter(n => this.religionFilter.isFiltered(n.religiousCharacter));
 
     this.sortSchools();

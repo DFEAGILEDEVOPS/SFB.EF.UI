@@ -3,6 +3,7 @@ export class EfficiencyMetricNeighbourModel {
   name?: string;
   rank?: number;
   overallPhase?: string;
+  phase?: string;
   localAuthority?: string;
   pupils?: number;
   ever6?: number;

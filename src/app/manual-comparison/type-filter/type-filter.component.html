@@ -1,0 +1,18 @@
+<div class="govuk-form-group filter-box">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterTypesCollapsed = !filterTypesCollapsed'>
+      <h3 class="govuk-fieldset__heading filter-box__legend__heading">
+        School type
+        <button aria-label="School type - expand filter" class="filter-toggle-button" [hidden]='!filterTypesCollapsed'>˅</button>
+        <button aria-label="School type - collapse filter" class="filter-toggle-button" [hidden]='filterTypesCollapsed'>˄</button>
+      </h3>
+      <div class="filter-box__legend__count" [hidden]='selectedFilterTypes.length === 0'>{{selectedFilterTypes.length}} selected</div>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" [hidden]='filterTypesCollapsed'>
+       <div class="govuk-checkboxes__item  filter-box__check-item" *ngFor="let type of filterTypes; let i = index">
+        <input class="govuk-checkboxes__input" type="checkbox" [(ngModel)]='type.value' name="filterType-{{i}}" id="filterType-{{i}}" (change)='emitFilterResults()'>
+        <label class="govuk-label govuk-checkboxes__label filter-box__check-item__label" for="filterType-{{i}}">{{type.key}}</label>
+      </div>
+    </div>
+  </fieldset>
+</div>

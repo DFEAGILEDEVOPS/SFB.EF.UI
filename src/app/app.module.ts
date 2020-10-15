@@ -1,3 +1,4 @@
+import { TypeFilterComponent } from './manual-comparison/type-filter/type-filter.component';
 import { ContactMapComponent } from './contact-details/contact-map/contact-map.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { HowItIsCalculatedComponent } from './how-it-is-calculated/how-it-is-calculated.component';
@@ -52,7 +53,8 @@ import { EmTableMobileComponent } from './metric/em-table-mobile/em-table-mobile
     MapComponent,
     HowItIsCalculatedComponent,
     ContactDetailsComponent,
-    ContactMapComponent
+    ContactMapComponent,
+    TypeFilterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
