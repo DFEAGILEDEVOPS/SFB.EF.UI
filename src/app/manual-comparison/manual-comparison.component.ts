@@ -64,7 +64,6 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    debugger;
       this.religionFilter?.buildReligionFiltersFromDataModel(this.visibleSchoolList);
       this.typeFilter?.buildTypeFiltersFromDataModel(this.visibleSchoolList);
       this.phaseFilter?.buildPhaseFiltersFromDataModel(this.visibleSchoolList);
