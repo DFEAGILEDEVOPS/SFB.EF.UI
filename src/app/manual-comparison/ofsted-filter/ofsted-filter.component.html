@@ -3,8 +3,8 @@
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterOfstedsCollapsed = !filterOfstedsCollapsed'>
       <h3 class="govuk-fieldset__heading filter-box__legend__heading">
         Ofsted rating
-        <span aria-hidden="true" style="float: right" [hidden]='!filterOfstedsCollapsed'>˅</span>
-        <span aria-hidden="true" style="float: right" [hidden]='filterOfstedsCollapsed'>˄</span>
+        <button aria-label="Ofsted rating - expand filter" class="filter-toggle-button" [hidden]='!filterOfstedsCollapsed'>˅</button>
+        <button aria-label="Ofsted rating - collapse filter" class="filter-toggle-button" [hidden]='filterOfstedsCollapsed'>˄</button>
       </h3>
       <div class="filter-box__legend__count" [hidden]='selectedFilterOfsteds.length === 0'>{{selectedFilterOfsteds.length}} selected</div>
     </legend>

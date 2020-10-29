@@ -9,12 +9,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
     <a [routerLink]="" (click)='onResultSectionStateToggle()' class="govuk-link a-button map-toggle-button">
-      <img src="assets/images/icon-map.png" class="small-icon" />
+      <img src="assets/images/location.svg" class="small-icon" alt=""/>
       <span *ngIf='this.resultSectionState === "list-view"'>View on a map</span>
       <span *ngIf='this.resultSectionState === "map-view"'>View as list</span>
     </a>
   </div>
-  <div class="govuk-grid-column-one-half" [hidden]='resultSectionState === "map-view"'>
+  <div class="govuk-grid-column-one-half float-left" [hidden]='resultSectionState === "map-view"'>
     <div class="govuk-form-group">
       <div class="sort-select-wrapper">
         <label class="govuk-label sort-select-wrapper__label" for="sort">Sorted by</label>
@@ -36,20 +36,19 @@
 <div id="listWrapper" [hidden]='resultSectionState === "map-view"'>
   <div *ngIf='!isMobileScreen' id="schoolList">
     <div *ngFor='let neighbour of visibleSchoolList; let i = index'>
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" aria.hidden="true">
       <a class="govuk-link govuk-body-m govuk-!-font-weight-bold school-link"
         href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">
         {{neighbour.name}}
       </a>
       <hr class="govuk-section-break govuk-section-break--m">
-      <ul class="details-list govuk-list govuk-body-s">
+      <ul class="details-list govuk-list govuk-body-s" attr.aria-label="School's details for{{neighbour.name}}">
         <li><strong>Address: </strong><span>{{neighbour.address}}</span></li>
         <li><strong>Telephone: </strong><span>{{neighbour.telephone}}</span></li>
         <li><strong>Headteacher: </strong><span>{{neighbour.headTeacher}}</span></li>
         <li><strong>School phase: </strong><span>{{neighbour.overallPhase}} ({{neighbour.pupils}} pupils)</span></li>
         <li><strong>School type: </strong><span>{{neighbour.schoolType}}</span></li>
-        <li><strong>Efficiency metric: </strong><span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
-          </li>
+        <li><strong>Efficiency metric: </strong><span class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span></li>
       </ul>
     </div>
   </div>

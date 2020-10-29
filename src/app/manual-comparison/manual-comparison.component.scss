@@ -57,13 +57,20 @@
   cursor: default;
   color: govuk-colour("white");
   float: right;
+  &:focus {
+    color: govuk-colour("black");
+  }
 }
 
 .map-toggle-button{
+  img {
+    width: 20px;
+  }
   font-size: 19px;
   font-weight: bold;
   float: left;
   margin-top: 20px;
-  
+
 }
+
 

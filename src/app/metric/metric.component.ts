@@ -18,6 +18,7 @@ export class MetricComponent implements OnInit {
   modalRef: BsModalRef;
   isMobileScreen: boolean;
   isMobilePdfInProgress: boolean;
+  isDesktopPdfInProgress: boolean;
   tabletBreakPoint = 641;
   @ViewChild('downloadingMessage') downloadingMessage: ElementRef;
 
@@ -63,8 +64,10 @@ export class MetricComponent implements OnInit {
         });
       }, 500);
     }else{
+      this.isDesktopPdfInProgress = true;
       this.downloadingMessage.nativeElement.textContent = "Downloading...";
       this.pdfService.generatePdf("desktop").then(() => {
+        this.isDesktopPdfInProgress = false;
         this.downloadingMessage.nativeElement.textContent = "Download page";
       });
     }

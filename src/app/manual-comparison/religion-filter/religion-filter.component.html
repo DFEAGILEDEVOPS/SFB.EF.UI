@@ -3,8 +3,8 @@
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s filter-box__legend" (click)='filterReligionsCollapsed = !filterReligionsCollapsed'>
       <h3 class="govuk-fieldset__heading filter-box__legend__heading">
         Religious character
-        <span aria-hidden="true" style="float: right" [hidden]='!filterReligionsCollapsed'>˅</span>
-        <span aria-hidden="true" style="float: right" [hidden]='filterReligionsCollapsed'>˄</span>
+        <button aria-label="Religious character - expand filter" class="filter-toggle-button" [hidden]='!filterReligionsCollapsed'>˅</button>
+        <button aria-label="Religious character - collapse filter" class="filter-toggle-button" [hidden]='filterReligionsCollapsed'>˄</button>
       </h3>
       <div class="filter-box__legend__count" [hidden]='selectedFilterReligions.length === 0'>{{selectedFilterReligions.length}} selected</div>
     </legend>

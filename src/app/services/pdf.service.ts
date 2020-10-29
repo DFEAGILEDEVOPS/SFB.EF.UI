@@ -32,7 +32,7 @@ export class PdfService {
           this.pdfAddImage(canvas, null, null);
         }
 
-        this.pdfSave("Self-assessment-dashboard.pdf");
+        this.pdfSave("Efficiency-metric.pdf");
         $("body").css("cursor", "");
         resolve();
       });
