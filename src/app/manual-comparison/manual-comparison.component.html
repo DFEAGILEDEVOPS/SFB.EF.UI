@@ -89,7 +89,7 @@
               <button class="govuk-button govuk-button--secondary school-list__add-button"
                 [hidden]='!selectedSchoolUrns.includes(school.urn)'
                 (click)='removeFromManualBasket(school.urn)'>Remove</button>
-              <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link"
+              <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link hide-mobile"
                 [hidden]='selectedSchoolUrns.length === 0'>Continue to benchmarking charts</a>
             </div>
           </div>
