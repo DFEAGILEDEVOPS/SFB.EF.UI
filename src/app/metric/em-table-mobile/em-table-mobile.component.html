@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody class="govuk-table__body" [class.govuk-table__body--border]='i % 5 === 0' *ngFor='let neighbour of model.neighbourDataModels; let i = index'>
-      <tr class="govuk-table__row">
+      <tr class="govuk-table__row" [class.table-row--default-school]='neighbour.urn === model.urn'>
         <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}">
           <span *ngIf='i % 5 === 0' class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
           <span *ngIf='i % 5 !== 0' class="visually-hidden">{{neighbour.rank}}</span>
@@ -27,7 +27,7 @@
         <td class="govuk-table__cell em-table-name-cell"><a class="govuk-link" [class.table-cell-highlight]='neighbour.urn === model.urn' href="{{settings.sfbDomain}}/school/detail?urn={{neighbour.urn}}">{{neighbour.name}}</a></td>
         <td class="govuk-table__cell govuk-table__cell--numeric em-table-score-cell">{{neighbour.efficiencyScore | number: '1.1-1'}}</td>
       </tr>
-      <tr class="govuk-table__row" *ngIf='neighbour.urn === model.urn'>
+      <tr class="govuk-table__row"  *ngIf='neighbour.urn === model.urn'>
         <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" aria-hidden="true"></td>
         <td class="govuk-table__cell link-cell">
           <div class="improve-link-wrapper">
@@ -102,7 +102,7 @@
       </tr>
       <tr>
         <th scope="row" class="govuk-table__header width-one-half" [ngStyle]="{'border-bottom': neighbour.urn === model.urn ? 'none' : ''}">Score</th>
-        <td class="govuk-table__cell width-one-half">{{neighbour.efficiencyScore | number: '1.1-1'}}
+        <td class="govuk-table__cell width-one-half" [class.table-cell--default-school]='neighbour.urn === model.urn'>{{neighbour.efficiencyScore | number: '1.1-1'}}
           <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon">
             <img src="assets/images/info.svg" alt="Help for score" class="small-icon" />
           </a>

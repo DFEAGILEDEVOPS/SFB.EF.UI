@@ -43,7 +43,7 @@
     </tr>
   </thead>
   <tbody class="govuk-table__body" [class.govuk-table__body--border]='i % 5 === 0' *ngFor='let neighbour of model.neighbourDataModels; let i = index'>
-    <tr class="govuk-table__row">
+    <tr class="govuk-table__row" [class.table-row--default-school]='neighbour.urn === model.urn'>
       <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" attr.aria-label="{{neighbour.rank}}">
         <span *ngIf='i % 5 === 0' class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
         <span *ngIf='i % 5 !== 0' class="visually-hidden">{{neighbour.rank}}</span>
