@@ -70,6 +70,11 @@
           'em-table-ks2-cell__text--above': neighbour.ks2 <= 3 && neighbour.ks2 > 2,
           'em-table-ks2-cell__text--well-above': neighbour.ks2 > 3}">
           {{neighbour.ks2 | number: '1.1-1'}}
+          <span class="visually-hidden" *ngIf="neighbour.ks2 < -3">: well below</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 >= -3 && neighbour.ks2 < -2">: below</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 >= -2 && neighbour.ks2 <= 2">: average</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 <= 3 && neighbour.ks2 > 2">: above</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 > 3">: well above</span>
         </span>
       </td>
       <td  class="govuk-table__cell em-table-p8-cell" *ngIf='model.primarySecondary === "Secondary"'>
@@ -81,6 +86,11 @@
         'em-table-p8-cell__text--above': neighbour.progress8 <= 0.5 && neighbour.progress8 > 0.25,
         'em-table-p8-cell__text--well-above': neighbour.progress8 > 0.5}">
           {{neighbour.progress8 | number: '1.1-1'}}
+          <span class="visually-hidden" *ngIf="neighbour.progress8 < -0.5">: well below</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 >= -0.5 && neighbour.progress8 < -0.25">: below</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 >= -0.25 && neighbour.progress8 <= 0.25">: average</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 <= 0.5 && neighbour.progress8 > 0.25">: above</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 > 0.5">: well above</span>
         </span>
       </td>
       <td class="govuk-table__cell em-table-score-cell">
