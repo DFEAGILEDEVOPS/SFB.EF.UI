@@ -82,7 +82,7 @@
             'em-table-ks2-cell__text--well-above': neighbour.ks2 > 3}">
             {{neighbour.ks2 | number: '1.1-1'}}
           </span>
-          <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon">
+          <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon" id="help-ks2">
             <img src="assets/images/info.svg" alt="Help for key stage 2 progress" class="small-icon" />
           </a>
         </td>
@@ -96,14 +96,14 @@
           'em-table-p8-cell__text--well-above': neighbour.progress8 > 0.5}">
             {{neighbour.progress8 | number: '1.1-1'}}
           </span>
-          <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon">
+          <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon" id="help-p8">
             <img src="assets/images/info.svg" alt="Help for key progress 8" class="small-icon" />
           </a>
       </tr>
       <tr>
         <th scope="row" class="govuk-table__header width-one-half" [ngStyle]="{'border-bottom': neighbour.urn === model.urn ? 'none' : ''}">Score</th>
         <td class="govuk-table__cell width-one-half" [class.table-cell--default-school]='neighbour.urn === model.urn'>{{neighbour.efficiencyScore | number: '1.1-1'}}
-          <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon">
+          <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon" id="help-score">
             <img src="assets/images/info.svg" alt="Help for score" class="small-icon" />
           </a>
         </td>
