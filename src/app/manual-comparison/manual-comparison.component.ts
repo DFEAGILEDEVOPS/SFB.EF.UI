@@ -11,6 +11,7 @@ import { RanksFilterComponent } from './ranks-filter/ranks-filter.component';
 import { OfstedFilterComponent } from './ofsted-filter/ofsted-filter.component';
 import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
+import { TitleService } from 'app/services/title.service';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -52,7 +53,9 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
                     @Inject(appSettings) public settings: AppSettings,
                     private modalService: BsModalService,
-                    private emDataService: EmdataService) {
+                    private emDataService: EmdataService,
+                    titleService: TitleService) {
+    titleService.setWithPrefix("Manual comparison");
     this.route.paramMap.subscribe(pmap => {
         this.urn = +pmap.get('urn');
       });

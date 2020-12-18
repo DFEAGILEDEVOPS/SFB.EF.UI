@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
+import { TitleService } from 'app/services/title.service';
 
 @Component({
   selector: 'app-comparison-type',
@@ -13,7 +14,8 @@ export class ComparisonTypeComponent implements OnInit {
   name: string;
   comparisonType: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, @Inject(appSettings) public settings: AppSettings) {
+  constructor(private route: ActivatedRoute, private router: Router, @Inject(appSettings) public settings: AppSettings, titleService: TitleService) {
+    titleService.setWithPrefix("Select comparison type");
     this.route.params.subscribe(params => {
       this.urn = +params.urn;
       this.name = params.name;

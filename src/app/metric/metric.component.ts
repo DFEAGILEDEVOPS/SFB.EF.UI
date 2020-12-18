@@ -1,3 +1,4 @@
+import { TitleService } from './../services/title.service';
 import { PdfService } from './../services/pdf.service';
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +28,9 @@ export class MetricComponent implements OnInit {
               private modalService: BsModalService,
               private emDataService: EmdataService,
               private pdfService: PdfService,
-              @Inject(appSettings) public settings: AppSettings) {
+              @Inject(appSettings) public settings: AppSettings,
+              titleService: TitleService) {
+    titleService.setWithPrefix("Efficiency Metric");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
     });

@@ -6,6 +6,7 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { MapComponent } from 'app/manual-comparison/map/map.component';
 import { ContactMapComponent } from './contact-map/contact-map.component';
+import { TitleService } from 'app/services/title.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -27,7 +28,9 @@ export class ContactDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
                   @Inject(appSettings) public settings: AppSettings,
-                  private emDataService: EmdataService) {
+                  private emDataService: EmdataService,
+                  titleService: TitleService) {
+    titleService.setWithPrefix("Contact details");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
     });

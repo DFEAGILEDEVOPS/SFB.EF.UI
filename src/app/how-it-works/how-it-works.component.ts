@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppSettings, appSettings } from '@core/config/settings/app-settings';
+import { TitleService } from 'app/services/title.service';
 
 @Component({
   selector: 'app-how-it-works',
@@ -11,7 +12,8 @@ export class HowItWorksComponent implements OnInit {
   urn: number;
   name: string;
 
-  constructor(private route: ActivatedRoute, @Inject(appSettings) public settings: AppSettings) {
+  constructor(private route: ActivatedRoute, @Inject(appSettings) public settings: AppSettings, titleService: TitleService) {
+    titleService.setWithPrefix("Introduction");
     this.route.params.subscribe(params => {
       this.urn = +params.urn;
       this.name = params.name;
