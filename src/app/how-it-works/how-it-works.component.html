@@ -1,4 +1,4 @@
-<app-hiw-bread-crumb [urn]='urn' [name]='name'></app-hiw-bread-crumb>
+<a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}" class="govuk-back-link">Back</a>
 
 <h1 class="govuk-heading-xl">Introduction</h1>
 
@@ -34,7 +34,5 @@
     <button class="govuk-button" data-module="govuk-button" routerLink="/efficiency-metric/metric/{{urn}}">
       Continue to efficiency metric
     </button>
-    <a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}"
-      class="govuk-link govuk-link--no-visited-state back-button">Back</a>
   </div>
 </div>

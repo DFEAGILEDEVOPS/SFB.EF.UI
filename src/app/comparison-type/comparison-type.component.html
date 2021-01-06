@@ -1,4 +1,4 @@
-<app-ct-bread-crumb [urn]='urn' [name]='name'></app-ct-bread-crumb>
+<a routerLink="/efficiency-metric/metric/{{urn}}" class="govuk-back-link">Back</a>
 
 <h1 class="govuk-heading-xl">Select comparison type</h1>
 <p class="govuk-body-s">
@@ -41,8 +41,6 @@
       <button class="govuk-button" data-module="govuk-button" type="submit" (click)='onContinue()'>
         Continue
       </button>
-      <a routerLink="/efficiency-metric/metric/{{urn}}"
-        class="govuk-link govuk-link--no-visited-state back-button">Back</a>
     </div>
   </div>
 
