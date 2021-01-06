@@ -1,3 +1,4 @@
+import { ViewModeService } from './../services/viewMode.service';
 import { TitleService } from './../services/title.service';
 import { PdfService } from './../services/pdf.service';
 import { EmdataService } from '../core/network/services/emdata.service';
@@ -29,7 +30,9 @@ export class MetricComponent implements OnInit {
               private emDataService: EmdataService,
               private pdfService: PdfService,
               @Inject(appSettings) public settings: AppSettings,
-              titleService: TitleService) {
+              titleService: TitleService,
+              viewModeService: ViewModeService) {
+    viewModeService.setMetricMode();
     titleService.setWithPrefix("Efficiency Metric");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');

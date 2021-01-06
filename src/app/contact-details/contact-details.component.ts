@@ -7,6 +7,7 @@ import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeigh
 import { MapComponent } from 'app/manual-comparison/map/map.component';
 import { ContactMapComponent } from './contact-map/contact-map.component';
 import { TitleService } from 'app/services/title.service';
+import { ViewModeService } from 'app/services/viewMode.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -29,7 +30,9 @@ export class ContactDetailsComponent implements OnInit {
     private route: ActivatedRoute,
                   @Inject(appSettings) public settings: AppSettings,
                   private emDataService: EmdataService,
-                  titleService: TitleService) {
+                  titleService: TitleService,
+                  viewModeService: ViewModeService) {
+    viewModeService.setSupportMode();
     titleService.setWithPrefix("Contact details");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
