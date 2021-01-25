@@ -6,7 +6,9 @@
     <p id="resultsFor" class="govuk-body-s">
       Results for
       <span class="highlight">
-        <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+        <a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}">
+          <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+        </a>
       </span>
       <span> using
         <span class="govuk-!-font-weight-bold" *ngIf="model.schoolType === 'Maintained'">{{settings.maintainedTerm}}</span>
