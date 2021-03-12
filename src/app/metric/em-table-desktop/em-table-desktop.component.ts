@@ -32,7 +32,7 @@ export class EmTableDesktopComponent implements OnInit {
       case "KS2":
         initialState = {
           title: "Key stage 2 progress scores",
-          textContent: "The scores are calculated by comparing the key stage 2 test and assessment results of pupils with the results of pupils in schools across England who started with similar assessment results at the end of the previous key stage 1." +
+          textContent: "KS2 progress shows how the average of three progress measures, reading, writing and math, pupils at this school made between the end of key stage 1 and the end of key stage 2, compared to pupils across England who got similar results at the end of key stage 1." +
           "<h4 class='govuk-heading-s govuk-!-margin-top-4'>What do the scores mean</h4>" +
           "<div class='modal__score'><div class='score well-below'>Well below average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
           "<div class='modal__score'><div class='score below'>Below average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
@@ -47,7 +47,7 @@ export class EmTableDesktopComponent implements OnInit {
       case "Progress8":
           initialState = {
             title: "Progress 8 progress scores",
-            textContent: "Progress 8 score is calculated for each pupil by comparing their Attainment 8 score – with the average Attainment 8 scores of all pupils nationally who had a similar starting point, using assessment results from the end of primary school.</p>" +
+            textContent: "Progress 8 shows how much progress pupils at this school made between the end of key stage 2 and the end of key stage 4, compared to pupils across England who got similar results at the end of key stage 2.</p>" +
             "<h4 class='govuk-heading-s govuk-!-margin-top-4'>What do the scores mean</h4>" +
             "<div class='modal__score'><div class='score well-below'>Well below average</div><div>About <span class='bold'>13%</span> of</br> schools in England</div></div>" +
             "<div class='modal__score'><div class='score below'>Below average</div><div>About <span class='bold'>19%</span> of</br> schools in England</div></div>" +
@@ -62,8 +62,7 @@ export class EmTableDesktopComponent implements OnInit {
       case "Score":
         initialState = {
           title: "Efficiency metric score",
-          textContent: "Progress 8 score is calculated for each pupil by comparing their Attainment 8 score – with the average Attainment 8 scores of all pupils nationally who had a similar starting point, using assessment results from the end of primary school.</p>" +
-          "<p>The efficiency metric score is a school's progress (KS2 or Progress 8) divided by their per pupil expenditure.</p>" +
+          textContent: "<p>The efficiency metric score is a school's progress (KS2 or Progress 8) divided by their per pupil expenditure.</p>" +
           "<span class='govuk-!-font-weight-bold'>KS2 progress <span class='italic'>or</span> Progress 8 / Expenditure per pupil = Efficiency metric score</span>",
           referrer: "help-score"
         };
