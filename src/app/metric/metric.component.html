@@ -39,7 +39,7 @@
             {{model.rank}}
           </span>
           <br>
-          <span id="emRankContent-2">This means <span id="rankPercent" class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
+          <span id="emRankContent-2">This means <span id="rankPercent" class="govuk-!-font-weight-bold">{{((model.rank) -1)*0.1  | percent}}</span> of similar
             schools get better pupil progress for a similar amount of money.
           </span>
           <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onScrollToSchool()' class="govuk-link" attr.aria-label="See {{model.name}}'s rank">See this school's rank</a>

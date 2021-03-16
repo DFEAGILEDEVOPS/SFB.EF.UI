@@ -25,6 +25,8 @@ export class EmdataService {
         .pipe(
           tap(dataModel => {
             this.model = dataModel;
+            this.model.rank = Math.ceil(this.model.rank / 5);
+            this.model.neighbourDataModels.forEach(n => n.rank = Math.ceil(n.rank / 5));
           })
         );
     }

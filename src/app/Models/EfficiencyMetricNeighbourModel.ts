@@ -5,9 +5,6 @@ export class EfficiencyMetricNeighbourModel {
   overallPhase?: string;
   phase?: string;
   localAuthority?: string;
-  pupils?: number;
-  ever6?: number;
-  sen?: number;
   expenditurePP?: number;
   progress8?: number;
   ks2?: number;
