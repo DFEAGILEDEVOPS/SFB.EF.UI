@@ -16,6 +16,9 @@ export class EfficiencyMetricNeighbourModel {
   religiousCharacter?: string;
   schoolType?: string;
   location?: Location;
+  pupils?: number;
+  ever6?: number;
+  sen?: number;
 }
 
 class Location {
