@@ -1,17 +1,6 @@
 <app-metric-bread-crumb [urn]='model.urn' [name]='model.name' class="hide-in-print"></app-metric-bread-crumb>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <div class="govuk-inset-text mt-0">
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Due to Covid-19 the Government is not publishing the school educational performance data for 2020. This Efficiency Metric shows financial and school data relevant to the published 2019 performance data.
-        </strong>
-      </div>
-    </div>
-  </div>
   <div class="govuk-grid-column-two-thirds expand-in-print">
     <h1 class="govuk-heading-xl main-header" *ngIf="model.schoolType === 'Maintained'">Efficiency Metric:  {{settings.maintainedTerm.substring(5,9)}}</h1>
     <h1 class="govuk-heading-xl main-header" *ngIf="model.schoolType === 'Academy'">Efficiency Metric:  {{settings.academyTerm.substring(5,9)}}</h1>
@@ -69,6 +58,11 @@
         <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in the table</a></li>
       </ul>
       <button class="govuk-button bm-button" (click)="onGotoBenchmark()">Benchmark these schools</button>
+    </div>
+  </div>
+  <div class="govuk-grid-column-full">
+    <div class="govuk-inset-text mb-0 ">
+          Due to Covid-19 the Government is not publishing the school educational performance data for 2020. This Efficiency Metric shows financial and school data relevant to the published 2019 performance data.
     </div>
   </div>
 </div>
