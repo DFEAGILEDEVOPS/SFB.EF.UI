@@ -61,16 +61,6 @@ export class EmTableDesktopComponent implements OnInit {
           this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
           break;
 
-      case "Score":
-        initialState = {
-          title: "Efficiency metric score",
-          textContent: "<p>The efficiency metric score is a school's progress (KS2 or Progress 8) divided by their per pupil expenditure.</p>" +
-          "<span class='govuk-!-font-weight-bold'>KS2 progress <span class='italic'>or</span> Progress 8 / Expenditure per pupil = Efficiency metric score</span>",
-          referrer: "help-score"
-        };
-        this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
-        break;
-
       default:
         break;
     }

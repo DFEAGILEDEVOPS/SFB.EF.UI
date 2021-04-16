@@ -69,17 +69,6 @@ export class EmTableMobileComponent implements OnInit {
           this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
           break;
 
-      case "Score":
-        initialState = {
-          title: "Efficiency metric score",
-          textContent: "Progress 8 score is calculated for each pupil by comparing their Attainment 8 score – with the average Attainment 8 scores of all pupils nationally who had a similar starting point, using assessment results from the end of primary school.</p>" +
-          "<p>The efficiency metric score is a school's progress (KS2 or Progress 8) divided by their per pupil expenditure.</p>" +
-          "<span class='govuk-!-font-weight-bold'>KS2 progress <span class='italic'>or</span> Progress 8 / Expenditure per pupil = Efficiency metric score</span>",
-          referrer: "help-ks2"
-        };
-        this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
-        break;
-
       default:
         break;
     }

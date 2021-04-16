@@ -33,12 +33,6 @@
         </div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__score-header govuk-table__header--numeric"
       aria-labelledby="scoreCol">
-        <div>
-          <span id="scoreCol">Score</span>
-          <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon" id="help-score">
-            <img src="assets/images/info.svg" alt="Help for score" class="small-icon" />
-          </a>
-        </div>
       </th>
     </tr>
   </thead>
@@ -91,11 +85,6 @@
           <span class="visually-hidden" *ngIf="neighbour.progress8 >= -0.25 && neighbour.progress8 <= 0.25">: average</span>
           <span class="visually-hidden" *ngIf="neighbour.progress8 <= 0.5 && neighbour.progress8 > 0.25">: above</span>
           <span class="visually-hidden" *ngIf="neighbour.progress8 > 0.5">: well above</span>
-        </span>
-      </td>
-      <td class="govuk-table__cell em-table-score-cell">
-        <span class="em-table-score-cell__text">
-        {{neighbour.efficiencyScore | number: '1.1-1'}}
         </span>
       </td>
     </tr>
