@@ -13,6 +13,7 @@ import { ReligionFilterComponent } from './religion-filter/religion-filter.compo
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { TitleService } from 'app/services/title.service';
 import { ViewModeService } from 'app/services/viewMode.service';
+import { SessionService } from 'app/services/session.service';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -56,14 +57,15 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
                     private modalService: BsModalService,
                     private emDataService: EmdataService,
                     titleService: TitleService,
-                    viewModeService: ViewModeService) {
+                    viewModeService: ViewModeService,
+                    private sessionService: SessionService) {
     viewModeService.setSupportMode();
     titleService.setWithPrefix("Manual comparison");
     this.route.paramMap.subscribe(pmap => {
         this.urn = +pmap.get('urn');
       });
     this.model = new EMModel();
-    this.selectedSchoolUrns = new Array<number>();
+    this.loadSelectionFromSession();
     this.sort = 'AlphabeticalAZ';
     this.resultSectionState = 'list-view';
     this.visibleSchoolList = [];
@@ -112,6 +114,7 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   addToManualBasket(urn: number) {
     if (this.selectedSchoolUrns.length < 30) {
       this.selectedSchoolUrns.push(urn);
+      this.storeSelectionInSession();
     } else {
       this.openModal(this.basketFullModal);
     }
@@ -119,6 +122,15 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
 
   removeFromManualBasket(urn) {
     this.selectedSchoolUrns = this.selectedSchoolUrns.filter(s => s !== urn);
+    this.storeSelectionInSession();
+  }
+
+  storeSelectionInSession(){
+    this.sessionService.storeSelectionInSession(this.selectedSchoolUrns);
+  }
+
+  loadSelectionFromSession(){
+    this.selectedSchoolUrns = this.sessionService.loadSelectionFromSession();
   }
 
   filterResults() {

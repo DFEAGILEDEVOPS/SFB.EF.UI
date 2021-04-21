@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
+import { SessionService } from 'app/services/session.service';
 import { TitleService } from 'app/services/title.service';
 import { ViewModeService } from 'app/services/viewMode.service';
 
@@ -15,7 +16,7 @@ export class ComparisonTypeComponent implements OnInit {
   name: string;
   comparisonType: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, @Inject(appSettings) public settings: AppSettings, titleService: TitleService, viewModeService: ViewModeService) {
+  constructor(private route: ActivatedRoute,private sessionService: SessionService, private router: Router, @Inject(appSettings) public settings: AppSettings, titleService: TitleService, viewModeService: ViewModeService) {
     viewModeService.setSupportMode();
     titleService.setWithPrefix("Select comparison type");
     this.route.params.subscribe(params => {
@@ -33,6 +34,7 @@ export class ComparisonTypeComponent implements OnInit {
       window.open(
         `${this.settings.sfbDomain}/BenchmarkCharts/GenerateFromEfficiencyMetricsTop?urn=${this.urn}`, '_self');
     } else {
+      this.sessionService.clearSession();
       this.router.navigate(['efficiency-metric/manual-comparison', this.urn]);
     }
   }
