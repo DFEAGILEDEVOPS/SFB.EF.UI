@@ -1,4 +1,4 @@
-import { ViewModeService } from './../services/viewMode.service';
+import { BackRoutingService } from './../services/back-routing.service';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppSettings, appSettings } from '@core/config/settings/app-settings';
@@ -13,12 +13,12 @@ export class HowItWorksComponent implements OnInit {
   urn: number;
   name: string;
 
-  constructor(private route: ActivatedRoute, @Inject(appSettings) public settings: AppSettings, titleService: TitleService, viewModeService: ViewModeService) {
-    viewModeService.setSupportMode();
+  constructor(private route: ActivatedRoute, @Inject(appSettings) public settings: AppSettings, titleService: TitleService, backRoutingService: BackRoutingService) {
     titleService.setWithPrefix("Introduction");
     this.route.params.subscribe(params => {
       this.urn = +params.urn;
       this.name = params.name;
+      backRoutingService.setPreviousUrl(`${settings.sfbDomain}/School/start-benchmarking?urn=${this.urn}`)
     });
   }
 

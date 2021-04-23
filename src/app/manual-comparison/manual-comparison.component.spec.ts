@@ -1,3 +1,4 @@
+import { BackRoutingService } from './../services/back-routing.service';
 import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -26,6 +27,7 @@ describe('ManualComparisonComponent', () => {
   let urlServiceSpy =  jasmine.createSpyObj('URLService', ['getDomain']);
   let bsModalServiceSpy = jasmine.createSpyObj("BsModalService", ['show'])
   let emDataServiceSpy =  jasmine.createSpyObj('EmdataService', ['getEmData']);
+  let backRoutingServiceSpy =  jasmine.createSpyObj('BackRoutingService', ['setPreviousUrl']);
 
   beforeEach(async(() => {
 
@@ -38,6 +40,7 @@ describe('ManualComparisonComponent', () => {
         { provide: URLService, useValue: urlServiceSpy },
         { provide: appSettings, useFactory: appSettingsFactory, deps: [ConfigService, URLService] },
         { provide: BsModalService, useValue: bsModalServiceSpy },
+        { provide: BackRoutingService, useValue: backRoutingServiceSpy }
       ]
     })
     .compileComponents();

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'efficiency-metric/how-it-works/:urn/:name', component: HowItWorksComponent},
   { path: 'efficiency-metric/ways-to-improve/:urn/:name', component: WaysToImproveComponent},
   { path: 'efficiency-metric/comparison-type/:urn/:name', component: ComparisonTypeComponent},
-  { path: 'efficiency-metric/manual-comparison/:urn', component: ManualComparisonComponent},
+  { path: 'efficiency-metric/manual-comparison/:urn/:name', component: ManualComparisonComponent},
   { path: 'efficiency-metric/how-it-is-calculated/:urn', component: HowItIsCalculatedComponent},
   { path: 'efficiency-metric/contact-details/:urn', component: ContactDetailsComponent},
   { path: 'service-problem', component: ServiceProblemComponent},

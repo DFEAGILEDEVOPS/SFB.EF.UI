@@ -1,3 +1,4 @@
+import { BackRoutingService } from './../services/back-routing.service';
 import { PhaseFilterComponent } from './phase-filter/phase-filter.component';
 import { TypeFilterComponent } from './type-filter/type-filter.component';
 import { MapComponent } from './map/map.component';
@@ -12,7 +13,7 @@ import { OfstedFilterComponent } from './ofsted-filter/ofsted-filter.component';
 import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { TitleService } from 'app/services/title.service';
-import { ViewModeService } from 'app/services/viewMode.service';
+
 import { SessionService } from 'app/services/session.service';
 
 @Component({
@@ -44,6 +45,7 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   private map: MapComponent;
 
   urn: number;
+  name: string;
   model: EMModel;
   modalRef: BsModalRef;
   selectedSchoolUrns: Array<number>;
@@ -57,12 +59,14 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
                     private modalService: BsModalService,
                     private emDataService: EmdataService,
                     titleService: TitleService,
-                    viewModeService: ViewModeService,
+                    backRoutingService: BackRoutingService,
                     private sessionService: SessionService) {
-    viewModeService.setSupportMode();
+
     titleService.setWithPrefix("Manual comparison");
     this.route.paramMap.subscribe(pmap => {
         this.urn = +pmap.get('urn');
+        this.name = pmap.get('name');
+        backRoutingService.setPreviousUrl(`/efficiency-metric/comparison-type/${this.urn}/${this.name}`)
       });
     this.model = new EMModel();
     this.loadSelectionFromSession();

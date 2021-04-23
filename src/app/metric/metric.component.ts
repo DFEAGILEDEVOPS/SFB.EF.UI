@@ -1,4 +1,4 @@
-import { ViewModeService } from './../services/viewMode.service';
+import { BackRoutingService } from './../services/back-routing.service';
 import { TitleService } from './../services/title.service';
 import { PdfService } from './../services/pdf.service';
 import { EmdataService } from '../core/network/services/emdata.service';
@@ -31,8 +31,7 @@ export class MetricComponent implements OnInit {
               private pdfService: PdfService,
               @Inject(appSettings) public settings: AppSettings,
               titleService: TitleService,
-              viewModeService: ViewModeService) {
-    viewModeService.setMetricMode();
+              backRoutingService: BackRoutingService) {
     titleService.setWithPrefix("Efficiency Metric");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
@@ -41,6 +40,7 @@ export class MetricComponent implements OnInit {
     this.model.name = 'Your school';
     this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
     this.isMobilePdfInProgress = false;
+    backRoutingService.setPreviousUrl(null);
   }
 
   @HostListener('window:resize', ['$event'])
