@@ -2,16 +2,19 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds expand-in-print">
-    <h1 class="govuk-heading-xl main-header">Efficiency Metric</h1>
+    <h1 class="govuk-heading-xl main-header" *ngIf="model.schoolType === 'Maintained'">Efficiency Metric:  {{settings.maintainedTerm.substring(5,9)}}</h1>
+    <h1 class="govuk-heading-xl main-header" *ngIf="model.schoolType === 'Academy'">Efficiency Metric:  {{settings.academyTerm.substring(5,9)}}</h1>
     <p id="resultsFor" class="govuk-body-s">
       Results for
       <span class="highlight">
-        <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+        <a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}">
+          <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+        </a>
       </span>
       <span> using
         <span class="govuk-!-font-weight-bold" *ngIf="model.schoolType === 'Maintained'">{{settings.maintainedTerm}}</span>
         <span class="govuk-!-font-weight-bold" *ngIf="model.schoolType === 'Academy'">{{settings.academyTerm}}</span>
-         finance data</span>
+         performance and finance data</span>
     </p>
 
     <div class="govuk-grid-row hide-in-print">
@@ -37,11 +40,11 @@
             {{model.rank}}
           </span>
           <br>
-          <span id="emRankContent-2">This means <span id="rankPercent" class="govuk-!-font-weight-bold">{{(model.rank-1)*0.1  | percent}}</span> of similar
+          <span id="emRankContent-2">This means <span id="rankPercent" class="govuk-!-font-weight-bold">{{((model.rank) -1)*0.1  | percent}}</span> of similar
             schools get better pupil progress for a similar amount of money.
           </span>
-          <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onScrollToSchool()' class="govuk-link">See this school's rank</a>
-          <a [hidden]="!isMobileScreen" [routerLink]="" (click)='emTableMobile.onScrollToSchool()' class="govuk-link">See this school's rank</a>
+          <a [hidden]="isMobileScreen" [routerLink]="" (click)='emTableDesktop.onScrollToSchool()' class="govuk-link" attr.aria-label="See {{model.name}}'s rank">See this school's rank</a>
+          <a [hidden]="!isMobileScreen" [routerLink]="" (click)='emTableMobile.onScrollToSchool()' class="govuk-link" attr.aria-label="See {{model.name}}'s rank">See this school's rank</a>
         </div>
       </div>
     </div>
@@ -55,6 +58,11 @@
         <li><a class="govuk-link" routerLink='/efficiency-metric/contact-details/{{model.urn}}'>Contact details of schools in the table</a></li>
       </ul>
       <button class="govuk-button bm-button" (click)="onGotoBenchmark()">Benchmark these schools</button>
+    </div>
+  </div>
+  <div class="govuk-grid-column-full">
+    <div class="govuk-inset-text">
+          Due to Covid-19 the Government is not publishing the school educational performance data for 2020. This Efficiency Metric shows financial and school data relevant to the published 2019 performance data.
     </div>
   </div>
 </div>

@@ -51,7 +51,8 @@ export class PdfService {
       removeContainer: false,
       width: element.clientWidth,
       height: element.clientHeight,
-      allowTaint:true
+      allowTaint:true,
+      scale: 1
     });
   }
 

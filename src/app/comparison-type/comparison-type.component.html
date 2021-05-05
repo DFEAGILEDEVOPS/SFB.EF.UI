@@ -1,10 +1,10 @@
-<app-ct-bread-crumb [urn]='urn' [name]='name'></app-ct-bread-crumb>
-
 <h1 class="govuk-heading-xl">Select comparison type</h1>
 <p class="govuk-body-s">
   Comparing to
   <span class="highlight">
-    <span class="govuk-!-font-weight-bold">{{name}}</span>
+    <a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}">
+      <span class="govuk-!-font-weight-bold">{{name}}</span>
+    </a>
   </span>
 </p>
 <hr class="govuk-section-break govuk-section-break--m">
@@ -13,9 +13,9 @@
   <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-        <h1 class="govuk-fieldset__heading">
+        <h2 class="govuk-fieldset__heading">
           How would you like to compare?
-        </h1>
+        </h2>
       </legend>
       <div class="govuk-radios">
         <div class="govuk-radios__item">
@@ -41,8 +41,6 @@
       <button class="govuk-button" data-module="govuk-button" type="submit" (click)='onContinue()'>
         Continue
       </button>
-      <a routerLink="/efficiency-metric/metric/{{urn}}"
-        class="govuk-link govuk-link--no-visited-state back-button">Back</a>
     </div>
   </div>
 

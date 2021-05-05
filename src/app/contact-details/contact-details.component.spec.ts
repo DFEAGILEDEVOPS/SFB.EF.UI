@@ -1,3 +1,4 @@
+import { BackRoutingService } from './../services/back-routing.service';
 import { EMModel } from './../Models/EMModel';
 import { EmdataService } from './../core/network/services/emdata.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -21,6 +22,7 @@ describe('ContactDetailsComponent', () => {
   let emDataServiceSpy =  jasmine.createSpyObj('EmdataService', ['getEmData']);
   let configServiceSpy =  jasmine.createSpyObj('ConfigService', ['getSettings']);
   let urlServiceSpy =  jasmine.createSpyObj('URLService', ['getDomain']);
+  let backRoutingServiceSpy =  jasmine.createSpyObj('BackRoutingService', ['setPreviousUrl']);
 
   beforeEach(async(() => {
 
@@ -31,6 +33,7 @@ describe('ContactDetailsComponent', () => {
         { provide: EmdataService, useValue: emDataServiceSpy },
         { provide: ConfigService, useValue: configServiceSpy },
         { provide: URLService, useValue: urlServiceSpy },
+        { provide: BackRoutingService, useValue: backRoutingServiceSpy },
         { provide: appSettings, useFactory: appSettingsFactory, deps: [ConfigService, URLService] }
       ]
     })

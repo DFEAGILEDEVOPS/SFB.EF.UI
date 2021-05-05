@@ -1,3 +1,4 @@
+import { BackRoutingService } from './../services/back-routing.service';
 import { Component, OnInit, Inject, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmdataService } from '@core/network/services/emdata.service';
@@ -6,6 +7,8 @@ import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { EfficiencyMetricNeighbourModel } from 'app/Models/EfficiencyMetricNeighbourModel';
 import { MapComponent } from 'app/manual-comparison/map/map.component';
 import { ContactMapComponent } from './contact-map/contact-map.component';
+import { TitleService } from 'app/services/title.service';
+
 
 @Component({
   selector: 'app-contact-details',
@@ -27,9 +30,14 @@ export class ContactDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
                   @Inject(appSettings) public settings: AppSettings,
-                  private emDataService: EmdataService) {
+                  private emDataService: EmdataService,
+                  titleService: TitleService,
+                  backRoutingService: BackRoutingService) {
+
+    titleService.setWithPrefix("Contact details");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
+      backRoutingService.setPreviousUrl(`/efficiency-metric/metric/${this.urn}`)
     });
     this.model = new EMModel();
     this.sort = 'Rank';

@@ -1,12 +1,12 @@
 <!-- {{diagnostic}} -->
 
-<app-mc-bread-crumb [urn]='urn' [name]='model.name'></app-mc-bread-crumb>
-
 <h1 class="govuk-heading-xl">Manual comparison</h1>
 <p class="govuk-body-s">
   Comparing to
   <span class="highlight">
-    <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+    <a href="{{settings.sfbDomain}}/school/detail?urn={{urn}}">
+      <span class="govuk-!-font-weight-bold">{{model.name}}</span>
+    </a>
   </span>
 </p>
 
@@ -89,7 +89,7 @@
               <button class="govuk-button govuk-button--secondary school-list__add-button"
                 [hidden]='!selectedSchoolUrns.includes(school.urn)'
                 (click)='removeFromManualBasket(school.urn)'>Remove</button>
-              <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link"
+              <a href='javascript:document.getElementById("selectionForm").submit()' class="govuk-link hidden-link hide-mobile"
                 [hidden]='selectedSchoolUrns.length === 0'>Continue to benchmarking charts</a>
             </div>
           </div>

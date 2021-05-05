@@ -46,7 +46,9 @@ export class EmTableMobileComponent implements OnInit {
           "<div class='modal__score'><div class='score below'>Below average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
           "<div class='modal__score'><div class='score average'>Average</div><div>About <span class='bold'>60%</span> of</br> schools in England</div></div>" +
           "<div class='modal__score'><div class='score above'>Above average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
-          "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>"
+          "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
+          "<div class='govuk-inset-text'><span class='govuk-body-s'>Due to Covid-19 the Government is not publishing the school educational performance data for 2020, the latest progress data is from 2019.</span></div>",
+          referrer: "help-ks2"
         };
         this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
         break;
@@ -60,20 +62,12 @@ export class EmTableMobileComponent implements OnInit {
             "<div class='modal__score'><div class='score below'>Below average</div><div>About <span class='bold'>19%</span> of</br> schools in England</div></div>" +
             "<div class='modal__score'><div class='score average'>Average</div><div>About <span class='bold'>37%</span> of</br> schools in England</div></div>" +
             "<div class='modal__score'><div class='score above'>Above average</div><div>About <span class='bold'>17%</span> of</br> schools in England</div></div>" +
-            "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>14%</span> of</br> schools in England</div></div>"
+            "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>14%</span> of</br> schools in England</div></div>"+
+            "<div class='govuk-inset-text'><span class='govuk-body-s'>Due to Covid-19 the Government is not publishing the school educational performance data for 2020, the latest progress data is from 2019.</span></div>",
+            referrer: "help-p8"
           };
           this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
           break;
-
-      case "Score":
-        initialState = {
-          title: "Efficiency metric score",
-          textContent: "Progress 8 score is calculated for each pupil by comparing their Attainment 8 score – with the average Attainment 8 scores of all pupils nationally who had a similar starting point, using assessment results from the end of primary school.</p>" +
-          "<p>The efficiency metric score is a school's progress (KS2 or Progress 8) divided by their per pupil expenditure.</p>" +
-          "<span class='govuk-!-font-weight-bold'>KS2 progress <span class='italic'>or</span> Progress 8 / Expenditure per pupil = Efficiency metric score</span>"
-        };
-        this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
-        break;
 
       default:
         break;

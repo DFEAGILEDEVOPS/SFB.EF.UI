@@ -348,3 +348,8 @@ span.table-cell-highlight {
   background-color: govuk-colour("light-grey");
 }
 
+.hide-mobile {
+  @include govuk-media-query($until: tablet) {
+    display: none;
+  }
+}

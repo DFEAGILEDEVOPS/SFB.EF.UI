@@ -5,13 +5,9 @@ export class EfficiencyMetricNeighbourModel {
   overallPhase?: string;
   phase?: string;
   localAuthority?: string;
-  pupils?: number;
-  ever6?: number;
-  sen?: number;
   expenditurePP?: number;
   progress8?: number;
   ks2?: number;
-  efficiencyScore?: number;
   address?: string;
   telephone?: string;
   headTeacher?: string;
@@ -19,6 +15,9 @@ export class EfficiencyMetricNeighbourModel {
   religiousCharacter?: string;
   schoolType?: string;
   location?: Location;
+  pupils?: number;
+  ever6?: number;
+  sen?: number;
 }
 
 class Location {

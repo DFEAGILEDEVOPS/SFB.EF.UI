@@ -1,5 +1,5 @@
 <table class="govuk-table em-table" id="emTableDesktop" [ngStyle]="{'width': isMobilePdfInProgress ? '1000px' : 'unset'}">
-  <caption class="govuk-table__caption safari_only" style="caption-side: top;" [ngStyle]="{'height': isDesktopPdfInProgress ? '60px' : 'unset'}">
+  <caption class="govuk-table__caption safari_only" [ngStyle]="{'height': isDesktopPdfInProgress ? '160px' : 'unset', 'display': 'table-caption'}">
     <span style="color: white;" aria-hidden="true">Loading...</span>
   </caption>
   <thead class="govuk-table__head">
@@ -18,7 +18,7 @@
       aria-labelledby="Ks2Col">
         <div>
           <span id="Ks2Col">Key stage 2 progress</span>
-          <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon">
+          <a [routerLink]='' (click)="openModalWithComponent('KS2')" class="rating-help-icon" id="help-ks2">
             <img src="assets/images/info.svg" alt="Help for key stage 2 progress" class="small-icon" />
           </a>
         </div>
@@ -27,23 +27,17 @@
       aria-labelledby="p8Col">
         <div>
           <span id="p8Col">Progress 8 score</span>
-          <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon">
+          <a [routerLink]='' (click)="openModalWithComponent('Progress8')" class="rating-help-icon" id="help-p8">
             <img src="assets/images/info.svg" alt="Help for progress 8 score" class="small-icon" />
           </a>
         </div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__score-header govuk-table__header--numeric"
       aria-labelledby="scoreCol">
-        <div>
-          <span id="scoreCol">Score</span>
-          <a [routerLink]='' (click)="openModalWithComponent('Score')" class="rating-help-icon">
-            <img src="assets/images/info.svg" alt="Help for score" class="small-icon" />
-          </a>
-        </div>
       </th>
     </tr>
   </thead>
   <tbody class="govuk-table__body" [class.govuk-table__body--border]='i % 5 === 0' *ngFor='let neighbour of model.neighbourDataModels; let i = index'>
-    <tr class="govuk-table__row">
+    <tr class="govuk-table__row" [class.table-row--default-school]='neighbour.urn === model.urn'>
       <td class="govuk-table__cell em-table-rank-cell em-table-rank-cell--{{neighbour.rank}}" attr.aria-label="{{neighbour.rank}}">
         <span *ngIf='i % 5 === 0' class="em-rank-text em-rank-text--{{neighbour.rank}}">{{neighbour.rank}}</span>
         <span *ngIf='i % 5 !== 0' class="visually-hidden">{{neighbour.rank}}</span>
@@ -58,8 +52,8 @@
           <span class="visually-hidden" *ngIf='neighbour.localAuthority === model.localAuthority'>- this is the local authority of the default school</span>
         </span>
       </td>
-      <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6 / 100 | percent:'1.1'}} </td>
-      <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.sen / 100| percent:'1.1'}}</td>
+      <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.ever6  | percent:'1.1'}} </td>
+      <td class="govuk-table__cell govuk-table__cell--numeric">{{neighbour.sen | percent:'1.1'}}</td>
       <td class="govuk-table__cell em-table-expenditure-cell govuk-table__cell--numeric"><div>{{neighbour.expenditurePP | currency :'GBP':'symbol':'0.0-0'}}</div></td>
       <td  class="govuk-table__cell em-table-ks2-cell" *ngIf='model.primarySecondary === "Primary"'>
         <span class="em-table-ks2-cell__text"
@@ -70,6 +64,11 @@
           'em-table-ks2-cell__text--above': neighbour.ks2 <= 3 && neighbour.ks2 > 2,
           'em-table-ks2-cell__text--well-above': neighbour.ks2 > 3}">
           {{neighbour.ks2 | number: '1.1-1'}}
+          <span class="visually-hidden" *ngIf="neighbour.ks2 < -3">: well below</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 >= -3 && neighbour.ks2 < -2">: below</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 >= -2 && neighbour.ks2 <= 2">: average</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 <= 3 && neighbour.ks2 > 2">: above</span>
+          <span class="visually-hidden" *ngIf="neighbour.ks2 > 3">: well above</span>
         </span>
       </td>
       <td  class="govuk-table__cell em-table-p8-cell" *ngIf='model.primarySecondary === "Secondary"'>
@@ -81,11 +80,11 @@
         'em-table-p8-cell__text--above': neighbour.progress8 <= 0.5 && neighbour.progress8 > 0.25,
         'em-table-p8-cell__text--well-above': neighbour.progress8 > 0.5}">
           {{neighbour.progress8 | number: '1.1-1'}}
-        </span>
-      </td>
-      <td class="govuk-table__cell em-table-score-cell">
-        <span class="em-table-score-cell__text">
-        {{neighbour.efficiencyScore | number: '1.1-1'}}
+          <span class="visually-hidden" *ngIf="neighbour.progress8 < -0.5">: well below</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 >= -0.5 && neighbour.progress8 < -0.25">: below</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 >= -0.25 && neighbour.progress8 <= 0.25">: average</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 <= 0.5 && neighbour.progress8 > 0.25">: above</span>
+          <span class="visually-hidden" *ngIf="neighbour.progress8 > 0.5">: well above</span>
         </span>
       </td>
     </tr>

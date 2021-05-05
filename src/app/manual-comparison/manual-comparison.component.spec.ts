@@ -1,3 +1,4 @@
+import { BackRoutingService } from './../services/back-routing.service';
 import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { EmdataService } from '@core/network/services/emdata.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -26,6 +27,7 @@ describe('ManualComparisonComponent', () => {
   let urlServiceSpy =  jasmine.createSpyObj('URLService', ['getDomain']);
   let bsModalServiceSpy = jasmine.createSpyObj("BsModalService", ['show'])
   let emDataServiceSpy =  jasmine.createSpyObj('EmdataService', ['getEmData']);
+  let backRoutingServiceSpy =  jasmine.createSpyObj('BackRoutingService', ['setPreviousUrl']);
 
   beforeEach(async(() => {
 
@@ -38,6 +40,7 @@ describe('ManualComparisonComponent', () => {
         { provide: URLService, useValue: urlServiceSpy },
         { provide: appSettings, useFactory: appSettingsFactory, deps: [ConfigService, URLService] },
         { provide: BsModalService, useValue: bsModalServiceSpy },
+        { provide: BackRoutingService, useValue: backRoutingServiceSpy }
       ]
     })
     .compileComponents();
@@ -47,11 +50,10 @@ describe('ManualComparisonComponent', () => {
     activatedRouteStub.setParamMap({ urn: 12 });
     configServiceSpy.getSettings.and.returnValue({appSettings: new AppSettings()});
     urlServiceSpy.getDomain.and.returnValue("localhost");
-
   });
 
   it('should sort alphabetically by default', () => {
-
+    sessionStorage.clear();
     let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
     let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
     let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
@@ -67,6 +69,7 @@ describe('ManualComparisonComponent', () => {
   });
 
   it('should not display the home school in the list', () => {
+    sessionStorage.clear();
     activatedRouteStub.setParamMap({ urn: 123 });
 
     let stubEmModel : EMModel = {urn: 123, name: "Home school", rank: 2, localAuthority: "la1"};
@@ -84,7 +87,7 @@ describe('ManualComparisonComponent', () => {
   });
 
   it('should add to basket', () => {
-
+    sessionStorage.clear();
     let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
     let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
     let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
@@ -104,7 +107,7 @@ describe('ManualComparisonComponent', () => {
   });
 
   it('should remove from basket', () => {
-
+    sessionStorage.clear();
     let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
     let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
     let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
@@ -126,6 +129,7 @@ describe('ManualComparisonComponent', () => {
   });
 
   it('should not allow to add more than 30 schools to basket', () => {
+    sessionStorage.clear();
 
     let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
     let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
@@ -143,6 +147,38 @@ describe('ManualComparisonComponent', () => {
     component.addToManualBasket(123);
 
     expect(component.selectedSchoolUrns.length).toBe(30);
+
+  });
+
+  it('should load the basket from session storage if available', () => {
+    sessionStorage.setItem("urn-selection", "123, 124");
+
+    let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
+    emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
+
+    fixture = TestBed.createComponent(ManualComparisonComponent);
+    component = fixture.componentInstance;
+
+    expect(component.selectedSchoolUrns.length).toBe(2);
+
+  });
+
+  it('should not load the basket from session storage if not available', () => {
+    sessionStorage.clear();
+
+    let stubEmModel : EMModel = {urn: 12, name: "Home school", rank: 2, localAuthority: "la1"};
+    let stubNeigbourModel1: EfficiencyMetricNeighbourModel = { urn: 123, name: "b school", localAuthority: "la1"};
+    let stubNeigbourModel2: EfficiencyMetricNeighbourModel = { urn: 124, name: "a school", localAuthority: "la1"};
+    stubEmModel.neighbourDataModels = [stubNeigbourModel1, stubNeigbourModel2]
+    emDataServiceSpy.getEmData.and.returnValue(of(stubEmModel));
+
+    fixture = TestBed.createComponent(ManualComparisonComponent);
+    component = fixture.componentInstance;
+
+    expect(component.selectedSchoolUrns.length).toBe(0);
 
   });
 

@@ -1,3 +1,5 @@
+import { BackRoutingService } from './../services/back-routing.service';
+import { TitleService } from './../services/title.service';
 import { PdfService } from './../services/pdf.service';
 import { EmdataService } from '../core/network/services/emdata.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +29,10 @@ export class MetricComponent implements OnInit {
               private modalService: BsModalService,
               private emDataService: EmdataService,
               private pdfService: PdfService,
-              @Inject(appSettings) public settings: AppSettings) {
+              @Inject(appSettings) public settings: AppSettings,
+              titleService: TitleService,
+              backRoutingService: BackRoutingService) {
+    titleService.setWithPrefix("Efficiency Metric");
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
     });
@@ -35,6 +40,7 @@ export class MetricComponent implements OnInit {
     this.model.name = 'Your school';
     this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
     this.isMobilePdfInProgress = false;
+    backRoutingService.setPreviousUrl(null);
   }
 
   @HostListener('window:resize', ['$event'])

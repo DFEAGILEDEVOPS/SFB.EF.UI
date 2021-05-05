@@ -1,3 +1,4 @@
+import { BackRoutingService } from './../services/back-routing.service';
 import { PhaseFilterComponent } from './phase-filter/phase-filter.component';
 import { TypeFilterComponent } from './type-filter/type-filter.component';
 import { MapComponent } from './map/map.component';
@@ -11,6 +12,9 @@ import { RanksFilterComponent } from './ranks-filter/ranks-filter.component';
 import { OfstedFilterComponent } from './ofsted-filter/ofsted-filter.component';
 import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
+import { TitleService } from 'app/services/title.service';
+
+import { SessionService } from 'app/services/session.service';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -41,6 +45,7 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   private map: MapComponent;
 
   urn: number;
+  name: string;
   model: EMModel;
   modalRef: BsModalRef;
   selectedSchoolUrns: Array<number>;
@@ -52,12 +57,19 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
                     @Inject(appSettings) public settings: AppSettings,
                     private modalService: BsModalService,
-                    private emDataService: EmdataService) {
+                    private emDataService: EmdataService,
+                    titleService: TitleService,
+                    backRoutingService: BackRoutingService,
+                    private sessionService: SessionService) {
+
+    titleService.setWithPrefix("Manual comparison");
     this.route.paramMap.subscribe(pmap => {
         this.urn = +pmap.get('urn');
+        this.name = pmap.get('name');
+        backRoutingService.setPreviousUrl(`/efficiency-metric/comparison-type/${this.urn}/${this.name}`)
       });
     this.model = new EMModel();
-    this.selectedSchoolUrns = new Array<number>();
+    this.loadSelectionFromSession();
     this.sort = 'AlphabeticalAZ';
     this.resultSectionState = 'list-view';
     this.visibleSchoolList = [];
@@ -106,6 +118,7 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
   addToManualBasket(urn: number) {
     if (this.selectedSchoolUrns.length < 30) {
       this.selectedSchoolUrns.push(urn);
+      this.storeSelectionInSession();
     } else {
       this.openModal(this.basketFullModal);
     }
@@ -113,6 +126,15 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
 
   removeFromManualBasket(urn) {
     this.selectedSchoolUrns = this.selectedSchoolUrns.filter(s => s !== urn);
+    this.storeSelectionInSession();
+  }
+
+  storeSelectionInSession(){
+    this.sessionService.storeSelectionInSession(this.selectedSchoolUrns);
+  }
+
+  loadSelectionFromSession(){
+    this.selectedSchoolUrns = this.sessionService.loadSelectionFromSession();
   }
 
   filterResults() {
