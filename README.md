@@ -1,4 +1,4 @@
-# SFB Efficiency Metrics (Proof of Concept)
+# SFB Efficiency Metrics (Proof of Concept) 
 
 [![Build status](https://dev.azure.com/agilefactory/Financial%20Benchmarking/_apis/build/status/SFB.EF.UI)](https://dev.azure.com/agilefactory/Financial%20Benchmarking/_build/latest?definitionId=456) ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/DFEAGILEDEVOPS/SFB.EF.UI?include_prereleases)
 
