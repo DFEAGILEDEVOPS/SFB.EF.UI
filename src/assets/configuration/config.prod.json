@@ -11,9 +11,9 @@
       "author": "Department of Education",
       "robots": "index, follow"
     },
-    "sfbDomain": "https://as-t1stg-sfb.azurewebsites.net",
-    "apiDomain": "https://aa-t1stg-sfb.azurewebsites.net/api",
-    "cookieDomain": "as-t1stg-sfb-em.azurewebsites.net",
+    "sfbDomain": "https://schools-financial-benchmarking.service.gov.uk",
+    "apiDomain": "https://api.schools-financial-benchmarking.service.gov.uk/api",
+    "cookieDomain": "schools-financial-benchmarking.service.gov.uk",
     "academyTerm": "2018/2019",
     "maintainedTerm": "2018-2019",
     "azureMapsAPIKey": "a9NgtkMSBjA8_lOofQh2cpm1TkxboXmpwzMAVMbgWP8",
@@ -23,3 +23,4 @@
     "logExceptions": true
   }
 }
+
