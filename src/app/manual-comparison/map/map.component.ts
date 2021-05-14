@@ -19,7 +19,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
   @Input() selectedSchoolUrns: Array<number>;
 
-  @Output() schoolAddedRemoved = new EventEmitter();
+  @Output() onSchoolAddedRemoved = new EventEmitter();
 
   constructor(
     private zone: NgZone,
@@ -111,7 +111,7 @@ export class MapComponent implements OnInit, OnChanges {
             button.textContent = 'Remove';
           }
         }
-        this.schoolAddedRemoved.emit(urn);
+        this.onSchoolAddedRemoved.emit(urn);
       }
     );
   }

@@ -10,7 +10,7 @@ export class RanksFilterComponent implements OnInit {
   filterRanksCollapsed: boolean;
   filterRanks: Array<FilterItem>;
 
-  @Output() filterChanged = new EventEmitter();
+  @Output() onFilterChanged = new EventEmitter();
 
   constructor() {
     this.filterRanksCollapsed = false;
@@ -36,7 +36,7 @@ export class RanksFilterComponent implements OnInit {
   }
 
   emitFilterResults() {
-    this.filterChanged.emit();
+    this.onFilterChanged.emit();
   }
 
   isFiltered(rank: number) {

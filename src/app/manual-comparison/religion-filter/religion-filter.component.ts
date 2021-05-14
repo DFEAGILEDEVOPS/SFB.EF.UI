@@ -11,7 +11,7 @@ export class ReligionFilterComponent implements OnInit {
   filterReligions: Array<FilterItem>;
   filterReligionsCollapsed: boolean;
 
-  @Output() filterChanged = new EventEmitter();
+  @Output() onFilterChanged = new EventEmitter();
 
   constructor() {
     this.filterReligionsCollapsed = true;
@@ -34,7 +34,7 @@ export class ReligionFilterComponent implements OnInit {
   }
 
   emitFilterResults() {
-    this.filterChanged.emit();
+    this.onFilterChanged.emit();
   }
 
   isFiltered(religiousCharacter: string) {
