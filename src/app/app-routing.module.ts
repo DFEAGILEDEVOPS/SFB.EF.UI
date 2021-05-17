@@ -10,7 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServiceProblemComponent } from '@core/error-handling/ServiceProblem/ServiceProblem.component';
 import { NotFoundErrorComponent } from '@core/error-handling/NotFoundError/NotFoundError.component';
 
-const routes: Routes = [
+const ROUTES: Routes = [
   //{ path: 'efficiency-metric/:urn', component: MetricComponent},
   { path: 'efficiency-metric/metric/:urn', component: MetricComponent},
   { path: 'efficiency-metric/how-it-works/:urn/:name', component: HowItWorksComponent},
@@ -24,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled',  useHash: false,  anchorScrolling: 'enabled'})],
+  imports: [RouterModule.forRoot(ROUTES, {scrollPositionRestoration: 'enabled',  useHash: false,  anchorScrolling: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

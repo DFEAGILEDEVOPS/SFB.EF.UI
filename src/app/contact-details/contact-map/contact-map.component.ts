@@ -60,11 +60,11 @@ export class ContactMapComponent implements OnInit, OnChanges {
   private renderMapPinsForAzureMap() {
 
     if (this.mapLoaded) {
-      const latLangs = [];
+      let latLangs = [];
       this.mapLayers = [];
 
       this.visibleSchoolList.forEach(school => {
-        const schoolMarker = marker(latLng(Number(school.location.coordinates[1]), Number(school.location.coordinates[0])),
+        let schoolMarker = marker(latLng(Number(school.location.coordinates[1]), Number(school.location.coordinates[0])),
           {
             icon: icon({
               iconUrl: '/assets/images/icon-location.png',
@@ -73,7 +73,7 @@ export class ContactMapComponent implements OnInit, OnChanges {
           });
 
         schoolMarker.bindPopup(() => {
-          const divElement = document.createElement('div');
+          let divElement = document.createElement('div');
           divElement.className = 'infowindow-school-summary';
           divElement.innerHTML = `<a href ="${this.settings.sfbDomain}/school/detail?urn=${school.urn}">${school.name}</a>
                                   <p>${school.address}</p>
