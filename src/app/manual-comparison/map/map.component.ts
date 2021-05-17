@@ -12,9 +12,9 @@ export class MapComponent implements OnInit, OnChanges {
 
   map: any;
   mapOptions: any;
-  mapLayers: any[];
+  mapLayers: any[] = [];
   mapFitBounds: any;
-  mapLoaded: boolean;
+  mapLoaded: boolean = false;
 
   @Input() visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
   @Input() selectedSchoolUrns: Array<number>;
@@ -23,9 +23,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   constructor(
     private zone: NgZone,
-    @Inject(appSettings) public settings: AppSettings) {
-    this.mapLayers = [];
-    this.mapLoaded = false;
+    @Inject(appSettings) private settings: AppSettings) {
   }
 
   ngOnInit() {

@@ -19,7 +19,7 @@ export class ContactMapComponent implements OnInit, OnChanges {
   @Input() visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
 
   constructor(
-    @Inject(appSettings) public settings: AppSettings) {
+    @Inject(appSettings) private settings: AppSettings) {
     this.mapLayers = [];
     this.mapLoaded = false;
   }

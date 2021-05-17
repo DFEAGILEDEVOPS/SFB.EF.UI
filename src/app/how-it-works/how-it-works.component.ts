@@ -13,7 +13,7 @@ export class HowItWorksComponent implements OnInit {
   urn: number;
   name: string;
 
-  constructor(private route: ActivatedRoute, @Inject(appSettings) public settings: AppSettings, titleService: TitleService, backRoutingService: BackRoutingService) {
+  constructor(private route: ActivatedRoute, @Inject(appSettings) settings: AppSettings, titleService: TitleService, backRoutingService: BackRoutingService) {
     titleService.setWithPrefix("Introduction");
     this.route.params.subscribe(params => {
       this.urn = +params.urn;

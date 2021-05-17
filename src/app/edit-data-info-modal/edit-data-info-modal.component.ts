@@ -12,7 +12,7 @@ export class EditDataInfoModalComponent implements OnInit {
   textContent: string;
   referrer: string;
 
-  constructor(public bsModalRef: BsModalRef) {}
+  constructor(private bsModalRef: BsModalRef) {}
 
   ngOnInit() {
   }

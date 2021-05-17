@@ -16,10 +16,10 @@ import { HostListener } from '@angular/core';
 })
 export class MetricComponent implements OnInit {
   urn: number;
-  model: EMModel;
+  model: EMModel = new EMModel();
   modalRef: BsModalRef;
   isMobileScreen: boolean;
-  isMobilePdfInProgress: boolean;
+  isMobilePdfInProgress: boolean = false;
   isDesktopPdfInProgress: boolean;
   tabletBreakPoint = 641;
   @ViewChild('downloadingMessage') downloadingMessage: ElementRef;
@@ -36,10 +36,8 @@ export class MetricComponent implements OnInit {
     this.route.paramMap.subscribe(pmap => {
       this.urn = +pmap.get('urn');
     });
-    this.model = new EMModel();
     this.model.name = 'Your school';
     this.isMobileScreen = window.innerWidth < this.tabletBreakPoint;
-    this.isMobilePdfInProgress = false;
     backRoutingService.setPreviousUrl(null);
   }
 

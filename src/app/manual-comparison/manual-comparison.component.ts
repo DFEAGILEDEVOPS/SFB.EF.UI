@@ -13,7 +13,6 @@ import { OfstedFilterComponent } from './ofsted-filter/ofsted-filter.component';
 import { ReligionFilterComponent } from './religion-filter/religion-filter.component';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
 import { TitleService } from 'app/services/title.service';
-
 import { SessionService } from 'app/services/session.service';
 
 @Component({
@@ -46,12 +45,12 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
 
   urn: number;
   name: string;
-  model: EMModel;
+  model: EMModel = new EMModel();
   modalRef: BsModalRef;
   selectedSchoolUrns: Array<number>;
-  sort: string;
-  visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
-  resultSectionState: string;
+  sort: string = 'AlphabeticalAZ';
+  visibleSchoolList: Array<EfficiencyMetricNeighbourModel> = [];
+  resultSectionState: string = 'list-view';
 
   constructor(
     private route: ActivatedRoute,
@@ -68,11 +67,7 @@ export class ManualComparisonComponent implements OnInit, AfterViewInit {
         this.name = pmap.get('name');
         backRoutingService.setPreviousUrl(`/efficiency-metric/comparison-type/${this.urn}/${this.name}`)
       });
-    this.model = new EMModel();
     this.loadSelectionFromSession();
-    this.sort = 'AlphabeticalAZ';
-    this.resultSectionState = 'list-view';
-    this.visibleSchoolList = [];
   }
 
   ngAfterViewInit(): void {
