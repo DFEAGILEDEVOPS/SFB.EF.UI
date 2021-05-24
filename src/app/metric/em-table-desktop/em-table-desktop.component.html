@@ -8,10 +8,19 @@
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__school-header"><div>School</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky"><div>Local authority</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric" aria-label="Ever 6 Free School Meals">
-        <div><abbr title="Ever 6 Free School Meals">Ever6 FSM</abbr></div>
+        <div>
+          <abbr title="Ever 6 Free School Meals">Ever6 FSM</abbr>
+          <a [routerLink]='' (click)="openModalWithComponent('FSM')" class="rating-help-icon" id="help-fsm">
+            <img src="assets/images/info.svg" alt="Help for key stage 2 progress" class="small-icon" />
+          </a>
+        </div>
       </th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky govuk-table__header--numeric" aria-label="Special Educational Needs / Education Health and Care Plan">
-        <div><abbr title="Special Educational Needs / Education Health and Care Plan">SEN / EHCP</abbr></div>
+        <div><abbr title="Special Educational Needs / Education Health and Care Plan">SEN / EHCP</abbr>
+          <a [routerLink]='' (click)="openModalWithComponent('SEN')" class="rating-help-icon" id="help-sen">
+            <img src="assets/images/info.svg" alt="Help for key stage 2 progress" class="small-icon" />
+          </a>
+        </div>
       </th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__expenditure-header govuk-table__header--numeric"><div>Expenditure per pupil</div></th>
       <th scope="col" class="govuk-table__header govuk-table__header--sticky em-table__ks2-header" *ngIf='model.primarySecondary === "Primary"'
