@@ -15,11 +15,11 @@
 <div class="govuk-grid-row ">
   <div class="govuk-grid-column-one-third">
     <p>Filter by:</p>
-    <app-ranks-filter (filterChanged)='filterResults()'></app-ranks-filter>
-    <app-phase-filter (filterChanged)='filterResults()'></app-phase-filter>
-    <app-type-filter (filterChanged)='filterResults()'></app-type-filter>
-    <app-ofsted-filter (filterChanged)='filterResults()'></app-ofsted-filter>
-    <app-religion-filter (filterChanged)='filterResults()'></app-religion-filter>
+    <app-ranks-filter (onFilterChanged)='filterResults()'></app-ranks-filter>
+    <app-phase-filter (onFilterChanged)='filterResults()'></app-phase-filter>
+    <app-type-filter (onFilterChanged)='filterResults()'></app-type-filter>
+    <app-ofsted-filter (onFilterChanged)='filterResults()'></app-ofsted-filter>
+    <app-religion-filter (onFilterChanged)='filterResults()'></app-religion-filter>
   </div>
 
   <div class="govuk-grid-column-two-thirds">
@@ -99,7 +99,7 @@
     </div>
 
     <div [hidden]='visibleSchoolList.length === 0 || resultSectionState === "list-view"'>
-      <app-map [visibleSchoolList]='visibleSchoolList' [selectedSchoolUrns]='selectedSchoolUrns' (schoolAddedRemoved)='addRemoveFromMapPopup($event)'></app-map>
+      <app-map [visibleSchoolList]='visibleSchoolList' [selectedSchoolUrns]='selectedSchoolUrns' (onSchoolAddedRemoved)='addRemoveFromMapPopup($event)'></app-map>
     </div>
 
     <div [hidden]='visibleSchoolList.length > 0'><span class="govuk-!-font-weight-bold">No schools found.</span> <br> Please try removing some of your filters.</div>

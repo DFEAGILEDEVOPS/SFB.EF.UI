@@ -12,20 +12,18 @@ export class MapComponent implements OnInit, OnChanges {
 
   map: any;
   mapOptions: any;
-  mapLayers: any[];
+  mapLayers: any[] = [];
   mapFitBounds: any;
-  mapLoaded: boolean;
+  mapLoaded: boolean = false;
 
   @Input() visibleSchoolList: Array<EfficiencyMetricNeighbourModel>;
   @Input() selectedSchoolUrns: Array<number>;
 
-  @Output() schoolAddedRemoved = new EventEmitter();
+  @Output() onSchoolAddedRemoved = new EventEmitter();
 
   constructor(
     private zone: NgZone,
-    @Inject(appSettings) public settings: AppSettings) {
-    this.mapLayers = [];
-    this.mapLoaded = false;
+    @Inject(appSettings) private settings: AppSettings) {
   }
 
   ngOnInit() {
@@ -64,11 +62,11 @@ export class MapComponent implements OnInit, OnChanges {
   private renderMapPinsForAzureMap() {
 
     if (this.mapLoaded) {
-      const latLangs = [];
+      let latLangs = [];
       this.mapLayers = [];
 
       this.visibleSchoolList.forEach(school => {
-        const schoolMarker = marker(latLng(Number(school.location.coordinates[1]), Number(school.location.coordinates[0])),
+        let schoolMarker = marker(latLng(Number(school.location.coordinates[1]), Number(school.location.coordinates[0])),
           {
             icon: icon({
               iconUrl: '/assets/images/icon-location.png',
@@ -77,13 +75,13 @@ export class MapComponent implements OnInit, OnChanges {
           });
 
         schoolMarker.bindPopup(() => {
-          const divElement = document.createElement('div');
+          let divElement = document.createElement('div');
           divElement.className = 'infowindow-school-summary';
           divElement.innerHTML = `<a href ="${this.settings.sfbDomain}/school/detail?urn=${school.urn}">${school.name}</a>
                                   <p>${school.address}</p>
                                   <p>${school.overallPhase}</p>
                                   <p>${school.schoolType}</p>`;
-          const buttonElement = document.createElement('button');
+          let buttonElement = document.createElement('button');
           buttonElement.className = 'govuk-button govuk-button--secondary';
           buttonElement.textContent = this.selectedSchoolUrns.includes(school.urn) ? 'Remove' : 'Add';
           buttonElement.addEventListener('click', () => this.addRemoveFromMapPopup(school.urn, buttonElement));
@@ -111,7 +109,7 @@ export class MapComponent implements OnInit, OnChanges {
             button.textContent = 'Remove';
           }
         }
-        this.schoolAddedRemoved.emit(urn);
+        this.onSchoolAddedRemoved.emit(urn);
       }
     );
   }

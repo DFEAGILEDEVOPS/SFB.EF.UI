@@ -11,7 +11,7 @@ export class TypeFilterComponent implements OnInit {
   filterTypes: Array<FilterItem>;
   filterTypesCollapsed: boolean;
 
-  @Output() filterChanged = new EventEmitter();
+  @Output() onFilterChanged = new EventEmitter();
 
   constructor() {
     this.filterTypesCollapsed = true;
@@ -34,7 +34,7 @@ export class TypeFilterComponent implements OnInit {
   }
 
   emitFilterResults() {
-    this.filterChanged.emit();
+    this.onFilterChanged.emit();
   }
 
   isFiltered(type: string) {

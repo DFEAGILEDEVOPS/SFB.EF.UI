@@ -12,7 +12,7 @@ constructor(@Inject(appSettings) public settings: AppSettings) {
 
 public manageCookies() {
 
-  var cookiesPolicyCookie = this.getCookie("cookies_policy");
+  let cookiesPolicyCookie = this.getCookie("cookies_policy");
   if (!cookiesPolicyCookie) {
       let cookiesPolicyCookie = { "essential": true, "settings": false, "usage": false };
       this.setDomainCookie("cookies_policy", JSON.stringify(cookiesPolicyCookie), { days: 365 }, this.settings.cookieDomain );
@@ -42,7 +42,7 @@ private manageCookiePreferencesCookies() {
   if (!this.getCookie("cookies_preferences_set")) {
       $("#global-cookie-message").show();
       this.renderCookieOverlay();
-  } 
+  }
 }
 
 private setDomainCookie (name, value, options, domain) {
@@ -83,7 +83,7 @@ private setCookie (name, value, options) {
 private getCookie (name) {
   var nameEQ = name + "=";
   var cookies = document.cookie.split(';');
-  for(var i = 0, len = cookies.length; i < len; i++) {
+  for (let i = 0, len = cookies.length; i < len; i++) {
     var cookie = cookies[i];
     while (cookie.charAt(0) == ' ') {
       cookie = cookie.substring(1, cookie.length);
@@ -99,7 +99,7 @@ private renderCookieOverlay() {
   var div = document.createElement("div");
   div.className += "cookie-overlay";
   document.getElementById('cookie-overlay-wrapper').appendChild(div);
-  window.onscroll = function () { window.scrollTo(0, 0); };
+  window.onscroll = () => { window.scrollTo(0, 0); };
 }
 
 private unRenderCookieOverlay() {

@@ -9,17 +9,17 @@ import { URLService } from '@core/network/services/URL.service';
 import { appSettings, AppSettings } from './settings/app-settings';
 
 export function configLoaderFactory(http: HttpClient): ConfigLoader {
-  const endpoint = `/assets/configuration/config.${environment.name}.json`;
+  let endpoint = `/assets/configuration/config.${environment.name}.json`;
   return new ConfigHttpLoader(http, endpoint);
 }
 
 export function appSettingsFactory(configService: ConfigService, urlService: URLService): AppSettings {
-  const appsettings: AppSettings = configService.getSettings().appSettings;
+  let appsettings: AppSettings = configService.getSettings().appSettings;
   appsettings.domain = urlService.getDomain();
   return appsettings;
 }
 
-const configProviders = [
+let configProviders = [
   { provide: appSettings, useFactory: appSettingsFactory, deps: [ConfigService, URLService] },
 ];
 

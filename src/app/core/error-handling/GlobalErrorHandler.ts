@@ -12,10 +12,10 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   handleError(error) {
 
-    const settings = this.injector.get(appSettings);
+    let settings = this.injector.get(appSettings);
 
     if (settings.customErrorPage) {
-      const router = this.injector.get(Router);
+      let router = this.injector.get(Router);
       router.navigate(['service-problem']);
     }
 

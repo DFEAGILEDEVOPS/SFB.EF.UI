@@ -11,7 +11,7 @@ export class OfstedFilterComponent implements OnInit {
   filterOfstedsCollapsed: boolean;
   filterOfsteds: Array<FilterItem>;
 
-  @Output() filterChanged = new EventEmitter();
+  @Output() onFilterChanged = new EventEmitter();
 
   constructor() {
     this.filterOfstedsCollapsed = true;
@@ -28,7 +28,7 @@ export class OfstedFilterComponent implements OnInit {
   }
 
   emitFilterResults() {
-    this.filterChanged.emit();
+    this.onFilterChanged.emit();
   }
 
   get selectedFilterOfsteds() {

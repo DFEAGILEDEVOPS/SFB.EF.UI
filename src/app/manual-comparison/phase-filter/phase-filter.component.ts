@@ -11,7 +11,7 @@ export class PhaseFilterComponent implements OnInit {
   filterPhases: Array<FilterItem>;
   filterPhasesCollapsed: boolean;
 
-  @Output() filterChanged = new EventEmitter();
+  @Output() onFilterChanged = new EventEmitter();
 
   constructor() {
     this.filterPhasesCollapsed = true;
@@ -34,7 +34,7 @@ export class PhaseFilterComponent implements OnInit {
   }
 
   emitFilterResults() {
-    this.filterChanged.emit();
+    this.onFilterChanged.emit();
   }
 
   isFiltered(phase: string) {
