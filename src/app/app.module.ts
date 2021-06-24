@@ -18,7 +18,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+//import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { GovUkLayoutModule } from '@layouts/gov-uk-layout/gov-uk-layout.module';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -63,7 +63,7 @@ import { EmTableMobileComponent } from './metric/em-table-mobile/em-table-mobile
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgBootstrapFormValidationModule.forRoot(),
+    //NgBootstrapFormValidationModule.forRoot(),
     CoreModule.forRoot(),
     GovUkLayoutModule,
     AppRoutingModule,

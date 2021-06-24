@@ -1,8 +1,8 @@
+import { ConfigHttpLoader } from '@ngx-config/http-loader';
 import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ConfigService, ConfigLoader, ConfigModule } from '@ngx-config/core';
-import { ConfigHttpLoader } from '@ngx-config/http-loader';
 
 import { environment } from '@env/environment';
 import { URLService } from '@core/network/services/URL.service';
