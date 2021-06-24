@@ -3,7 +3,7 @@ import { ReligionFilterComponent } from './religion-filter/religion-filter.compo
 import { EmdataService } from '@core/network/services/emdata.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
@@ -29,7 +29,7 @@ describe('ManualComparisonComponent', () => {
   let emDataServiceSpy =  jasmine.createSpyObj('EmdataService', ['getEmData']);
   let backRoutingServiceSpy =  jasmine.createSpyObj('BackRoutingService', ['setPreviousUrl']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
 
     TestBed.configureTestingModule({
       declarations: [ ManualComparisonComponent, ReligionFilterComponent ],

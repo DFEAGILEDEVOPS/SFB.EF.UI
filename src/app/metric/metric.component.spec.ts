@@ -2,7 +2,7 @@ import { EmTableMobileComponent } from './em-table-mobile/em-table-mobile.compon
 import { PdfService } from './../services/pdf.service';
 import { EMModel } from './../Models/EMModel';
 import { EmdataService } from './../core/network/services/emdata.service';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,7 +29,7 @@ describe('MetricComponent', () => {
   let urlServiceSpy =  jasmine.createSpyObj('URLService', ['getDomain']);
   let routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
 
     TestBed.configureTestingModule({
       declarations: [ MetricComponent, EmTableDesktopComponent, EmTableMobileComponent ],

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { appSettings, AppSettings } from '@core/config/settings/app-settings';
@@ -15,7 +15,7 @@ describe('MapComponent', () => {
   let configServiceSpy =  jasmine.createSpyObj('ConfigService', ['getSettings']);
   let urlServiceSpy =  jasmine.createSpyObj('URLService', ['getDomain']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MapComponent ],
       providers: [
