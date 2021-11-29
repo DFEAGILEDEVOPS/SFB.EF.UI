@@ -13,6 +13,7 @@ export class CookieBannerComponent implements OnInit {
   public cookiesSetAndConfirmed: Boolean;
 
   constructor(
+    @Inject(appSettings) public settings: AppSettings,
     private cookiesService: CookiesService
   ){ }
 
