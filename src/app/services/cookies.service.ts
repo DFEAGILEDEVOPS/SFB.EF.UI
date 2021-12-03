@@ -17,7 +17,7 @@ public manageCookies() : boolean {
       this.setDomainCookie("cookies_policy", JSON.stringify(cookiesPolicyCookie), { days: 365 }, this.settings.cookieDomain );
   }
 
-  setTimeout(() =>this.manageGACookies(), 500);
+  this.manageGACookies();
 
   return this.getCookie("cookies_preferences_set") === "true";
 
@@ -36,7 +36,6 @@ public rejectAllCookies() {
 }
 
 private manageGACookies() {
-  debugger;
   let cookiesPolicyCookie = JSON.parse(this.getCookie("cookies_policy"));
   if (!cookiesPolicyCookie.usage)  {
       this.setCookie("_ga", '', { days: -1 });
