@@ -53,7 +53,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/web.config"
+              "src/web.config",
+              "src/analytics.txt"
             ],
             "styles": [
               "src/styles.scss",
