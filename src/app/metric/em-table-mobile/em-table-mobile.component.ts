@@ -46,8 +46,7 @@ export class EmTableMobileComponent implements OnInit {
           "<div class='modal__score'><div class='score below'>Below average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
           "<div class='modal__score'><div class='score average'>Average</div><div>About <span class='bold'>60%</span> of</br> schools in England</div></div>" +
           "<div class='modal__score'><div class='score above'>Above average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
-          "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>" +
-          "<div class='govuk-inset-text'><span class='govuk-body-s'>Due to Covid-19 the Government is not publishing the school educational performance data for 2020, the latest progress data is from 2019.</span></div>",
+          "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>10%</span> of</br> schools in England</div></div>",
           referrer: "help-ks2"
         };
         this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
@@ -62,8 +61,7 @@ export class EmTableMobileComponent implements OnInit {
             "<div class='modal__score'><div class='score below'>Below average</div><div>About <span class='bold'>19%</span> of</br> schools in England</div></div>" +
             "<div class='modal__score'><div class='score average'>Average</div><div>About <span class='bold'>37%</span> of</br> schools in England</div></div>" +
             "<div class='modal__score'><div class='score above'>Above average</div><div>About <span class='bold'>17%</span> of</br> schools in England</div></div>" +
-            "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>14%</span> of</br> schools in England</div></div>"+
-            "<div class='govuk-inset-text'><span class='govuk-body-s'>Due to Covid-19 the Government is not publishing the school educational performance data for 2020, the latest progress data is from 2019.</span></div>",
+            "<div class='modal__score'><div class='score well-above'>Well above average</div><div>About <span class='bold'>14%</span> of</br> schools in England</div></div>",
             referrer: "help-p8"
           };
           this.modalRef = this.modalService.show(EditDataInfoModalComponent, { initialState });
