@@ -60,11 +60,6 @@
       <button class="govuk-button bm-button" (click)="onGotoBenchmark()">Benchmark these schools</button>
     </div>
   </div>
-  <div class="govuk-grid-column-full">
-    <div class="govuk-inset-text">
-          Due to Covid-19 the Government is not publishing the school educational performance data for 2020. This Efficiency Metric shows financial and school data relevant to the published 2019 performance data.
-    </div>
-  </div>
 </div>
 
 <app-em-table-desktop [isDesktopPdfInProgress]='isDesktopPdfInProgress' [isMobilePdfInProgress]='isMobilePdfInProgress' [hidden]="isMobileScreen && !isMobilePdfInProgress" [model]='model' #emTableDesktop></app-em-table-desktop>
